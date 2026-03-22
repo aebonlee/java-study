@@ -75,6 +75,17 @@ export default function Navbar() {
             { to: '/java-learning/12', label: '파일 I/O' },
           ]
         },
+        {
+          title: '웹 개발',
+          color: '#EF4444',
+          children: [
+            { to: '/java-learning/13', label: '서블릿 기초' },
+            { to: '/java-learning/14', label: 'JSP와 MVC' },
+            { to: '/java-learning/15', label: 'Spring Framework' },
+            { to: '/java-learning/16', label: 'Spring Boot' },
+            { to: '/java-learning/17', label: 'Spring MVC 데이터' },
+          ]
+        },
       ]
     },
     {

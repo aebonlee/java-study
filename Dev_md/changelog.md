@@ -1,5 +1,24 @@
 # Changelog
 
+## v3.3.0 (2026-03-23)
+
+### 개선
+- **자바학습하기 메가 드롭다운 확장**
+  - "웹 개발" 섹션 추가 (Ch.13~17, 빨강 `#EF4444`)
+  - 기존 3섹션(기초/중급/고급) → 4섹션(기초/중급/고급/웹 개발)
+  - 누락되었던 Ch.13~17 (서블릿 기초, JSP와 MVC, Spring Framework, Spring Boot, Spring MVC 데이터) 접근 가능
+
+### 점검 결과
+- **학습 진도 추적**: localStorage 단독 사용 (Supabase 동기화 미구현)
+- **사용자 인증**: Google/Kakao OAuth 정상, 이메일 로그인 미구현
+- **커리큘럼 메뉴**: 웹 개발 섹션 누락 → 수정 완료
+
+### 수정 파일
+- JSX 1개: Navbar.jsx
+- MD 2개: navigation-guide.md, changelog.md
+
+---
+
 ## v3.2.1 (2026-03-23)
 
 ### 개선
