@@ -183,17 +183,42 @@ export default function Home() {
                 <span className="path-topic">인프라</span>
               </div>
             </div>
-            <div className="path-card">
-              <div className="path-step">Project</div>
-              <h3>실전 프로젝트</h3>
-              <p>콘솔 주소록부터 Spring E-Commerce까지, 8개 프로젝트로 실전 개발 능력을 완성합니다.</p>
+            <Link to="/projects/01" className="path-card path-project" style={{ textDecoration: 'none' }}>
+              <div className="path-step"><i className="fas fa-seedling" style={{ marginRight: '6px', color: '#10B981' }}></i>Project - 기초</div>
+              <h3>기초 프로젝트</h3>
+              <p>Java 기본 문법으로 콘솔 주소록, 성적 관리 시스템을 직접 만들어봅니다.</p>
               <div className="path-topics">
-                <span className="path-topic">기초</span>
-                <span className="path-topic">심화</span>
-                <span className="path-topic">웹</span>
-                <span className="path-topic">Spring</span>
+                <span className="path-topic">콘솔 주소록</span>
+                <span className="path-topic">성적 관리</span>
               </div>
-            </div>
+            </Link>
+            <Link to="/projects/03" className="path-card path-project" style={{ textDecoration: 'none' }}>
+              <div className="path-step"><i className="fas fa-flask" style={{ marginRight: '6px', color: '#3B82F6' }}></i>Project - 심화</div>
+              <h3>심화 프로젝트</h3>
+              <p>컬렉션, 파일I/O, 멀티스레드를 활용한 도서 관리와 채팅 앱을 구현합니다.</p>
+              <div className="path-topics">
+                <span className="path-topic">도서 관리</span>
+                <span className="path-topic">채팅 앱</span>
+              </div>
+            </Link>
+            <Link to="/projects/05" className="path-card path-project" style={{ textDecoration: 'none' }}>
+              <div className="path-step"><i className="fas fa-globe" style={{ marginRight: '6px', color: '#E76F00' }}></i>Project - 웹</div>
+              <h3>웹 프로젝트</h3>
+              <p>서블릿/JSP와 MySQL로 게시판과 쇼핑몰을 처음부터 끝까지 구축합니다.</p>
+              <div className="path-topics">
+                <span className="path-topic">게시판</span>
+                <span className="path-topic">쇼핑몰</span>
+              </div>
+            </Link>
+            <Link to="/projects/07" className="path-card path-project" style={{ textDecoration: 'none' }}>
+              <div className="path-step"><i className="fas fa-leaf" style={{ marginRight: '6px', color: '#6DB33F' }}></i>Project - Spring</div>
+              <h3>Spring 프로젝트</h3>
+              <p>Spring Boot로 REST 블로그 API와 E-Commerce 플랫폼을 완성합니다.</p>
+              <div className="path-topics">
+                <span className="path-topic">REST 블로그</span>
+                <span className="path-topic">E-Commerce</span>
+              </div>
+            </Link>
           </div>
         </div>
       </section>
