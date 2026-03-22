@@ -2,18 +2,25 @@
 
 ## v3.3.0 (2026-03-23)
 
+### 수정
+- **페이지 헤더 텍스트 컬러 수정** (전체 페이지)
+  - 원인: `.java-lesson h1/p { color: var(--text-primary) }`가 `.page-header`의 `color: white` 상속을 덮어씀
+  - course.css: `.page-header h1`에 `color: white` 명시, `.page-header .breadcrumb` 컬러 명시
+  - java-learning.css: `.java-lesson .page-header h1/p` 셀렉터 추가 (높은 우선순위로 white 적용)
+  - 개별 레슨 43개 + 허브 3개 모두 흰색 텍스트 보장
+- **퀴즈 페이지 CSS 충돌 수정**
+  - quiz.css에서 `.quiz-header`가 2번 정의되어 페이지 헤더와 퀴즈 컴포넌트 내부 헤더가 충돌
+  - 퀴즈 컴포넌트 내부: `.quiz-header` → `.quiz-container .quiz-header`로 스코핑
+- **다크모드 헤더 셀렉터 보완**
+  - `.quiz-header`를 다크모드 헤더 그라데이션 셀렉터에 추가
+
 ### 개선
 - **자바학습하기 메가 드롭다운 확장**
   - "웹 개발" 섹션 추가 (Ch.13~17, 빨강 `#EF4444`)
   - 기존 3섹션(기초/중급/고급) → 4섹션(기초/중급/고급/웹 개발)
-  - 누락되었던 Ch.13~17 (서블릿 기초, JSP와 MVC, Spring Framework, Spring Boot, Spring MVC 데이터) 접근 가능
-
-### 점검 결과
-- **학습 진도 추적**: localStorage 단독 사용 (Supabase 동기화 미구현)
-- **사용자 인증**: Google/Kakao OAuth 정상, 이메일 로그인 미구현
-- **커리큘럼 메뉴**: 웹 개발 섹션 누락 → 수정 완료
 
 ### 수정 파일
+- CSS 4개: course.css, java-learning.css, quiz.css, dark-mode.css
 - JSX 1개: Navbar.jsx
 - MD 2개: navigation-guide.md, changelog.md
 

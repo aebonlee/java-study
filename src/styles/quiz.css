@@ -173,7 +173,7 @@
   padding: 32px;
 }
 
-.quiz-header {
+.quiz-container .quiz-header {
   display: flex;
   justify-content: space-between;
   align-items: center;

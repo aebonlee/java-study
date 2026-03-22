@@ -85,6 +85,7 @@
 }
 
 [data-theme="dark"] .page-header,
+[data-theme="dark"] .quiz-header,
 [data-theme="dark"] .badge-header,
 [data-theme="dark"] .guide-header,
 [data-theme="dark"] .mypage-header {

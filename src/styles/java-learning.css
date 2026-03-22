@@ -1,4 +1,14 @@
 /* ===== Java Learning Pages ===== */
+
+/* 레슨 페이지의 page-header 내 텍스트는 흰색 유지 */
+.java-lesson .page-header h1 {
+  color: white;
+}
+
+.java-lesson .page-header p {
+  color: rgba(255, 255, 255, 0.8);
+}
+
 .java-lesson {
   padding: 40px 0 80px;
 }
