@@ -50,7 +50,7 @@
   width: 80px;
   height: 80px;
   border-radius: 50%;
-  background: linear-gradient(135deg, var(--primary), var(--accent));
+  background: linear-gradient(135deg, #1a3a52, var(--primary));
   color: white;
   display: flex;
   align-items: center;
@@ -189,7 +189,7 @@
 
 .cert-progress-bar {
   height: 100%;
-  background: linear-gradient(90deg, var(--primary), var(--accent));
+  background: linear-gradient(90deg, #1a3a52, var(--primary));
   border-radius: 2px;
   transition: width 0.6s ease;
 }

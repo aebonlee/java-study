@@ -52,10 +52,7 @@
 }
 
 .hero h1 span {
-  background: linear-gradient(135deg, #FFD43B, #E76F00);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: #E76F00;
 }
 
 .hero p {
@@ -111,7 +108,7 @@
 
 .hero-progress-fill {
   height: 100%;
-  background: linear-gradient(90deg, #FFD43B, #E76F00);
+  background: #E76F00;
   border-radius: 3px;
   transition: width 0.8s ease;
 }
@@ -197,7 +194,7 @@
   width: 56px;
   height: 56px;
   margin: 0 auto 16px;
-  background: linear-gradient(135deg, var(--primary), var(--accent));
+  background: linear-gradient(135deg, #1a3a52, var(--primary));
   border-radius: var(--radius-md);
   display: flex;
   align-items: center;
