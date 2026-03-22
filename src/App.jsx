@@ -7,6 +7,7 @@ import { AuthProvider } from './contexts/AuthContext'
 import Navbar from './components/layout/Navbar'
 import Footer from './components/layout/Footer'
 import ErrorBoundary from './components/ErrorBoundary'
+import CodeBlockCopy from './components/CodeBlockCopy'
 
 const Home = lazy(() => import('./pages/Home'))
 const JavaLearning = lazy(() => import('./pages/JavaLearning'))
@@ -108,6 +109,7 @@ export default function App() {
           <BrowserRouter>
             <ErrorBoundary>
               <Navbar />
+              <CodeBlockCopy />
               <Suspense fallback={<PageLoader />}>
                 <Routes>
                   <Route path="/" element={<Home />} />

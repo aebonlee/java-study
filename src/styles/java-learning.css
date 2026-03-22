@@ -122,6 +122,10 @@
   color: white;
 }
 
+.code-header .copy-btn .fa-check {
+  color: #6EE7B7;
+}
+
 .code-block pre {
   margin: 0;
   border-radius: 0;
