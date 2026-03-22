@@ -44,6 +44,7 @@ export default function Navbar() {
     {
       label: '자바학습하기',
       mega: true,
+      grid2x2: true,
       sections: [
         {
           title: '기초',
@@ -180,6 +181,7 @@ export default function Navbar() {
     {
       label: '프로젝트',
       mega: true,
+      grid2x2: true,
       sections: [
         {
           title: '기초',
@@ -255,7 +257,7 @@ export default function Navbar() {
                     transform: activeDropdown === i ? 'rotate(180deg)' : 'none'
                   }}></i>
                 </span>
-                <div className={`dropdown-mega${activeDropdown === i ? ' active' : ''}`}>
+                <div className={`dropdown-mega${activeDropdown === i ? ' active' : ''}${item.grid2x2 ? ' dropdown-mega-2x2' : ''}`}>
                   {item.sections.map(section => (
                     <div key={section.title} className="dropdown-mega-section">
                       <div className="dropdown-section-header" style={{ background: section.color }}>

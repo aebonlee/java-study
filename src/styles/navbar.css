@@ -156,6 +156,11 @@
   transform: translateX(-50%) translateY(0);
 }
 
+.dropdown-mega-2x2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
 .dropdown-mega-section {
   min-width: 160px;
 }
@@ -346,7 +351,8 @@
     gap: 8px;
   }
 
-  .dropdown-mega.active {
+  .dropdown-mega.active,
+  .dropdown-mega-2x2.active {
     display: flex;
     transform: none;
   }
