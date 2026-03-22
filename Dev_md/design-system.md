@@ -150,7 +150,15 @@
 - 라운딩: `var(--radius-lg)`
 - 호버: `translateY(-4px) + shadow-lg`
 
-### 페이지 헤더
-- 배경: 연한 블루 그라데이션
-- 아이콘: 그라데이션 박스 (52×52)
-- 제목 + 설명
+### 페이지 헤더 (통일 디자인 v3.2.1)
+- **라이트모드**: `linear-gradient(135deg, #1a3a52, #5382A1)` (다크 그라데이션)
+- **다크모드**: `linear-gradient(135deg, #0f1f2e, #1a3a52)`
+- 텍스트: 흰색 (`color: white`)
+- 아이콘: `rgba(255,255,255,0.15)` 배경 박스 (52×52)
+- 적용 대상: 레슨 페이지, 퀴즈 센터, 도장깨기, 이용 가이드, 마이페이지
+- CSS 클래스: `.page-header`, `.quiz-header`, `.badge-header`, `.guide-header`, `.mypage-header`
+
+### 학습완료 버튼 (통일 컬러 v3.2.1)
+- **미완료**: `btn-accent` (주황색) — 학습 유도
+- **완료**: `btn-primary` (Java 블루) — 완료 표시
+- 전체 43개 레슨 동일 패턴 적용

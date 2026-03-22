@@ -3,7 +3,7 @@
 ## 기술 스택
 - **프론트엔드**: React 19, React Router DOM 7
 - **빌드 도구**: Vite 7
-- **스타일링**: CSS Custom Properties (18개 CSS 파일)
+- **스타일링**: CSS Custom Properties (17개 CSS 파일)
 - **코드 하이라이팅**: PrismJS
 - **데이터베이스**: Supabase (PostgreSQL)
 - **배포**: GitHub Pages (gh-pages)
@@ -16,7 +16,7 @@ java-study/
 ├── vite.config.js
 ├── .env                    # Supabase 키 (gitignore)
 ├── supabase-setup.sql      # DB 테이블 생성 SQL
-├── Dev_md/                 # 프로젝트 문서
+├── Dev_md/                 # 프로젝트 문서 (13개)
 │   ├── project-plan.md
 │   ├── architecture.md
 │   ├── features-guide.md
@@ -25,6 +25,10 @@ java-study/
 │   ├── supabase-setup.md
 │   ├── deployment-guide.md
 │   ├── og-meta-guide.md
+│   ├── servlet-course-guide.md
+│   ├── spring-course-guide.md
+│   ├── code-runner-guide.md
+│   ├── navigation-guide.md
 │   └── changelog.md
 ├── scripts/
 │   └── generate-og-image.mjs  # OG 이미지 생성 (sharp)
@@ -38,7 +42,7 @@ java-study/
     ├── main.jsx
     ├── App.jsx             # 라우터 & Provider
     ├── index.css           # CSS 임포트
-    ├── styles/             # 18개 CSS 파일
+    ├── styles/             # 17개 CSS 파일
     │   ├── base.css        # 변수, 리셋, 버튼
     │   ├── navbar.css
     │   ├── hero.css
@@ -75,8 +79,8 @@ java-study/
     │   ├── lessons.js      # Java 레슨 메타데이터 (3단계 17과)
     │   ├── servletLessons.js  # 서블릿 레슨 메타데이터 (10과)
     │   ├── springLessons.js   # 스프링 레슨 메타데이터 (16과)
-    │   ├── badges.js       # 24개 배지 정의 (4등급)
-    │   └── quizzes.js      # 4개 퀴즈 (총 40문제)
+    │   ├── badges.js       # 33개 배지 정의 (4등급)
+    │   └── quizzes.js      # 6개 퀴즈 (총 60문제)
     └── pages/
         ├── Home.jsx             # 랜딩 페이지
         ├── JavaLearning.jsx     # 전체 커리큘럼
@@ -118,25 +122,26 @@ java-study/
 - **BadgeContext**: 배지 획득 평가, 알림 팝업 (localStorage: `javamaster-badges`)
 - **AuthContext**: Google/Kakao OAuth 인증, 세션 30분 자동 만료, 로그인 모달 (Supabase Auth)
 
-## 배지 시스템 (24개)
+## 배지 시스템 (33개)
 | 등급 | 개수 | 조건 유형 |
 |------|------|-----------|
-| 브론즈 | 6 | 첫 레슨, Hello World, 코드 실행 10회, 5개 레슨 등 |
-| 실버 | 7 | 기초 마스터, 10개 레슨, 코드 50회, OOP 퀴즈 등 |
-| 골드 | 8 | OOP/고급/웹 마스터, 만점 퀴즈, 15개 레슨, 코드 100회 |
+| 브론즈 | 7 | 첫 레슨, Hello World, 서블릿 입문, 코드 실행 10회, 5개 레슨 등 |
+| 실버 | 9 | 기초 마스터, 10개/20개 레슨, 코드 50회, OOP/서블릿 퀴즈 등 |
+| 골드 | 13 | OOP/고급/웹/서블릿/스프링 마스터, 만점 퀴즈, 30개/40개 레슨, 코드 100회 |
 | 플래티넘 | 4 | ALL CLEAR, 퀴즈 챔피언, 완벽주의자, Java Master |
 
 ### 배지 조건 유형
 - `lessons_completed` - N개 레슨 완료
 - `level_completed` - 특정 단계 완료
+- `multi_level_completed` - 복수 레벨 완료
 - `quiz_passed` - 특정 퀴즈 N점 이상
 - `quiz_perfect` - 특정 퀴즈 만점
-- `all_quizzes_passed` - 모든 퀴즈 통과
-- `all_quizzes_perfect` - 모든 퀴즈 만점
+- `all_quizzes_passed` - 모든 퀴즈(6개) 통과
+- `all_quizzes_perfect` - 모든 퀴즈(6개) 만점
 - `code_runs` - 코드 실행 N회
 - `all_completed` - 43개 레슨 모두 완료
 - `specific_lessons` - 특정 레슨 완료
-- `java_master` - 43개 레슨+퀴즈 모두 완료
+- `java_master` - 43개 레슨 + 6개 퀴즈 모두 완료
 
 ## 퀴즈 시스템
 | 퀴즈 ID | 제목 | 문제 수 | 제한시간 | 합격점 |
@@ -145,6 +150,8 @@ java-study/
 | intermediate | Java 중급 퀴즈 (OOP) | 10 | 10분 | 70 |
 | advanced | Java 고급 퀴즈 | 10 | 12분 | 70 |
 | web | 웹 개발 퀴즈 | 10 | 12분 | 70 |
+| servlet | 서블릿 퀴즈 | 10 | 12분 | 70 |
+| spring | Spring 퀴즈 | 10 | 12분 | 70 |
 
 ## 수료증 시스템
 | 등급 | 조건 |
@@ -152,9 +159,9 @@ java-study/
 | 기초 수료증 (🥉) | 기초 레슨 완료 + 기초 퀴즈 통과 |
 | 중급 수료증 (🥈) | 기초+중급 레슨 + 기초+중급 퀴즈 |
 | 고급 수료증 (🥇) | 기초+중급+고급 레슨 + 3개 퀴즈 |
-| Java Master (🏆) | 모든 레슨 + 모든 퀴즈 |
-
-> **참고**: 서블릿/스프링 과정 추가에 따라 수료 기준이 확장될 수 있음
+| 서블릿 수료증 (🛡️) | 서블릿 레슨(10개) 완료 + 서블릿 퀴즈 통과 |
+| Spring 수료증 (🍃) | 스프링 레슨(16개) 완료 + Spring 퀴즈 통과 |
+| Java Master (🏆) | 모든 레슨(43개) + 모든 퀴즈(6개) |
 
 ## Supabase 테이블 (접두사: javamaster_)
 - `javamaster_users` - 사용자
