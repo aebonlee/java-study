@@ -4,9 +4,14 @@ import { useEffect, useState } from 'react'
 import { isSupabaseEnabled } from '../config/supabase'
 
 export default function Login() {
-  const { signInWithGoogle, signInWithKakao, isAuthenticated, loading } = useAuth()
+  const { signInWithGoogle, signInWithKakao, signUpWithEmail, signInWithEmail, isAuthenticated, loading } = useAuth()
   const navigate = useNavigate()
   const [loginError, setLoginError] = useState(null)
+  const [tab, setTab] = useState('login')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [name, setName] = useState('')
+  const [submitting, setSubmitting] = useState(false)
 
   useEffect(() => {
     if (isAuthenticated) navigate('/')
@@ -30,6 +35,28 @@ export default function Login() {
     await signInWithKakao()
   }
 
+  const handleEmailSubmit = async (e) => {
+    e.preventDefault()
+    setLoginError(null)
+    if (!isSupabaseEnabled()) {
+      setLoginError('서버 연결이 설정되지 않았습니다. 관리자에게 문의하세요.')
+      return
+    }
+    setSubmitting(true)
+    if (tab === 'signup') {
+      if (!name.trim()) { setLoginError('이름을 입력하세요'); setSubmitting(false); return }
+      const { error } = await signUpWithEmail(email, password, name)
+      if (error) { setLoginError(error); setSubmitting(false); return }
+      setTab('login')
+      setSubmitting(false)
+      alert('가입 완료! 이메일을 확인한 후 로그인하세요.')
+    } else {
+      const { error } = await signInWithEmail(email, password)
+      if (error) { setLoginError(error); setSubmitting(false); return }
+      setSubmitting(false)
+    }
+  }
+
   if (loading) {
     return (
       <div className="login-page">
@@ -51,11 +78,28 @@ export default function Login() {
           <p>Java 학습 플랫폼에 로그인하세요</p>
         </div>
 
-        {loginError && (
-          <div className="login-error">
-            <i className="fa-solid fa-circle-exclamation" /> {loginError}
-          </div>
-        )}
+        <div className="login-tabs">
+          <button className={`login-tab ${tab === 'login' ? 'active' : ''}`} onClick={() => { setTab('login'); setLoginError(null) }}>로그인</button>
+          <button className={`login-tab ${tab === 'signup' ? 'active' : ''}`} onClick={() => { setTab('signup'); setLoginError(null) }}>회원가입</button>
+        </div>
+
+        <form className="login-form" onSubmit={handleEmailSubmit}>
+          {tab === 'signup' && (
+            <input className="login-input" type="text" placeholder="이름" value={name} onChange={e => setName(e.target.value)} />
+          )}
+          <input className="login-input" type="email" placeholder="이메일" value={email} onChange={e => setEmail(e.target.value)} required />
+          <input className="login-input" type="password" placeholder="비밀번호 (6자 이상)" value={password} onChange={e => setPassword(e.target.value)} required minLength={6} />
+          {loginError && (
+            <div className="login-error">
+              <i className="fa-solid fa-circle-exclamation" /> {loginError}
+            </div>
+          )}
+          <button className="login-submit-btn" type="submit" disabled={submitting}>
+            {submitting ? '처리 중...' : tab === 'login' ? '로그인' : '회원가입'}
+          </button>
+        </form>
+
+        <div className="login-divider"><span>또는</span></div>
 
         <div className="login-buttons">
           <button className="login-btn google-btn" onClick={handleGoogleLogin}>

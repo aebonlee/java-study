@@ -16,9 +16,10 @@ java-study/
 ├── vite.config.js
 ├── .env                    # Supabase 키 (gitignore)
 ├── supabase-setup.sql      # DB 테이블 생성 SQL
-├── Dev_md/                 # 프로젝트 문서 (13개)
+├── Dev_md/                 # 프로젝트 문서 (14개)
 │   ├── project-plan.md
 │   ├── architecture.md
+│   ├── sync-guide.md
 │   ├── features-guide.md
 │   ├── design-system.md
 │   ├── auth-guide.md
@@ -62,9 +63,9 @@ java-study/
     │   └── responsive.css
     ├── contexts/
     │   ├── ThemeContext.jsx     # 다크모드
-    │   ├── ProgressContext.jsx  # 학습 진도, 퀴즈 점수
-    │   ├── BadgeContext.jsx     # 배지 평가 엔진
-    │   └── AuthContext.jsx      # 인증 (Google/Kakao OAuth, 세션 관리)
+    │   ├── ProgressContext.jsx  # 학습 진도, 퀴즈 점수 (+ Supabase 동기화)
+    │   ├── BadgeContext.jsx     # 배지 평가 엔진 (+ Supabase 동기화)
+    │   └── AuthContext.jsx      # 인증 (Google/Kakao OAuth, 이메일, 세션 관리)
     ├── config/
     │   └── supabase.js
     ├── components/
@@ -113,14 +114,22 @@ java-study/
 | `/spring` | SpringLearning | 스프링 과정 허브 |
 | `/servlet/01~10` | ServletLesson01~10 | 서블릿 레슨 (10개) |
 | `/spring/01~16` | SpringLesson01~16 | 스프링 레슨 (16개) |
-| `/login` | Login | 로그인 (Google/Kakao OAuth) |
+| `/login` | Login | 로그인 (Google/Kakao OAuth + 이메일) |
 
 ## 상태 관리
+
+### 프로바이더 순서 (App.jsx)
+```
+ThemeProvider > AuthProvider > ProgressProvider > BadgeProvider
+```
+
 - **ThemeContext**: 라이트/다크 모드 (localStorage: `javamaster-theme`)
-- **ProgressContext**: 레슨 완료 (Java/서블릿/스프링), 퀴즈 점수, 코드 실행 횟수 (localStorage: `javamaster-progress`)
+- **AuthContext**: Google/Kakao OAuth + 이메일 인증, 세션 30분 자동 만료, 로그인 모달 (Supabase Auth)
+- **ProgressContext**: 레슨 완료, 퀴즈 점수, 코드 실행 횟수 (localStorage + Supabase 동기화)
   - `getJavaProgress` / `getServletProgress` / `getSpringProgress` 함수 제공
-- **BadgeContext**: 배지 획득 평가, 알림 팝업 (localStorage: `javamaster-badges`)
-- **AuthContext**: Google/Kakao OAuth 인증, 세션 30분 자동 만료, 로그인 모달 (Supabase Auth)
+  - 로그인 시 Supabase에서 로드 → localStorage와 합집합 병합
+- **BadgeContext**: 배지 획득 평가, 알림 팝업 (localStorage + Supabase 동기화)
+  - 로그인 시 Supabase에서 배지 로드 → 병합
 
 ## 배지 시스템 (33개)
 | 등급 | 개수 | 조건 유형 |

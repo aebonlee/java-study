@@ -82,9 +82,9 @@ function NotFound() {
 export default function App() {
   return (
     <ThemeProvider>
-      <ProgressProvider>
-        <BadgeProvider>
-          <AuthProvider>
+      <AuthProvider>
+        <ProgressProvider>
+          <BadgeProvider>
           <BrowserRouter>
             <ErrorBoundary>
               <Navbar />
@@ -148,9 +148,9 @@ export default function App() {
               <Footer />
             </ErrorBoundary>
           </BrowserRouter>
-          </AuthProvider>
-        </BadgeProvider>
-      </ProgressProvider>
+          </BadgeProvider>
+        </ProgressProvider>
+      </AuthProvider>
     </ThemeProvider>
   )
 }

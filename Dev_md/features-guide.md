@@ -11,9 +11,11 @@
 
 ### 학습 진도 추적
 - localStorage(`javamaster-progress`)에 저장
+- 로그인 시 Supabase DB와 자동 동기화 (합집합 병합)
 - 완료된 레슨 ID 배열, 퀴즈 점수, 코드 실행 횟수
 - Navbar 진도 원형 그래프로 전체 진도 시각화
 - 마이페이지에서 단계별 진도 바 확인
+- 상세: `Dev_md/sync-guide.md` 참고
 
 ---
 
@@ -119,6 +121,7 @@
 
 ### 배지 저장
 - localStorage(`javamaster-badges`)에 획득한 배지 ID 배열 저장
+- 로그인 시 Supabase `javamaster_badges` 테이블과 동기화
 - BadgeContext에서 실시간 조건 평가
 
 ---
@@ -196,7 +199,9 @@
 
 ## 7. 로그인 시스템 (`/login`)
 
-### OAuth 로그인
+### 로그인 방식
+- **이메일 로그인**: Supabase Auth signInWithPassword (v3.4.0)
+- **이메일 회원가입**: Supabase Auth signUp + 이메일 확인 (v3.4.0)
 - **Google 로그인**: Supabase Auth + Google OAuth
 - **Kakao 로그인**: Supabase Auth + Kakao OAuth
 - Supabase 미설정 시 에러 메시지 표시
@@ -218,7 +223,9 @@
 
 ### 로그인 모달 (requireAuth)
 - 로그인 필요 기능 접근 시 자동 팝업
-- Google/Kakao 로그인 버튼
+- 로그인/회원가입 탭 전환
+- 이메일/비밀번호 입력 폼
+- "또는" 구분선 아래 Google/Kakao OAuth 버튼
 - 로그인 완료 후 원래 작업 자동 수행
 
 ---

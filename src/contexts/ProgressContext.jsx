@@ -1,4 +1,6 @@
-import { createContext, useContext, useState, useEffect } from 'react'
+import { createContext, useContext, useState, useEffect, useCallback, useRef } from 'react'
+import { supabase, isSupabaseEnabled, TABLES } from '../config/supabase'
+import { useAuth } from './AuthContext'
 
 const ProgressContext = createContext()
 
@@ -13,33 +15,152 @@ function loadProgress() {
   }
 }
 
-export function ProgressProvider({ children }) {
-  const [progress, setProgress] = useState(loadProgress)
+async function loadFromSupabase(userId) {
+  if (!isSupabaseEnabled() || !userId) return null
+  try {
+    const { data: progressData } = await supabase
+      .from(TABLES.PROGRESS)
+      .select('completed_lessons, code_runs')
+      .eq('user_id', userId)
+      .single()
 
+    const { data: quizData } = await supabase
+      .from(TABLES.QUIZ_SCORES)
+      .select('quiz_id, score, created_at')
+      .eq('user_id', userId)
+
+    const completedLessons = progressData?.completed_lessons || []
+    const codeRuns = progressData?.code_runs || 0
+
+    const quizScores = {}
+    if (quizData) {
+      for (const row of quizData) {
+        if (!quizScores[row.quiz_id]) {
+          quizScores[row.quiz_id] = { bestScore: 0, attempts: [] }
+        }
+        quizScores[row.quiz_id].bestScore = Math.max(quizScores[row.quiz_id].bestScore, row.score)
+        quizScores[row.quiz_id].attempts.push({ score: row.score, date: row.created_at })
+      }
+    }
+
+    return { completedLessons, quizScores, codeRuns }
+  } catch (err) {
+    console.error('Supabase 진도 로드 오류:', err)
+    return null
+  }
+}
+
+function mergeProgress(local, remote) {
+  if (!remote) return local
+
+  const mergedLessons = [...new Set([...local.completedLessons, ...remote.completedLessons])]
+  const codeRuns = Math.max(local.codeRuns || 0, remote.codeRuns || 0)
+
+  const mergedQuizScores = { ...local.quizScores }
+  for (const [quizId, remoteData] of Object.entries(remote.quizScores)) {
+    if (!mergedQuizScores[quizId]) {
+      mergedQuizScores[quizId] = remoteData
+    } else {
+      const localAttempts = mergedQuizScores[quizId].attempts || []
+      const remoteAttempts = remoteData.attempts || []
+      const allDates = new Set(localAttempts.map(a => a.date))
+      const newAttempts = remoteAttempts.filter(a => !allDates.has(a.date))
+      const combined = [...localAttempts, ...newAttempts]
+      mergedQuizScores[quizId] = {
+        bestScore: Math.max(mergedQuizScores[quizId].bestScore, remoteData.bestScore),
+        attempts: combined,
+      }
+    }
+  }
+
+  return { completedLessons: mergedLessons, quizScores: mergedQuizScores, codeRuns }
+}
+
+async function saveProgressToSupabase(userId, progress) {
+  if (!isSupabaseEnabled() || !userId) return
+  try {
+    await supabase.from(TABLES.PROGRESS).upsert({
+      user_id: userId,
+      completed_lessons: progress.completedLessons,
+      code_runs: progress.codeRuns,
+      updated_at: new Date().toISOString(),
+    }, { onConflict: 'user_id' })
+  } catch (err) {
+    console.error('Supabase 진도 저장 오류:', err)
+  }
+}
+
+async function saveQuizScoreToSupabase(userId, quizId, score) {
+  if (!isSupabaseEnabled() || !userId) return
+  try {
+    await supabase.from(TABLES.QUIZ_SCORES).insert({
+      user_id: userId,
+      quiz_id: quizId,
+      score,
+    })
+  } catch (err) {
+    console.error('Supabase 퀴즈 점수 저장 오류:', err)
+  }
+}
+
+export function ProgressProvider({ children }) {
+  const { user } = useAuth()
+  const [progress, setProgress] = useState(loadProgress)
+  const syncedUserRef = useRef(null)
+
+  // localStorage에 저장
   useEffect(() => {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(progress))
   }, [progress])
 
-  const completeLesson = (lessonId) => {
-    setProgress(prev => ({
-      ...prev,
-      completedLessons: prev.completedLessons.includes(lessonId)
-        ? prev.completedLessons
-        : [...prev.completedLessons, lessonId]
-    }))
-  }
+  // 로그인 시 Supabase에서 로드 → 병합
+  useEffect(() => {
+    if (!user || syncedUserRef.current === user.id) return
+    syncedUserRef.current = user.id
 
-  const uncompleteLesson = (lessonId) => {
-    setProgress(prev => ({
-      ...prev,
-      completedLessons: prev.completedLessons.filter(id => id !== lessonId)
-    }))
-  }
+    const syncFromSupabase = async () => {
+      const remote = await loadFromSupabase(user.id)
+      if (remote) {
+        setProgress(prev => {
+          const merged = mergeProgress(prev, remote)
+          // 병합 후 Supabase에도 저장 (합집합 반영)
+          saveProgressToSupabase(user.id, merged)
+          return merged
+        })
+      } else {
+        // Supabase에 데이터가 없으면 현재 로컬 데이터를 업로드
+        saveProgressToSupabase(user.id, loadProgress())
+      }
+    }
+    syncFromSupabase()
+  }, [user])
 
-  const saveQuizScore = (quizId, score) => {
+  // 로그아웃 시 syncedUserRef 리셋
+  useEffect(() => {
+    if (!user) syncedUserRef.current = null
+  }, [user])
+
+  const completeLesson = useCallback((lessonId) => {
+    setProgress(prev => {
+      if (prev.completedLessons.includes(lessonId)) return prev
+      const updated = { ...prev, completedLessons: [...prev.completedLessons, lessonId] }
+      if (user) saveProgressToSupabase(user.id, updated)
+      return updated
+    })
+  }, [user])
+
+  const uncompleteLesson = useCallback((lessonId) => {
+    setProgress(prev => {
+      const updated = { ...prev, completedLessons: prev.completedLessons.filter(id => id !== lessonId) }
+      if (user) saveProgressToSupabase(user.id, updated)
+      return updated
+    })
+  }, [user])
+
+  const saveQuizScore = useCallback((quizId, score) => {
     setProgress(prev => {
       const existing = prev.quizScores[quizId] || { bestScore: 0, attempts: [] }
-      return {
+      const updated = {
         ...prev,
         quizScores: {
           ...prev.quizScores,
@@ -49,12 +170,18 @@ export function ProgressProvider({ children }) {
           }
         }
       }
+      if (user) saveQuizScoreToSupabase(user.id, quizId, score)
+      return updated
     })
-  }
+  }, [user])
 
-  const incrementCodeRuns = () => {
-    setProgress(prev => ({ ...prev, codeRuns: prev.codeRuns + 1 }))
-  }
+  const incrementCodeRuns = useCallback(() => {
+    setProgress(prev => {
+      const updated = { ...prev, codeRuns: prev.codeRuns + 1 }
+      if (user) saveProgressToSupabase(user.id, updated)
+      return updated
+    })
+  }, [user])
 
   const isLessonCompleted = (lessonId) => progress.completedLessons.includes(lessonId)
 

@@ -1,8 +1,8 @@
 # 인증 시스템 가이드
 
 ## 개요
-- **방식**: Supabase Auth (OAuth 2.0)
-- **지원 프로바이더**: Google, Kakao
+- **방식**: Supabase Auth (OAuth 2.0 + 이메일/비밀번호)
+- **지원 프로바이더**: Google, Kakao, 이메일
 - **세션**: 30분 자동 만료, 5분 전 경고, 연장 가능
 - **상태 관리**: AuthContext (React Context API)
 
@@ -26,6 +26,8 @@
 | `isTeacher` | boolean | 선생님 역할 여부 |
 | `signInWithGoogle()` | function | Google OAuth 로그인 |
 | `signInWithKakao()` | function | Kakao OAuth 로그인 |
+| `signUpWithEmail(email, pw, name)` | function | 이메일 회원가입 → `{ error }` 반환 |
+| `signInWithEmail(email, pw)` | function | 이메일 로그인 → `{ error }` 반환 |
 | `signOut()` | function | 로그아웃 |
 | `requireAuth(callback)` | function | 로그인 필수 래퍼 (미로그인 시 모달) |
 | `showLoginModal` | boolean | 로그인 모달 표시 여부 |
@@ -75,8 +77,11 @@ function MyComponent() {
 ### 로그인 모달
 - `requireAuth()` 호출 시 자동 표시
 - 오버레이 + 중앙 모달
-- Google/Kakao 로그인 버튼
+- **로그인/회원가입 탭 전환**
+- 이메일/비밀번호 입력 폼 (회원가입 시 이름 필드 추가)
+- "또는" 구분선 아래 Google/Kakao OAuth 버튼
 - 로그인 완료 후 pending action 자동 실행
+- 닫기 시 모든 입력 상태 초기화
 
 ## Supabase 사용자 테이블
 - `javamaster_users` 테이블에 사용자 정보 자동 upsert
@@ -84,6 +89,40 @@ function MyComponent() {
 - 기본 role: 'student'
 - 관리자 이메일: `aebon@kakao.com` (코드 하드코딩)
 
+## 이메일 로그인/회원가입 (v3.4.0)
+
+### 회원가입 흐름
+1. 사용자가 이름, 이메일, 비밀번호 입력
+2. `signUpWithEmail()` → `supabase.auth.signUp()` 호출
+3. Supabase가 확인 이메일 발송 (설정에 따라)
+4. 성공 시 "로그인" 탭으로 전환 + 안내 alert
+
+### 로그인 흐름
+1. 이메일, 비밀번호 입력
+2. `signInWithEmail()` → `supabase.auth.signInWithPassword()` 호출
+3. 성공 시 세션 생성 → onAuthStateChange 트리거
+
+### UI 구조
+```
+[로그인 | 회원가입] 탭
+─────────────────────
+이름 (회원가입만)
+이메일
+비밀번호 (6자 이상)
+[로그인/가입 버튼]
+─────── 또는 ───────
+[Google 로그인]
+[Kakao 로그인]
+```
+
+### 추가 CSS 클래스
+- `.login-tabs` / `.login-tab` / `.login-tab.active` - 탭 전환
+- `.login-form` - 이메일 폼 컨테이너
+- `.login-input` - 텍스트/이메일/비밀번호 입력
+- `.login-submit-btn` - 제출 버튼
+- `.login-divider` - "또는" 구분선
+
 ## 다크 모드 대응
 - 로그인 카드, 버튼, 풍선 메뉴, 세션 경고, 모달 모두 다크모드 스타일 포함
+- 이메일 폼 입력, 탭, 구분선 다크모드 대응 (v3.4.0)
 - `[data-theme="dark"]` 선택자 사용

@@ -14,6 +14,12 @@ export function AuthProvider({ children }) {
   const [loading, setLoading] = useState(true)
   const [sessionTimeLeft, setSessionTimeLeft] = useState(null)
   const [showLoginModal, setShowLoginModal] = useState(false)
+  const [modalTab, setModalTab] = useState('login')
+  const [modalEmail, setModalEmail] = useState('')
+  const [modalPassword, setModalPassword] = useState('')
+  const [modalName, setModalName] = useState('')
+  const [modalError, setModalError] = useState('')
+  const [modalLoading, setModalLoading] = useState(false)
   const intervalRef = useRef(null)
   const pendingActionRef = useRef(null)
 
@@ -166,6 +172,26 @@ export function AuthProvider({ children }) {
     if (error) console.error('Kakao 로그인 오류:', error.message)
   }
 
+  const signUpWithEmail = async (email, password, name) => {
+    if (!isSupabaseEnabled()) return { error: '서버 연결이 설정되지 않았습니다.' }
+    const { error } = await supabase.auth.signUp({
+      email,
+      password,
+      options: {
+        data: { full_name: name },
+      },
+    })
+    if (error) return { error: error.message }
+    return { error: null }
+  }
+
+  const signInWithEmail = async (email, password) => {
+    if (!isSupabaseEnabled()) return { error: '서버 연결이 설정되지 않았습니다.' }
+    const { error } = await supabase.auth.signInWithPassword({ email, password })
+    if (error) return { error: error.message }
+    return { error: null }
+  }
+
   const signOut = doSignOut
 
   const requireAuth = useCallback((callback) => {
@@ -180,6 +206,12 @@ export function AuthProvider({ children }) {
   const dismissLoginModal = useCallback(() => {
     setShowLoginModal(false)
     pendingActionRef.current = null
+    setModalTab('login')
+    setModalEmail('')
+    setModalPassword('')
+    setModalName('')
+    setModalError('')
+    setModalLoading(false)
   }, [])
 
   const isAdmin = ADMIN_EMAILS.includes(user?.email)
@@ -197,6 +229,8 @@ export function AuthProvider({ children }) {
     loading,
     signInWithGoogle,
     signInWithKakao,
+    signUpWithEmail,
+    signInWithEmail,
     signOut,
     isAuthenticated: !!user,
     isAdmin,
@@ -236,6 +270,39 @@ export function AuthProvider({ children }) {
               <h2>로그인하고 계속하기</h2>
               <p>이 기능을 사용하려면 로그인이 필요합니다</p>
             </div>
+            <div className="login-tabs">
+              <button className={`login-tab ${modalTab === 'login' ? 'active' : ''}`} onClick={() => { setModalTab('login'); setModalError('') }}>로그인</button>
+              <button className={`login-tab ${modalTab === 'signup' ? 'active' : ''}`} onClick={() => { setModalTab('signup'); setModalError('') }}>회원가입</button>
+            </div>
+            <form className="login-form" onSubmit={async (e) => {
+              e.preventDefault()
+              setModalError('')
+              setModalLoading(true)
+              if (modalTab === 'signup') {
+                if (!modalName.trim()) { setModalError('이름을 입력하세요'); setModalLoading(false); return }
+                const { error } = await signUpWithEmail(modalEmail, modalPassword, modalName)
+                if (error) { setModalError(error); setModalLoading(false); return }
+                setModalError('')
+                setModalTab('login')
+                setModalLoading(false)
+                alert('가입 완료! 이메일을 확인한 후 로그인하세요.')
+              } else {
+                const { error } = await signInWithEmail(modalEmail, modalPassword)
+                if (error) { setModalError(error); setModalLoading(false); return }
+                setModalLoading(false)
+              }
+            }}>
+              {modalTab === 'signup' && (
+                <input className="login-input" type="text" placeholder="이름" value={modalName} onChange={e => setModalName(e.target.value)} />
+              )}
+              <input className="login-input" type="email" placeholder="이메일" value={modalEmail} onChange={e => setModalEmail(e.target.value)} required />
+              <input className="login-input" type="password" placeholder="비밀번호 (6자 이상)" value={modalPassword} onChange={e => setModalPassword(e.target.value)} required minLength={6} />
+              {modalError && <div className="login-error"><i className="fa-solid fa-circle-exclamation" /> {modalError}</div>}
+              <button className="login-submit-btn" type="submit" disabled={modalLoading}>
+                {modalLoading ? '처리 중...' : modalTab === 'login' ? '로그인' : '회원가입'}
+              </button>
+            </form>
+            <div className="login-divider"><span>또는</span></div>
             <div className="login-modal-buttons">
               <button className="login-btn google-btn" onClick={signInWithGoogle}>
                 <svg width="18" height="18" viewBox="0 0 24 24">

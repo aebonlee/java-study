@@ -70,7 +70,16 @@ VITE_SUPABASE_ANON_KEY=<anon key>
 3. Redirect URI: `https://hcmgdztsgjvzcyxyayaj.supabase.co/auth/v1/callback`
 4. Supabase에 Client ID / Client Secret 입력
 
+### 이메일 인증 (v3.4.0)
+1. Supabase Dashboard → Authentication → Providers → Email
+2. "Enable Email provider" 활성화
+3. "Confirm email" 설정 (권장: 활성화)
+4. 이메일 템플릿 커스터마이즈 (선택)
+
 ### Redirect URL 설정
 - Supabase Dashboard → Authentication → URL Configuration
 - Site URL: `https://java-study.dreamitbiz.com`
 - Redirect URLs: `https://java-study.dreamitbiz.com`, `http://localhost:5173`
+
+## 동기화 가이드
+- 진도/배지 Supabase 동기화 상세: `Dev_md/sync-guide.md` 참고

@@ -1,10 +1,38 @@
-import { createContext, useContext, useState, useEffect, useCallback } from 'react'
+import { createContext, useContext, useState, useEffect, useCallback, useRef } from 'react'
 import { badges } from '../data/badges'
 import { useProgress } from './ProgressContext'
+import { useAuth } from './AuthContext'
+import { supabase, isSupabaseEnabled, TABLES } from '../config/supabase'
 
 const BadgeContext = createContext()
 
 const STORAGE_KEY = 'javamaster-badges'
+
+async function loadBadgesFromSupabase(userId) {
+  if (!isSupabaseEnabled() || !userId) return null
+  try {
+    const { data } = await supabase
+      .from(TABLES.BADGES)
+      .select('badge_id')
+      .eq('user_id', userId)
+    return data ? data.map(row => row.badge_id) : null
+  } catch (err) {
+    console.error('Supabase 배지 로드 오류:', err)
+    return null
+  }
+}
+
+async function saveBadgeToSupabase(userId, badgeId) {
+  if (!isSupabaseEnabled() || !userId) return
+  try {
+    await supabase.from(TABLES.BADGES).upsert({
+      user_id: userId,
+      badge_id: badgeId,
+    }, { onConflict: 'user_id,badge_id' })
+  } catch (err) {
+    console.error('Supabase 배지 저장 오류:', err)
+  }
+}
 
 export function BadgeProvider({ children }) {
   const [earnedBadges, setEarnedBadges] = useState(() => {
@@ -20,9 +48,45 @@ export function BadgeProvider({ children }) {
     isLevelCompleted, getQuizBestScore
   } = useProgress()
 
+  const { user } = useAuth()
+  const syncedUserRef = useRef(null)
+
   useEffect(() => {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(earnedBadges))
   }, [earnedBadges])
+
+  // 로그인 시 Supabase에서 배지 로드 → 병합
+  useEffect(() => {
+    if (!user || syncedUserRef.current === user.id) return
+    syncedUserRef.current = user.id
+
+    const syncBadges = async () => {
+      const remoteBadges = await loadBadgesFromSupabase(user.id)
+      if (remoteBadges) {
+        setEarnedBadges(prev => {
+          const merged = [...new Set([...prev, ...remoteBadges])]
+          // 로컬에만 있는 배지를 Supabase에 저장
+          const localOnly = prev.filter(id => !remoteBadges.includes(id))
+          for (const badgeId of localOnly) {
+            saveBadgeToSupabase(user.id, badgeId)
+          }
+          return merged
+        })
+      } else {
+        // Supabase에 데이터 없으면 로컬 배지 업로드
+        const local = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]')
+        for (const badgeId of local) {
+          saveBadgeToSupabase(user.id, badgeId)
+        }
+      }
+    }
+    syncBadges()
+  }, [user])
+
+  // 로그아웃 시 syncedUserRef 리셋
+  useEffect(() => {
+    if (!user) syncedUserRef.current = null
+  }, [user])
 
   useEffect(() => {
     const newlyEarned = []
@@ -89,8 +153,15 @@ export function BadgeProvider({ children }) {
       setEarnedBadges(prev => [...prev, ...newlyEarned])
       const badgeData = badges.find(b => b.id === newlyEarned[0])
       if (badgeData) setNewBadge(badgeData)
+
+      // 로그인 상태면 Supabase에 저장
+      if (user) {
+        for (const badgeId of newlyEarned) {
+          saveBadgeToSupabase(user.id, badgeId)
+        }
+      }
     }
-  }, [completedLessons, quizScores, codeRuns, earnedBadges, isLevelCompleted, getQuizBestScore])
+  }, [completedLessons, quizScores, codeRuns, earnedBadges, isLevelCompleted, getQuizBestScore, user])
 
   const dismissBadgeNotification = useCallback(() => {
     setNewBadge(null)

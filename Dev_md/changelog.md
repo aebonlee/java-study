@@ -1,5 +1,34 @@
 # Changelog
 
+## v3.4.0 (2026-03-23)
+
+### 신규 기능
+- **이메일 로그인/회원가입** 추가
+  - 이메일+비밀번호 회원가입 (Supabase Auth signUp)
+  - 이메일+비밀번호 로그인 (Supabase Auth signInWithPassword)
+  - Login 페이지: 로그인/회원가입 탭 전환 UI
+  - LoginModal: 이메일 폼 + "또는" 구분선 + OAuth 버튼
+- **Supabase 진도 동기화**
+  - ProgressContext: 로그인 시 Supabase에서 진도 로드 → localStorage와 병합 (합집합)
+  - 레슨 완료/취소, 퀴즈 점수, 코드 실행 횟수 → Supabase 실시간 저장
+  - 비로그인 시 기존 localStorage 전용 동작 100% 유지
+- **Supabase 배지 동기화**
+  - BadgeContext: 로그인 시 Supabase에서 배지 로드 → localStorage와 병합
+  - 배지 획득 시 Supabase `javamaster_badges` 테이블에 저장
+
+### 개선
+- **프로바이더 순서 변경**: `ThemeProvider > AuthProvider > ProgressProvider > BadgeProvider`
+  - ProgressContext/BadgeContext에서 useAuth() 접근 가능
+- **이메일 로그인 스타일**: `.login-tabs`, `.login-form`, `.login-input`, `.login-submit-btn`, `.login-divider` + 다크모드 대응
+
+### 수정 파일
+- JSX 4개: App.jsx, AuthContext.jsx, ProgressContext.jsx, BadgeContext.jsx
+- JSX 1개: Login.jsx
+- CSS 1개: auth.css
+- MD 1개: changelog.md
+
+---
+
 ## v3.3.0 (2026-03-23)
 
 ### 수정
