@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a3a52"/>
+      <stop offset="40%" style="stop-color:#2d5a7b"/>
+      <stop offset="70%" style="stop-color:#5382A1"/>
+      <stop offset="100%" style="stop-color:#E76F00"/>
+    </linearGradient>
+    <linearGradient id="textGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#FFD43B"/>
+      <stop offset="100%" style="stop-color:#E76F00"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <!-- Logo -->
+  <rect x="80" y="180" width="80" height="80" rx="16" fill="rgba(255,255,255,0.15)"/>
+  <text x="120" y="237" font-family="serif" font-size="48" font-weight="bold" fill="white" text-anchor="middle">J</text>
+  <!-- Title -->
+  <text x="185" y="230" font-family="'Noto Sans KR', sans-serif" font-size="56" font-weight="900" fill="white">JavaMaster</text>
+  <!-- Subtitle -->
+  <text x="85" y="310" font-family="'Noto Sans KR', sans-serif" font-size="32" fill="rgba(255,255,255,0.85)">Java 기초부터 Spring Boot까지</text>
+  <text x="85" y="360" font-family="'Noto Sans KR', sans-serif" font-size="24" fill="rgba(255,255,255,0.6)">체계적인 17개 챕터 학습 플랫폼</text>
+  <!-- Tags -->
+  <rect x="85" y="400" width="100" height="36" rx="18" fill="rgba(255,255,255,0.15)"/>
+  <text x="135" y="424" font-family="sans-serif" font-size="14" fill="rgba(255,255,255,0.8)" text-anchor="middle">Java</text>
+  <rect x="200" y="400" width="100" height="36" rx="18" fill="rgba(255,255,255,0.15)"/>
+  <text x="250" y="424" font-family="sans-serif" font-size="14" fill="rgba(255,255,255,0.8)" text-anchor="middle">Spring</text>
+  <rect x="315" y="400" width="100" height="36" rx="18" fill="rgba(255,255,255,0.15)"/>
+  <text x="365" y="424" font-family="sans-serif" font-size="14" fill="rgba(255,255,255,0.8)" text-anchor="middle">Servlet</text>
+  <rect x="430" y="400" width="100" height="36" rx="18" fill="rgba(255,255,255,0.15)"/>
+  <text x="480" y="424" font-family="sans-serif" font-size="14" fill="rgba(255,255,255,0.8)" text-anchor="middle">OOP</text>
+  <!-- Code decoration -->
+  <text x="750" y="200" font-family="monospace" font-size="16" fill="rgba(255,255,255,0.08)">public class JavaMaster {</text>
+  <text x="770" y="230" font-family="monospace" font-size="16" fill="rgba(255,255,255,0.08)">  public static void main(String[] args) {</text>
+  <text x="790" y="260" font-family="monospace" font-size="16" fill="rgba(255,255,255,0.08)">    System.out.println("Hello World!");</text>
+  <text x="770" y="290" font-family="monospace" font-size="16" fill="rgba(255,255,255,0.08)">  }</text>
+  <text x="750" y="320" font-family="monospace" font-size="16" fill="rgba(255,255,255,0.08)">}</text>
+  <text x="750" y="370" font-family="monospace" font-size="16" fill="rgba(255,255,255,0.08)">@SpringBootApplication</text>
+  <text x="750" y="400" font-family="monospace" font-size="16" fill="rgba(255,255,255,0.08)">@RestController</text>
+  <text x="750" y="430" font-family="monospace" font-size="16" fill="rgba(255,255,255,0.08)">@GetMapping("/api/hello")</text>
+  <!-- URL -->
+  <text x="600" y="580" font-family="sans-serif" font-size="18" fill="rgba(255,255,255,0.4)" text-anchor="middle">java-study.dreamitbiz.com</text>
+</svg>

@@ -1,0 +1,53 @@
+/* ===== Code Editor ===== */
+.code-editor-wrapper {
+  margin: 20px 0;
+  border: 2px solid var(--primary);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.editor-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 16px;
+  background: var(--primary);
+  color: white;
+  font-size: var(--font-size-sm);
+}
+
+.editor-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.editor-actions button {
+  padding: 6px 14px;
+  background: rgba(255,255,255,0.2);
+  border: none;
+  border-radius: 4px;
+  color: white;
+  font-size: var(--font-size-xs);
+  cursor: pointer;
+  transition: all var(--transition);
+}
+
+.editor-actions button:hover {
+  background: rgba(255,255,255,0.3);
+}
+
+.editor-output {
+  padding: 16px;
+  background: #0F172A;
+  border-top: 1px solid #334155;
+  color: #E2E8F0;
+  font-family: var(--font-code);
+  font-size: var(--font-size-sm);
+  min-height: 60px;
+  white-space: pre-wrap;
+}
+
+.editor-output.error {
+  color: #FCA5A5;
+  background: #1C1012;
+}

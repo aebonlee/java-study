@@ -1,0 +1,275 @@
+/* ===== Java Learning Pages ===== */
+.java-lesson {
+  padding: 40px 0 80px;
+}
+
+.java-lesson .lesson-content {
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+.java-lesson h1 {
+  font-size: var(--font-size-3xl);
+  font-weight: 800;
+  margin-bottom: 12px;
+  color: var(--text-primary);
+}
+
+.java-lesson .lesson-meta {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 32px;
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+}
+
+.java-lesson h2 {
+  font-size: var(--font-size-2xl);
+  font-weight: 700;
+  margin: 48px 0 16px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid var(--border-light);
+  color: var(--text-primary);
+}
+
+.java-lesson h3 {
+  font-size: var(--font-size-xl);
+  font-weight: 700;
+  margin: 32px 0 12px;
+  color: var(--text-primary);
+}
+
+.java-lesson p {
+  margin-bottom: 16px;
+  line-height: 1.8;
+  color: var(--text-primary);
+}
+
+.java-lesson ul,
+.java-lesson ol {
+  margin-bottom: 16px;
+  padding-left: 24px;
+}
+
+.java-lesson ul {
+  list-style: disc;
+}
+
+.java-lesson ol {
+  list-style: decimal;
+}
+
+.java-lesson li {
+  margin-bottom: 8px;
+  line-height: 1.7;
+  color: var(--text-primary);
+}
+
+/* Code Block */
+.code-block {
+  margin: 20px 0;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 1px solid #334155;
+}
+
+.code-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 16px;
+  background: #0F172A;
+  font-size: var(--font-size-xs);
+  color: #94A3B8;
+}
+
+.code-header .file-name {
+  font-family: var(--font-code);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.code-header .copy-btn {
+  padding: 4px 10px;
+  background: rgba(255,255,255,0.1);
+  border: none;
+  border-radius: 4px;
+  color: #94A3B8;
+  font-size: var(--font-size-xs);
+  cursor: pointer;
+  transition: all var(--transition);
+}
+
+.code-header .copy-btn:hover {
+  background: rgba(255,255,255,0.2);
+  color: white;
+}
+
+.code-block pre {
+  margin: 0;
+  border-radius: 0;
+  padding: 20px 24px;
+  font-size: 0.85rem;
+  line-height: 1.7;
+}
+
+/* Callout Boxes */
+.callout {
+  margin: 20px 0;
+  padding: 16px 20px;
+  border-radius: var(--radius-sm);
+  border-left: 4px solid;
+  font-size: var(--font-size-sm);
+}
+
+.callout-title {
+  font-weight: 700;
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.callout-info {
+  background: #EFF6FF;
+  border-color: var(--info);
+}
+
+.callout-info .callout-title { color: var(--info); }
+
+.callout-tip {
+  background: #ECFDF5;
+  border-color: var(--success);
+}
+
+.callout-tip .callout-title { color: var(--success); }
+
+.callout-warning {
+  background: #FFFBEB;
+  border-color: var(--warning);
+}
+
+.callout-warning .callout-title { color: var(--warning); }
+
+.callout-danger {
+  background: #FEF2F2;
+  border-color: var(--error);
+}
+
+.callout-danger .callout-title { color: var(--error); }
+
+/* Table */
+.java-lesson table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  font-size: var(--font-size-sm);
+}
+
+.java-lesson th,
+.java-lesson td {
+  padding: 12px 16px;
+  text-align: left;
+  border: 1px solid var(--border-light);
+}
+
+.java-lesson th {
+  background: var(--bg-light);
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.java-lesson td {
+  color: var(--text-secondary);
+}
+
+.java-lesson tr:hover td {
+  background: rgba(83, 130, 161, 0.04);
+}
+
+/* Exercise Box */
+.exercise-box {
+  margin: 28px 0;
+  padding: 24px;
+  background: linear-gradient(135deg, rgba(83,130,161,0.05), rgba(231,111,0,0.05));
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+}
+
+.exercise-box h4 {
+  font-size: var(--font-size-base);
+  font-weight: 700;
+  color: var(--primary);
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.exercise-box ol {
+  padding-left: 20px;
+}
+
+/* Lesson Grid on learning hub page */
+.learning-hub-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 24px;
+}
+
+.learning-hub-card {
+  display: block;
+  padding: 24px;
+  background: white;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  transition: all var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+
+.learning-hub-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--primary-light);
+  color: inherit;
+}
+
+.learning-hub-card .lesson-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  color: white;
+  border-radius: var(--radius-sm);
+  font-size: var(--font-size-xs);
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.learning-hub-card h3 {
+  font-size: var(--font-size-base);
+  font-weight: 700;
+  margin-bottom: 6px;
+  color: var(--text-primary);
+}
+
+.learning-hub-card p {
+  font-size: var(--font-size-xs);
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+.level-label {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 3px 8px;
+  border-radius: var(--radius-full);
+  font-size: 0.7rem;
+  font-weight: 600;
+}

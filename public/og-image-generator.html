@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>OG Image Generator</title>
+<style>
+body { margin: 0; background: #000; display: flex; align-items: center; justify-content: center; min-height: 100vh; }
+.og-card {
+  width: 1200px; height: 630px; position: relative; overflow: hidden;
+  background: linear-gradient(135deg, #1a3a52 0%, #2d5a7b 30%, #5382A1 60%, #E76F00 100%);
+  font-family: 'Noto Sans KR', sans-serif;
+}
+.content { position: relative; z-index: 2; padding: 80px; height: 100%; box-sizing: border-box; display: flex; flex-direction: column; justify-content: center; }
+.logo-row { display: flex; align-items: center; gap: 16px; margin-bottom: 24px; }
+.logo-icon { width: 72px; height: 72px; background: rgba(255,255,255,0.15); border-radius: 14px; display: flex; align-items: center; justify-content: center; color: white; font-size: 42px; font-weight: bold; font-family: serif; }
+.logo-text { font-size: 52px; font-weight: 900; color: white; }
+.subtitle { font-size: 30px; color: rgba(255,255,255,0.85); margin-bottom: 8px; }
+.desc { font-size: 22px; color: rgba(255,255,255,0.6); margin-bottom: 32px; }
+.tags { display: flex; gap: 12px; }
+.tag { padding: 8px 20px; background: rgba(255,255,255,0.15); border-radius: 20px; color: rgba(255,255,255,0.8); font-size: 15px; font-weight: 500; }
+.url { position: absolute; bottom: 40px; left: 0; right: 0; text-align: center; font-size: 17px; color: rgba(255,255,255,0.35); }
+.code-bg { position: absolute; right: 40px; top: 50%; transform: translateY(-50%); font-family: 'JetBrains Mono', monospace; font-size: 15px; color: rgba(255,255,255,0.06); white-space: pre; line-height: 1.8; }
+</style>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@900&family=JetBrains+Mono&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="og-card">
+  <div class="code-bg">public class JavaMaster {
+  public static void main(String[] args) {
+    System.out.println("Hello World!");
+  }
+}
+
+@SpringBootApplication
+@RestController
+@GetMapping("/api/hello")
+@Autowired
+private UserService userService;</div>
+  <div class="content">
+    <div class="logo-row">
+      <div class="logo-icon">J</div>
+      <div class="logo-text">JavaMaster</div>
+    </div>
+    <div class="subtitle">Java 기초부터 Spring Boot까지</div>
+    <div class="desc">체계적인 17개 챕터 학습 플랫폼</div>
+    <div class="tags">
+      <span class="tag">Java</span>
+      <span class="tag">Spring Boot</span>
+      <span class="tag">Servlet</span>
+      <span class="tag">OOP</span>
+      <span class="tag">JPA</span>
+    </div>
+  </div>
+  <div class="url">java-study.dreamitbiz.com</div>
+</div>
+<p style="color:#888; margin-top: 20px; text-align:center;">이 페이지를 브라우저에서 열고 스크린샷(1200x630)을 찍어 og-image.png로 저장하세요.</p>
+</body>
+</html>

@@ -1,0 +1,90 @@
+/* ===== Dark Mode ===== */
+[data-theme="dark"] {
+  --bg-white: #111827;
+  --bg-light: #1F2937;
+  --bg-medium: #374151;
+  --text-primary: #F9FAFB;
+  --text-secondary: #D1D5DB;
+  --text-light: #9CA3AF;
+  --border-light: #374151;
+  --border-medium: #4B5563;
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.3);
+  --shadow-md: 0 4px 12px rgba(0,0,0,0.4);
+  --shadow-lg: 0 8px 24px rgba(0,0,0,0.5);
+}
+
+[data-theme="dark"] .navbar {
+  background: rgba(17, 24, 39, 0.9);
+  border-bottom-color: #374151;
+}
+
+[data-theme="dark"] .nav-dropdown-menu {
+  background: #1F2937;
+  border-color: #374151;
+}
+
+[data-theme="dark"] .nav-link:hover {
+  background: rgba(83, 130, 161, 0.15);
+}
+
+[data-theme="dark"] .nav-dropdown-menu a:hover {
+  background: rgba(83, 130, 161, 0.15);
+}
+
+[data-theme="dark"] code {
+  background: #1F2937;
+  color: var(--accent-light);
+}
+
+[data-theme="dark"] .lesson-card,
+[data-theme="dark"] .feature-card,
+[data-theme="dark"] .stat-card,
+[data-theme="dark"] .path-card,
+[data-theme="dark"] .learning-hub-card {
+  background: #1F2937;
+  border-color: #374151;
+}
+
+[data-theme="dark"] .callout-info {
+  background: rgba(59, 130, 246, 0.1);
+}
+
+[data-theme="dark"] .callout-tip {
+  background: rgba(16, 185, 129, 0.1);
+}
+
+[data-theme="dark"] .callout-warning {
+  background: rgba(245, 158, 11, 0.1);
+}
+
+[data-theme="dark"] .callout-danger {
+  background: rgba(239, 68, 68, 0.1);
+}
+
+[data-theme="dark"] .toc {
+  background: #1F2937;
+}
+
+[data-theme="dark"] .exercise-box {
+  background: rgba(83, 130, 161, 0.1);
+  border-color: #374151;
+}
+
+[data-theme="dark"] .difficulty-beginner { background: #064E3B; color: #6EE7B7; }
+[data-theme="dark"] .difficulty-intermediate { background: #1E3A5F; color: #93C5FD; }
+[data-theme="dark"] .difficulty-advanced { background: #7F1D1D; color: #FCA5A5; }
+[data-theme="dark"] .difficulty-expert { background: #581C87; color: #D8B4FE; }
+
+[data-theme="dark"] .java-lesson th {
+  background: #374151;
+}
+
+[data-theme="dark"] .page-loader {
+  background: #111827;
+}
+
+@media (max-width: 1024px) {
+  [data-theme="dark"] .nav-links {
+    background: #111827;
+  }
+}
