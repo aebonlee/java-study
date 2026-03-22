@@ -39,7 +39,7 @@
 }
 
 [data-theme="dark"] .dropdown-section-header {
-  background: rgba(83, 130, 161, 0.2);
+  background: rgba(83, 130, 161, 0.3);
   color: var(--primary-light);
 }
 
