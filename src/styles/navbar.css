@@ -97,7 +97,9 @@
   border-radius: var(--radius-md);
   box-shadow: var(--shadow-lg);
   padding: 8px;
-  min-width: 220px;
+  min-width: 240px;
+  max-height: 70vh;
+  overflow-y: auto;
   opacity: 0;
   visibility: hidden;
   transition: all 0.2s ease;
@@ -129,14 +131,65 @@
   color: var(--primary);
 }
 
-.dropdown-menu a i {
-  width: 16px;
-  text-align: center;
-  font-size: 12px;
-  color: var(--text-light);
+/* Mega Dropdown */
+.dropdown-mega {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(8px);
+  background: var(--bg-white);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+  padding: 12px;
+  display: flex;
+  gap: 4px;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.2s ease;
+  z-index: 100;
 }
 
-.dropdown-menu a:hover i {
+.dropdown-mega.active {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+}
+
+.dropdown-mega-section {
+  min-width: 160px;
+}
+
+.dropdown-section-header {
+  padding: 5px 12px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  border-radius: 6px;
+  margin-bottom: 6px;
+  text-align: center;
+  letter-spacing: 0.5px;
+}
+
+.dropdown-mega-section ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.dropdown-mega-section ul a {
+  display: block;
+  padding: 6px 12px;
+  font-size: 13px;
+  color: var(--text-secondary);
+  border-radius: var(--radius-sm);
+  transition: all var(--transition);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.dropdown-mega-section ul a:hover {
+  background: rgba(83, 130, 161, 0.08);
   color: var(--primary);
 }
 
@@ -269,6 +322,7 @@
     visibility: visible;
     padding: 0 0 0 16px;
     min-width: 0;
+    max-height: none;
     display: none;
     background: transparent;
   }
@@ -276,5 +330,33 @@
   .dropdown-menu.active {
     display: block;
     transform: none;
+  }
+
+  .dropdown-mega {
+    position: static;
+    transform: none;
+    box-shadow: none;
+    border: none;
+    opacity: 1;
+    visibility: visible;
+    padding: 0 0 0 8px;
+    display: none;
+    background: transparent;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .dropdown-mega.active {
+    display: flex;
+    transform: none;
+  }
+
+  .dropdown-mega-section {
+    min-width: 0;
+  }
+
+  .dropdown-section-header {
+    text-align: left;
+    display: inline-block;
   }
 }

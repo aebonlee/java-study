@@ -63,15 +63,40 @@ export function ProgressProvider({ children }) {
       basics: ['01', '02', '03', '04'],
       intermediate: ['05', '06', '07', '08'],
       advanced: ['09', '10', '11', '12'],
-      web: ['13', '14', '15', '16', '17']
+      web: ['13', '14', '15', '16', '17'],
+      'servlet-basic': ['S01', 'S02', 'S03', 'S04', 'S05'],
+      'servlet-advanced': ['S06', 'S07', 'S08', 'S09', 'S10'],
+      'spring-framework': ['SP01', 'SP02', 'SP03', 'SP04', 'SP05', 'SP06', 'SP07', 'SP08'],
+      'spring-boot': ['SP09', 'SP10', 'SP11', 'SP12', 'SP13', 'SP14', 'SP15', 'SP16'],
     }
     const lessons = levelLessons[levelId]
     return lessons ? lessons.every(id => progress.completedLessons.includes(id)) : false
   }
 
+  const getJavaProgress = () => {
+    const javaIds = ['01','02','03','04','05','06','07','08','09','10','11','12','13','14','15','16','17']
+    const done = javaIds.filter(id => progress.completedLessons.includes(id)).length
+    return Math.round((done / javaIds.length) * 100)
+  }
+
+  const getServletProgress = () => {
+    const ids = ['S01','S02','S03','S04','S05','S06','S07','S08','S09','S10']
+    const done = ids.filter(id => progress.completedLessons.includes(id)).length
+    return Math.round((done / ids.length) * 100)
+  }
+
+  const getSpringProgress = () => {
+    const ids = ['SP01','SP02','SP03','SP04','SP05','SP06','SP07','SP08','SP09','SP10','SP11','SP12','SP13','SP14','SP15','SP16']
+    const done = ids.filter(id => progress.completedLessons.includes(id)).length
+    return Math.round((done / ids.length) * 100)
+  }
+
   const getTotalProgress = () => {
-    const total = 17
-    return Math.round((progress.completedLessons.length / total) * 100)
+    const total = 43
+    const completed = progress.completedLessons.filter(id =>
+      /^(0[1-9]|1[0-7])$/.test(id) || /^S\d{2}$/.test(id) || /^SP\d{2}$/.test(id)
+    ).length
+    return Math.round((completed / total) * 100)
   }
 
   const getQuizBestScore = (quizId) => {
@@ -95,6 +120,9 @@ export function ProgressProvider({ children }) {
       saveQuizScore,
       incrementCodeRuns,
       getTotalProgress,
+      getJavaProgress,
+      getServletProgress,
+      getSpringProgress,
       getQuizBestScore,
       getQuizAttempts
     }}>

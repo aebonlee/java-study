@@ -23,9 +23,19 @@
   border-color: #374151;
 }
 
+[data-theme="dark"] .dropdown-mega {
+  background: #1F2937;
+  border-color: #374151;
+}
+
 [data-theme="dark"] .nav-link:hover,
-[data-theme="dark"] .dropdown-menu a:hover {
+[data-theme="dark"] .dropdown-menu a:hover,
+[data-theme="dark"] .dropdown-mega-section ul a:hover {
   background: rgba(83, 130, 161, 0.15);
+}
+
+[data-theme="dark"] .dropdown-mega-section ul a {
+  color: #D1D5DB;
 }
 
 [data-theme="dark"] code {

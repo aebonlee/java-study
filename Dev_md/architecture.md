@@ -65,13 +65,16 @@ java-study/
     │   └── supabase.js
     ├── components/
     │   ├── layout/
-    │   │   ├── Navbar.jsx       # 텍스트 로고, 드롭다운, 진도 원형, 로그인 메뉴
+    │   │   ├── Navbar.jsx       # 텍스트 로고, 메가 드롭다운, 진도 원형, 로그인 메뉴
     │   │   └── Footer.jsx       # 텍스트 로고, 연락처, 패밀리사이트
     │   ├── BadgeCard.jsx        # 배지 카드 컴포넌트
     │   ├── QuizComponent.jsx    # 퀴즈 엔진 (타이머, 셔플)
+    │   ├── JavaCodeRunner.jsx   # Java 코드 실행기 (Piston API)
     │   └── ErrorBoundary.jsx
     ├── data/
-    │   ├── lessons.js      # 레슨 메타데이터 (4단계 17과)
+    │   ├── lessons.js      # Java 레슨 메타데이터 (3단계 17과)
+    │   ├── servletLessons.js  # 서블릿 레슨 메타데이터 (10과)
+    │   ├── springLessons.js   # 스프링 레슨 메타데이터 (16과)
     │   ├── badges.js       # 24개 배지 정의 (4등급)
     │   └── quizzes.js      # 4개 퀴즈 (총 40문제)
     └── pages/
@@ -82,8 +85,14 @@ java-study/
         ├── MyPage.jsx           # 마이페이지
         ├── Guide.jsx            # 이용 가이드
         ├── Login.jsx            # 로그인 페이지
-        └── java-learning/
-            ├── JavaLesson01.jsx ~ JavaLesson17.jsx
+        ├── ServletLearning.jsx  # 서블릿 허브
+        ├── SpringLearning.jsx   # 스프링 허브
+        ├── java-learning/
+        │   ├── JavaLesson01.jsx ~ JavaLesson17.jsx
+        ├── servlet/
+        │   ├── ServletLesson01.jsx ~ ServletLesson10.jsx
+        └── spring/
+            ├── SpringLesson01.jsx ~ SpringLesson16.jsx
 ```
 
 ## 라우팅
@@ -96,11 +105,16 @@ java-study/
 | `/badges` | BadgeCollection | 도장깨기 (배지) |
 | `/my` | MyPage | 마이페이지 |
 | `/guide` | Guide | 이용 가이드 |
+| `/servlet` | ServletLearning | 서블릿 과정 허브 |
+| `/spring` | SpringLearning | 스프링 과정 허브 |
+| `/servlet/01~10` | ServletLesson01~10 | 서블릿 레슨 (10개) |
+| `/spring/01~16` | SpringLesson01~16 | 스프링 레슨 (16개) |
 | `/login` | Login | 로그인 (Google/Kakao OAuth) |
 
 ## 상태 관리
 - **ThemeContext**: 라이트/다크 모드 (localStorage: `javamaster-theme`)
-- **ProgressContext**: 레슨 완료, 퀴즈 점수, 코드 실행 횟수 (localStorage: `javamaster-progress`)
+- **ProgressContext**: 레슨 완료 (Java/서블릿/스프링), 퀴즈 점수, 코드 실행 횟수 (localStorage: `javamaster-progress`)
+  - `getJavaProgress` / `getServletProgress` / `getSpringProgress` 함수 제공
 - **BadgeContext**: 배지 획득 평가, 알림 팝업 (localStorage: `javamaster-badges`)
 - **AuthContext**: Google/Kakao OAuth 인증, 세션 30분 자동 만료, 로그인 모달 (Supabase Auth)
 
@@ -120,9 +134,9 @@ java-study/
 - `all_quizzes_passed` - 모든 퀴즈 통과
 - `all_quizzes_perfect` - 모든 퀴즈 만점
 - `code_runs` - 코드 실행 N회
-- `all_completed` - 모든 레슨 완료
+- `all_completed` - 43개 레슨 모두 완료
 - `specific_lessons` - 특정 레슨 완료
-- `java_master` - 모든 레슨+퀴즈 완료
+- `java_master` - 43개 레슨+퀴즈 모두 완료
 
 ## 퀴즈 시스템
 | 퀴즈 ID | 제목 | 문제 수 | 제한시간 | 합격점 |
@@ -139,6 +153,8 @@ java-study/
 | 중급 수료증 (🥈) | 기초+중급 레슨 + 기초+중급 퀴즈 |
 | 고급 수료증 (🥇) | 기초+중급+고급 레슨 + 3개 퀴즈 |
 | Java Master (🏆) | 모든 레슨 + 모든 퀴즈 |
+
+> **참고**: 서블릿/스프링 과정 추가에 따라 수료 기준이 확장될 수 있음
 
 ## Supabase 테이블 (접두사: javamaster_)
 - `javamaster_users` - 사용자

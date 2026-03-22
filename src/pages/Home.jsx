@@ -39,7 +39,7 @@ export default function Home() {
               <div className="hero-progress-bar">
                 <div className="hero-progress-fill" style={{ width: `${progress}%` }}></div>
               </div>
-              <span className="hero-progress-text">학습 진도 {progress}% ({completedLessons.length}/17)</span>
+              <span className="hero-progress-text">학습 진도 {progress}% ({completedLessons.length}/43)</span>
             </div>
           )}
         </div>
@@ -51,13 +51,13 @@ export default function Home() {
           <div className="stats-grid">
             <div className="stat-card">
               <div className="stat-icon"><i className="fas fa-book"></i></div>
-              <div className="stat-number">17</div>
-              <div className="stat-label">학습 챕터</div>
+              <div className="stat-number">43</div>
+              <div className="stat-label">학습 레슨</div>
             </div>
             <div className="stat-card">
               <div className="stat-icon"><i className="fas fa-layer-group"></i></div>
-              <div className="stat-number">4</div>
-              <div className="stat-label">학습 단계</div>
+              <div className="stat-number">3</div>
+              <div className="stat-label">학습 과정</div>
             </div>
             <div className="stat-card">
               <div className="stat-icon"><i className="fas fa-pen-nib"></i></div>
@@ -84,13 +84,12 @@ export default function Home() {
             <div className="feature-card">
               <div className="feature-icon"><i className="fas fa-graduation-cap"></i></div>
               <h3>체계적 커리큘럼</h3>
-              <p>기초부터 Spring Boot까지 단계별로 설계된 17개 챕터로 빈틈없이 학습합니다.</p>
+              <p>Java 기초 17챕터, 서블릿 10레슨, 스프링 16레슨으로 구성된 43개 레슨을 학습합니다.</p>
             </div>
             <div className="feature-card">
-              <div className="feature-icon"><i className="fas fa-pen-nib"></i></div>
-              <h3>단계별 퀴즈</h3>
-              <p>각 단계를 마치면 퀴즈로 실력을 점검하고, 합격 기준을 달성하세요.</p>
-              <Link to="/quiz" className="feature-link">퀴즈 풀러 가기 <i className="fas fa-arrow-right"></i></Link>
+              <div className="feature-icon"><i className="fas fa-code"></i></div>
+              <h3>코드 실행기</h3>
+              <p>브라우저에서 바로 Java 코드를 작성하고 실행할 수 있는 실습 환경을 제공합니다.</p>
             </div>
             <div className="feature-card">
               <div className="feature-icon"><i className="fas fa-trophy"></i></div>
@@ -100,18 +99,20 @@ export default function Home() {
             </div>
             <div className="feature-card">
               <div className="feature-icon"><i className="fas fa-server"></i></div>
-              <h3>웹 개발 완성</h3>
-              <p>Servlet, JSP, Spring Framework, Spring Boot까지 웹 개발의 전체 과정을 다룹니다.</p>
+              <h3>서블릿 과정</h3>
+              <p>HTTP, 서블릿 생명주기부터 JSP, MVC 패턴, CRUD 게시판까지 실전 웹 개발을 배웁니다.</p>
+              <Link to="/servlet" className="feature-link">서블릿 시작 <i className="fas fa-arrow-right"></i></Link>
             </div>
             <div className="feature-card">
-              <div className="feature-icon"><i className="fas fa-moon"></i></div>
-              <h3>다크 모드</h3>
-              <p>눈의 피로를 줄이는 다크 모드를 지원하여 편안한 학습 환경을 제공합니다.</p>
+              <div className="feature-icon"><i className="fas fa-leaf"></i></div>
+              <h3>스프링 과정</h3>
+              <p>Spring Framework, Spring Boot, JPA, Security, Docker까지 현대적 백엔드를 완성합니다.</p>
+              <Link to="/spring" className="feature-link">스프링 시작 <i className="fas fa-arrow-right"></i></Link>
             </div>
             <div className="feature-card">
               <div className="feature-icon"><i className="fas fa-chart-line"></i></div>
               <h3>학습 진도 추적</h3>
-              <p>완료한 챕터를 추적하고 전체 학습 진도를 한눈에 확인할 수 있습니다.</p>
+              <p>완료한 레슨을 추적하고 전체 학습 진도를 한눈에 확인할 수 있습니다.</p>
               <Link to="/my" className="feature-link">마이페이지 <i className="fas fa-arrow-right"></i></Link>
             </div>
           </div>
@@ -123,51 +124,40 @@ export default function Home() {
         <div className="container">
           <div className="section-header">
             <h2>학습 로드맵</h2>
-            <p>4단계 학습 과정으로 Java 전문가가 되세요</p>
+            <p>3개 과정으로 Java 풀스택 개발자가 되세요</p>
           </div>
           <div className="path-grid">
             <div className="path-card">
-              <div className="path-step">Step 1</div>
-              <h3>기초</h3>
-              <p>Java 설치부터 변수, 자료형, 제어문, 배열까지 프로그래밍의 기본을 익힙니다.</p>
+              <div className="path-step">Course 1</div>
+              <h3>Java 학습하기</h3>
+              <p>기초 문법부터 객체지향, 제네릭, 람다, 스트림, 멀티스레드까지 Java의 모든 것을 익힙니다.</p>
               <div className="path-topics">
-                <span className="path-topic">환경설정</span>
-                <span className="path-topic">변수</span>
-                <span className="path-topic">제어문</span>
-                <span className="path-topic">배열</span>
+                <span className="path-topic">기초</span>
+                <span className="path-topic">OOP</span>
+                <span className="path-topic">고급</span>
+                <span className="path-topic">웹 개발</span>
               </div>
             </div>
             <div className="path-card">
-              <div className="path-step">Step 2</div>
-              <h3>객체지향</h3>
-              <p>클래스, 상속, 다형성, 인터페이스 등 OOP의 핵심 개념을 깊이 학습합니다.</p>
+              <div className="path-step">Course 2</div>
+              <h3>서블릿</h3>
+              <p>HTTP 프로토콜, 서블릿, JSP, MVC 패턴으로 웹 개발의 기반을 다집니다.</p>
               <div className="path-topics">
-                <span className="path-topic">클래스</span>
-                <span className="path-topic">상속</span>
-                <span className="path-topic">인터페이스</span>
-                <span className="path-topic">컬렉션</span>
-              </div>
-            </div>
-            <div className="path-card">
-              <div className="path-step">Step 3</div>
-              <h3>고급 Java</h3>
-              <p>제네릭, 람다, 스트림, 멀티스레드 등 모던 Java의 핵심 기능을 배웁니다.</p>
-              <div className="path-topics">
-                <span className="path-topic">제네릭</span>
-                <span className="path-topic">람다</span>
-                <span className="path-topic">스트림</span>
-                <span className="path-topic">스레드</span>
-              </div>
-            </div>
-            <div className="path-card">
-              <div className="path-step">Step 4</div>
-              <h3>웹 개발</h3>
-              <p>Servlet, JSP부터 Spring Framework, Spring Boot까지 웹 개발을 완성합니다.</p>
-              <div className="path-topics">
+                <span className="path-topic">HTTP</span>
                 <span className="path-topic">서블릿</span>
                 <span className="path-topic">JSP</span>
+                <span className="path-topic">MVC</span>
+              </div>
+            </div>
+            <div className="path-card">
+              <div className="path-step">Course 3</div>
+              <h3>스프링</h3>
+              <p>Spring Framework부터 Boot, JPA, Security, Docker까지 현대적 백엔드를 완성합니다.</p>
+              <div className="path-topics">
                 <span className="path-topic">Spring</span>
                 <span className="path-topic">Boot</span>
+                <span className="path-topic">JPA</span>
+                <span className="path-topic">배포</span>
               </div>
             </div>
           </div>

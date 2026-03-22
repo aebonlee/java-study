@@ -1,0 +1,52 @@
+export const springLevels = [
+  {
+    id: 'spring-framework',
+    title: 'Spring Framework',
+    description: 'Spring Framework의 핵심 개념과 웹 MVC를 학습합니다',
+    icon: 'fa-leaf',
+    color: '#6DB33F',
+    lessons: [
+      { id: 'SP01', title: 'Spring Framework 소개', desc: 'Spring의 역사, 특징, 프로젝트 구조를 이해합니다', difficulty: 'beginner' },
+      { id: 'SP02', title: 'IoC와 DI', desc: '제어의 역전(IoC)과 의존성 주입(DI) 원리를 학습합니다', difficulty: 'beginner' },
+      { id: 'SP03', title: 'Spring Bean과 컨테이너', desc: 'ApplicationContext, Bean 등록과 스코프를 배웁니다', difficulty: 'intermediate' },
+      { id: 'SP04', title: 'AOP (관점지향)', desc: 'Aspect Oriented Programming으로 횡단 관심사를 처리합니다', difficulty: 'intermediate' },
+      { id: 'SP05', title: 'Spring MVC 기초', desc: 'DispatcherServlet, Controller, ViewResolver를 학습합니다', difficulty: 'intermediate' },
+      { id: 'SP06', title: '데이터 바인딩과 검증', desc: '@ModelAttribute, Validator, BindingResult를 배웁니다', difficulty: 'intermediate' },
+      { id: 'SP07', title: 'MyBatis 연동', desc: 'MyBatis SQL 매퍼와 Spring 통합을 학습합니다', difficulty: 'advanced' },
+      { id: 'SP08', title: 'Spring Security 기초', desc: '인증/인가, 로그인/로그아웃 처리를 배웁니다', difficulty: 'advanced' },
+    ]
+  },
+  {
+    id: 'spring-boot',
+    title: 'Spring Boot',
+    description: 'Spring Boot로 현대적인 웹 애플리케이션을 개발합니다',
+    icon: 'fa-bolt',
+    color: '#6DB33F',
+    lessons: [
+      { id: 'SP09', title: 'Spring Boot 시작하기', desc: 'Spring Boot 프로젝트 생성과 자동 설정을 이해합니다', difficulty: 'intermediate' },
+      { id: 'SP10', title: 'REST API 설계와 구현', desc: 'RESTful API 설계 원칙과 @RestController를 학습합니다', difficulty: 'intermediate' },
+      { id: 'SP11', title: 'Spring Data JPA', desc: 'JPA 엔티티, Repository, 쿼리 메서드를 배웁니다', difficulty: 'advanced' },
+      { id: 'SP12', title: '예외처리와 응답 표준화', desc: '@ExceptionHandler, @ControllerAdvice를 학습합니다', difficulty: 'advanced' },
+      { id: 'SP13', title: 'Spring Security + JWT', desc: 'JWT 토큰 기반 인증 시스템을 구현합니다', difficulty: 'advanced' },
+      { id: 'SP14', title: '테스트 (JUnit5, MockMvc)', desc: '단위 테스트와 통합 테스트 작성법을 배웁니다', difficulty: 'advanced' },
+      { id: 'SP15', title: 'Swagger/OpenAPI 문서화', desc: 'API 문서 자동 생성과 Swagger UI를 학습합니다', difficulty: 'advanced' },
+      { id: 'SP16', title: '배포 (Docker, CI/CD)', desc: 'Docker 컨테이너화와 GitHub Actions CI/CD를 배웁니다', difficulty: 'expert' },
+    ]
+  }
+]
+
+export const allSpringLessons = springLevels.flatMap(level =>
+  level.lessons.map(lesson => ({ ...lesson, level: level.id, levelTitle: level.title }))
+)
+
+export function getSpringLessonById(id) {
+  return allSpringLessons.find(l => l.id === id)
+}
+
+export function getAdjacentSpringLessons(id) {
+  const idx = allSpringLessons.findIndex(l => l.id === id)
+  return {
+    prev: idx > 0 ? allSpringLessons[idx - 1] : null,
+    next: idx < allSpringLessons.length - 1 ? allSpringLessons[idx + 1] : null
+  }
+}

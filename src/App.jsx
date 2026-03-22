@@ -10,6 +10,8 @@ import ErrorBoundary from './components/ErrorBoundary'
 
 const Home = lazy(() => import('./pages/Home'))
 const JavaLearning = lazy(() => import('./pages/JavaLearning'))
+const ServletLearning = lazy(() => import('./pages/ServletLearning'))
+const SpringLearning = lazy(() => import('./pages/SpringLearning'))
 const QuizCenter = lazy(() => import('./pages/QuizCenter'))
 const BadgeCollection = lazy(() => import('./pages/BadgeCollection'))
 const MyPage = lazy(() => import('./pages/MyPage'))
@@ -32,6 +34,32 @@ const JavaLesson14 = lazy(() => import('./pages/java-learning/JavaLesson14'))
 const JavaLesson15 = lazy(() => import('./pages/java-learning/JavaLesson15'))
 const JavaLesson16 = lazy(() => import('./pages/java-learning/JavaLesson16'))
 const JavaLesson17 = lazy(() => import('./pages/java-learning/JavaLesson17'))
+const ServletLesson01 = lazy(() => import('./pages/servlet/ServletLesson01'))
+const ServletLesson02 = lazy(() => import('./pages/servlet/ServletLesson02'))
+const ServletLesson03 = lazy(() => import('./pages/servlet/ServletLesson03'))
+const ServletLesson04 = lazy(() => import('./pages/servlet/ServletLesson04'))
+const ServletLesson05 = lazy(() => import('./pages/servlet/ServletLesson05'))
+const ServletLesson06 = lazy(() => import('./pages/servlet/ServletLesson06'))
+const ServletLesson07 = lazy(() => import('./pages/servlet/ServletLesson07'))
+const ServletLesson08 = lazy(() => import('./pages/servlet/ServletLesson08'))
+const ServletLesson09 = lazy(() => import('./pages/servlet/ServletLesson09'))
+const ServletLesson10 = lazy(() => import('./pages/servlet/ServletLesson10'))
+const SpringLesson01 = lazy(() => import('./pages/spring/SpringLesson01'))
+const SpringLesson02 = lazy(() => import('./pages/spring/SpringLesson02'))
+const SpringLesson03 = lazy(() => import('./pages/spring/SpringLesson03'))
+const SpringLesson04 = lazy(() => import('./pages/spring/SpringLesson04'))
+const SpringLesson05 = lazy(() => import('./pages/spring/SpringLesson05'))
+const SpringLesson06 = lazy(() => import('./pages/spring/SpringLesson06'))
+const SpringLesson07 = lazy(() => import('./pages/spring/SpringLesson07'))
+const SpringLesson08 = lazy(() => import('./pages/spring/SpringLesson08'))
+const SpringLesson09 = lazy(() => import('./pages/spring/SpringLesson09'))
+const SpringLesson10 = lazy(() => import('./pages/spring/SpringLesson10'))
+const SpringLesson11 = lazy(() => import('./pages/spring/SpringLesson11'))
+const SpringLesson12 = lazy(() => import('./pages/spring/SpringLesson12'))
+const SpringLesson13 = lazy(() => import('./pages/spring/SpringLesson13'))
+const SpringLesson14 = lazy(() => import('./pages/spring/SpringLesson14'))
+const SpringLesson15 = lazy(() => import('./pages/spring/SpringLesson15'))
+const SpringLesson16 = lazy(() => import('./pages/spring/SpringLesson16'))
 
 function PageLoader() {
   return (
@@ -64,6 +92,8 @@ export default function App() {
                 <Routes>
                   <Route path="/" element={<Home />} />
                   <Route path="/java-learning" element={<JavaLearning />} />
+                  <Route path="/servlet" element={<ServletLearning />} />
+                  <Route path="/spring" element={<SpringLearning />} />
                   <Route path="/quiz" element={<QuizCenter />} />
                   <Route path="/badges" element={<BadgeCollection />} />
                   <Route path="/my" element={<MyPage />} />
@@ -86,6 +116,32 @@ export default function App() {
                   <Route path="/java-learning/15" element={<JavaLesson15 />} />
                   <Route path="/java-learning/16" element={<JavaLesson16 />} />
                   <Route path="/java-learning/17" element={<JavaLesson17 />} />
+                  <Route path="/servlet/01" element={<ServletLesson01 />} />
+                  <Route path="/servlet/02" element={<ServletLesson02 />} />
+                  <Route path="/servlet/03" element={<ServletLesson03 />} />
+                  <Route path="/servlet/04" element={<ServletLesson04 />} />
+                  <Route path="/servlet/05" element={<ServletLesson05 />} />
+                  <Route path="/servlet/06" element={<ServletLesson06 />} />
+                  <Route path="/servlet/07" element={<ServletLesson07 />} />
+                  <Route path="/servlet/08" element={<ServletLesson08 />} />
+                  <Route path="/servlet/09" element={<ServletLesson09 />} />
+                  <Route path="/servlet/10" element={<ServletLesson10 />} />
+                  <Route path="/spring/01" element={<SpringLesson01 />} />
+                  <Route path="/spring/02" element={<SpringLesson02 />} />
+                  <Route path="/spring/03" element={<SpringLesson03 />} />
+                  <Route path="/spring/04" element={<SpringLesson04 />} />
+                  <Route path="/spring/05" element={<SpringLesson05 />} />
+                  <Route path="/spring/06" element={<SpringLesson06 />} />
+                  <Route path="/spring/07" element={<SpringLesson07 />} />
+                  <Route path="/spring/08" element={<SpringLesson08 />} />
+                  <Route path="/spring/09" element={<SpringLesson09 />} />
+                  <Route path="/spring/10" element={<SpringLesson10 />} />
+                  <Route path="/spring/11" element={<SpringLesson11 />} />
+                  <Route path="/spring/12" element={<SpringLesson12 />} />
+                  <Route path="/spring/13" element={<SpringLesson13 />} />
+                  <Route path="/spring/14" element={<SpringLesson14 />} />
+                  <Route path="/spring/15" element={<SpringLesson15 />} />
+                  <Route path="/spring/16" element={<SpringLesson16 />} />
                   <Route path="*" element={<NotFound />} />
                 </Routes>
               </Suspense>

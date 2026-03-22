@@ -7,9 +7,9 @@
 - **기술 스택**: React 19 + Vite 7 + Supabase
 - **배포**: GitHub Pages
 
-## 학습 커리큘럼 (17개 챕터)
+## 학습 커리큘럼 (3개 과정, 43개 레슨)
 
-### Step 1: 기초 (Chapter 01-04)
+### Java 기초 (Chapter 01-04)
 | Ch | 제목 | 주요 내용 |
 |----|------|----------|
 | 01 | Java 소개 및 환경설정 | JDK/JRE/JVM, Hello World, IDE |
@@ -17,7 +17,7 @@
 | 03 | 연산자와 제어문 | if/switch, for/while, break/continue |
 | 04 | 배열과 문자열 | 배열, Arrays, String, StringBuilder |
 
-### Step 2: 객체지향 (Chapter 05-08)
+### Java 객체지향 (Chapter 05-08)
 | Ch | 제목 | 주요 내용 |
 |----|------|----------|
 | 05 | 클래스와 객체 | 생성자, 접근제어자, static, 캡슐화 |
@@ -25,7 +25,7 @@
 | 07 | 인터페이스와 추상클래스 | abstract, interface, default method |
 | 08 | 예외처리와 컬렉션 | try-catch, List, Set, Map |
 
-### Step 3: 고급 Java (Chapter 09-12)
+### Java 고급 (Chapter 09-12)
 | Ch | 제목 | 주요 내용 |
 |----|------|----------|
 | 09 | 제네릭과 열거형 | Generic, Wildcard, enum |
@@ -33,7 +33,7 @@
 | 11 | 멀티스레드 | Thread, synchronized, CompletableFuture |
 | 12 | 파일 I/O | NIO.2, Serialization, HttpClient |
 
-### Step 4: 웹 개발 (Chapter 13-17)
+### Java 기초~고급 통합 (Chapter 13-17)
 | Ch | 제목 | 주요 내용 |
 |----|------|----------|
 | 13 | 서블릿 기초 | HttpServlet, Session, Cookie, Filter |
@@ -42,8 +42,42 @@
 | 16 | Spring Boot와 REST API | @RestController, REST 설계, 예외처리 |
 | 17 | Spring MVC와 데이터 접근 | Thymeleaf, JPA, MyBatis, @Transactional |
 
+### Course 2: 서블릿 과정 (10개 레슨)
+| ID | 제목 | 주요 내용 |
+|----|------|----------|
+| S01 | 서블릿 개요와 환경설정 | 웹 역사, 서블릿 컨테이너, Tomcat 설치 |
+| S02 | HTTP 프로토콜과 요청/응답 | HTTP 메서드, 헤더, 상태코드 |
+| S03 | 서블릿 생명주기 | init, service, destroy, 스레드 |
+| S04 | 폼 처리와 파라미터 | GET/POST, 한글 인코딩 |
+| S05 | 세션과 쿠키 | HttpSession, Cookie, 로그인 구현 |
+| S06 | 필터와 리스너 | Filter, Listener, 인코딩 필터 |
+| S07 | JSP 기초와 EL/JSTL | JSP, EL 표현식, JSTL 태그 |
+| S08 | MVC 패턴 구현 | Front Controller, DAO/VO |
+| S09 | 파일 업로드와 DB 연동 | MultipartConfig, JDBC, CRUD |
+| S10 | 미니 프로젝트: CRUD 게시판 | 게시판 풀스택 구현 |
+
+### Course 3: 스프링 과정 (16개 레슨)
+| ID | 제목 | 주요 내용 |
+|----|------|----------|
+| SP01 | Spring Framework 소개 | Spring 역사, 모듈, Maven/Gradle |
+| SP02 | IoC와 DI | 제어의 역전, 의존성 주입 |
+| SP03 | Spring Bean과 컨테이너 | Bean 등록, 스코프, 라이프사이클 |
+| SP04 | AOP (관점지향 프로그래밍) | Advice, Pointcut, 트랜잭션 |
+| SP05 | Spring MVC 기초 | DispatcherServlet, Controller |
+| SP06 | 데이터 바인딩과 검증 | @ModelAttribute, Validation |
+| SP07 | MyBatis 연동 | SqlSession, Mapper, 동적 SQL |
+| SP08 | Spring Security 기초 | 인증/인가, Form Login |
+| SP09 | Spring Boot 시작하기 | Auto Configuration, Starter |
+| SP10 | REST API 설계와 구현 | @RestController, ResponseEntity |
+| SP11 | Spring Data JPA | Entity, Repository, 쿼리 메서드 |
+| SP12 | 예외처리와 응답 표준화 | @ExceptionHandler, ErrorResponse |
+| SP13 | Spring Security + JWT | JWT, 토큰 인증, CORS |
+| SP14 | 테스트 (JUnit5, MockMvc) | 단위/통합 테스트 |
+| SP15 | Swagger/OpenAPI 문서화 | API 문서 자동생성 |
+| SP16 | 배포 (Docker, CI/CD) | Dockerfile, GitHub Actions |
+
 ## 기능 목록
-- [x] 17개 학습 챕터 (실제 Java 코드 예제 포함)
+- [x] 43개 학습 레슨 (Java 17 + 서블릿 10 + 스프링 16)
 - [x] 학습 진도 추적 (localStorage)
 - [x] 다크 모드
 - [x] 반응형 디자인
@@ -59,6 +93,10 @@
 - [x] 세션 관리 (30분 자동 만료, 경고 배너)
 - [x] OG 이미지 자동 생성 (sharp 스크립트)
 - [x] 타이틀 디자인 (PyMaster 동일 텍스트 로고)
+- [x] 서블릿 과정 (10개 레슨, 전용 허브 페이지)
+- [x] 스프링 과정 (16개 레슨, 전용 허브 페이지)
+- [x] Java 코드 실행기 (Piston API, react-simple-code-editor)
+- [x] 메가 드롭다운 네비게이션 (자바학습하기 통합)
 
 ## 디자인 시스템
 - **Primary**: #5382A1 (Java Blue)

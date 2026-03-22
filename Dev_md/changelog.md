@@ -1,5 +1,47 @@
 # Changelog
 
+## v3.0.0 (2026-03-23)
+
+### 신규 기능
+- **서블릿 과정** (10개 레슨, S01~S10)
+  - 서블릿 개요, HTTP, 생명주기, 폼 처리, 세션/쿠키
+  - 필터/리스너, JSP/EL/JSTL, MVC 패턴, DB 연동
+  - 미니 프로젝트: CRUD 게시판
+  - 전용 허브 페이지 (`/servlet`)
+- **스프링 과정** (16개 레슨, SP01~SP16)
+  - Spring Framework: IoC/DI, Bean, AOP, MVC, MyBatis, Security
+  - Spring Boot: REST API, JPA, JWT, 테스트, Swagger, 배포
+  - 전용 허브 페이지 (`/spring`)
+- **Java 코드 실행기** (JavaCodeRunner 컴포넌트)
+  - react-simple-code-editor + PrismJS 구문 강조
+  - Piston API로 브라우저에서 Java 코드 실행 (무료, 인증 불필요)
+  - 모든 레슨에 내장 (실행, 초기화, 출력 표시)
+- **메가 드롭다운 네비게이션**
+  - 기초/중급/고급 3개 드롭다운 → "자바학습하기" 메가 드롭다운 통합
+  - 섹션별 컬러 헤더 (기초=초록, 중급=파랑, 고급=주황)
+  - "서블릿" 드롭다운 (10개 레슨)
+  - "스프링" 드롭다운 (16개 레슨)
+
+### 개선
+- Navbar 재구성: 웹개발 드롭다운 제거, 메가 드롭다운 적용
+- ProgressContext 확장: getJavaProgress, getServletProgress, getSpringProgress 함수 추가
+- 전체 레슨 수: 17개 → 43개 (Java 17 + 서블릿 10 + 스프링 16)
+- Home 페이지: 통계 수치 업데이트 (43 레슨, 3 과정), 학습 로드맵 3단계
+- Footer: 서블릿/스프링 과정 링크 추가
+- 다크모드: 메가 드롭다운 대응
+- hero.css: path-grid auto-fit 반응형 개선
+
+### 데이터
+- servletLessons.js: 서블릿 10개 레슨 메타데이터 (2레벨)
+- springLessons.js: 스프링 16개 레슨 메타데이터 (2레벨)
+
+### 라우팅
+- 47개 라우트 (기존 21개 → 47개)
+- `/servlet`, `/spring` 허브 페이지
+- `/servlet/01~10`, `/spring/01~16` 개별 레슨
+
+---
+
 ## v2.2.0 (2026-03-23)
 
 ### 개선

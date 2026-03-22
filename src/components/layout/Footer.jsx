@@ -19,11 +19,12 @@ export default function Footer() {
   ]
 
   const courseLinks = [
-    { path: '/java-learning/01', label: '기초: Java 소개' },
-    { path: '/java-learning/05', label: '중급: 클래스와 객체' },
-    { path: '/java-learning/09', label: '고급: 제네릭' },
-    { path: '/java-learning/13', label: '웹: 서블릿' },
-    { path: '/java-learning/15', label: '웹: Spring' },
+    { path: '/java-learning/01', label: 'Java: 소개' },
+    { path: '/java-learning/05', label: 'Java: 클래스와 객체' },
+    { path: '/servlet', label: '서블릿 과정' },
+    { path: '/servlet/01', label: '서블릿: 개요와 환경설정' },
+    { path: '/spring', label: '스프링 과정' },
+    { path: '/spring/01', label: '스프링: Framework 소개' },
   ]
 
   const familySites = [
@@ -48,7 +49,7 @@ export default function Footer() {
               <h3 className="footer-logo">
                 <span className="brand-java">Java</span><span className="brand-master">Master</span>
               </h3>
-              <p>Java 기초부터 Spring Boot까지, 체계적인 학습 플랫폼입니다.</p>
+              <p>Java 기초부터 서블릿, Spring Boot까지 체계적인 학습 플랫폼입니다.</p>
               <p className="footer-desc">누구나 무료로 Java 프로그래밍을 배울 수 있습니다.</p>
               <div className="footer-family">
                 <select onChange={handleFamilySite} defaultValue="">

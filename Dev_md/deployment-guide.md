@@ -58,8 +58,12 @@ node scripts/generate-og-image.mjs
 | 경로 | 페이지 |
 |------|--------|
 | `/` | 홈 (랜딩 페이지) |
-| `/java-learning` | 전체 커리큘럼 |
-| `/java-learning/01~17` | 개별 레슨 (17개) |
+| `/java-learning` | Java 커리큘럼 허브 |
+| `/java-learning/01~17` | Java 레슨 (17개) |
+| `/servlet` | 서블릿 과정 허브 |
+| `/servlet/01~10` | 서블릿 레슨 (10개) |
+| `/spring` | 스프링 과정 허브 |
+| `/spring/01~16` | 스프링 레슨 (16개) |
 | `/quiz` | 퀴즈 센터 |
 | `/badges` | 도장깨기 (배지) |
 | `/my` | 마이페이지 |

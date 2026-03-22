@@ -129,6 +129,16 @@
 .btn-lg         /* 큰 버튼 */
 ```
 
+### 메가 드롭다운
+```css
+.dropdown-mega           /* 3열 플렉스 레이아웃, 480px 너비 */
+.dropdown-mega-section   /* 각 섹션 (기초/중급/고급) */
+.dropdown-section-header /* 컬러 헤더 (초록/파랑/주황) */
+```
+- 기초 헤더: `#10B981` (Success 초록)
+- 중급 헤더: `#3B82F6` (Info 파랑)
+- 고급 헤더: `#E76F00` (Accent 주황)
+
 ### 카드
 - 배경: `var(--bg-white)`
 - 테두리: `1px solid var(--border-light)`

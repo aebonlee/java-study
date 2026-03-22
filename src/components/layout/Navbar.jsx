@@ -42,36 +42,75 @@ export default function Navbar() {
 
   const navItems = [
     {
-      label: '기초', children: [
-        { to: '/java-learning/01', label: 'Ch.1 Java 소개', icon: 'fas fa-coffee' },
-        { to: '/java-learning/02', label: 'Ch.2 변수와 자료형', icon: 'fas fa-database' },
-        { to: '/java-learning/03', label: 'Ch.3 연산자와 제어문', icon: 'fas fa-code-branch' },
-        { to: '/java-learning/04', label: 'Ch.4 배열과 문자열', icon: 'fas fa-list' },
+      label: '자바학습하기',
+      mega: true,
+      sections: [
+        {
+          title: '기초',
+          color: '#10B981',
+          children: [
+            { to: '/java-learning/01', label: 'Java 소개' },
+            { to: '/java-learning/02', label: '변수와 자료형' },
+            { to: '/java-learning/03', label: '연산자와 제어문' },
+            { to: '/java-learning/04', label: '배열과 문자열' },
+          ]
+        },
+        {
+          title: '중급',
+          color: '#3B82F6',
+          children: [
+            { to: '/java-learning/05', label: '클래스와 객체' },
+            { to: '/java-learning/06', label: '상속과 다형성' },
+            { to: '/java-learning/07', label: '인터페이스' },
+            { to: '/java-learning/08', label: '예외처리와 컬렉션' },
+          ]
+        },
+        {
+          title: '고급',
+          color: '#E76F00',
+          children: [
+            { to: '/java-learning/09', label: '제네릭과 열거형' },
+            { to: '/java-learning/10', label: '람다와 스트림' },
+            { to: '/java-learning/11', label: '멀티스레드' },
+            { to: '/java-learning/12', label: '파일 I/O' },
+          ]
+        },
       ]
     },
     {
-      label: '중급', children: [
-        { to: '/java-learning/05', label: 'Ch.5 클래스와 객체', icon: 'fas fa-cube' },
-        { to: '/java-learning/06', label: 'Ch.6 상속과 다형성', icon: 'fas fa-sitemap' },
-        { to: '/java-learning/07', label: 'Ch.7 인터페이스', icon: 'fas fa-puzzle-piece' },
-        { to: '/java-learning/08', label: 'Ch.8 예외처리와 컬렉션', icon: 'fas fa-boxes-stacked' },
+      label: '서블릿',
+      children: [
+        { to: '/servlet/01', label: '서블릿 개요와 환경설정' },
+        { to: '/servlet/02', label: 'HTTP 프로토콜과 요청/응답' },
+        { to: '/servlet/03', label: '서블릿 생명주기' },
+        { to: '/servlet/04', label: '폼 처리와 파라미터' },
+        { to: '/servlet/05', label: '세션과 쿠키' },
+        { to: '/servlet/06', label: '필터와 리스너' },
+        { to: '/servlet/07', label: 'JSP 기초와 EL/JSTL' },
+        { to: '/servlet/08', label: 'MVC 패턴 구현' },
+        { to: '/servlet/09', label: '파일 업로드와 DB 연동' },
+        { to: '/servlet/10', label: '미니 프로젝트: CRUD 게시판' },
       ]
     },
     {
-      label: '고급', children: [
-        { to: '/java-learning/09', label: 'Ch.9 제네릭과 열거형', icon: 'fas fa-gears' },
-        { to: '/java-learning/10', label: 'Ch.10 람다와 스트림', icon: 'fas fa-stream' },
-        { to: '/java-learning/11', label: 'Ch.11 멀티스레드', icon: 'fas fa-diagram-project' },
-        { to: '/java-learning/12', label: 'Ch.12 파일 I/O', icon: 'fas fa-file-code' },
-      ]
-    },
-    {
-      label: '웹 개발', children: [
-        { to: '/java-learning/13', label: 'Ch.13 서블릿 기초', icon: 'fas fa-server' },
-        { to: '/java-learning/14', label: 'Ch.14 JSP와 MVC', icon: 'fas fa-window-maximize' },
-        { to: '/java-learning/15', label: 'Ch.15 Spring 기초', icon: 'fas fa-leaf' },
-        { to: '/java-learning/16', label: 'Ch.16 Spring Boot', icon: 'fas fa-bolt' },
-        { to: '/java-learning/17', label: 'Ch.17 Spring MVC', icon: 'fas fa-layer-group' },
+      label: '스프링',
+      children: [
+        { to: '/spring/01', label: 'Spring Framework 소개' },
+        { to: '/spring/02', label: 'IoC와 DI' },
+        { to: '/spring/03', label: 'Spring Bean과 컨테이너' },
+        { to: '/spring/04', label: 'AOP (관점지향)' },
+        { to: '/spring/05', label: 'Spring MVC 기초' },
+        { to: '/spring/06', label: '데이터 바인딩과 검증' },
+        { to: '/spring/07', label: 'MyBatis 연동' },
+        { to: '/spring/08', label: 'Spring Security 기초' },
+        { to: '/spring/09', label: 'Spring Boot 시작하기' },
+        { to: '/spring/10', label: 'REST API 설계와 구현' },
+        { to: '/spring/11', label: 'Spring Data JPA' },
+        { to: '/spring/12', label: '예외처리와 응답 표준화' },
+        { to: '/spring/13', label: 'Spring Security + JWT' },
+        { to: '/spring/14', label: '테스트 (JUnit5, MockMvc)' },
+        { to: '/spring/15', label: 'Swagger/OpenAPI 문서화' },
+        { to: '/spring/16', label: '배포 (Docker, CI/CD)' },
       ]
     },
     { to: '/java-learning', label: '커리큘럼' },
@@ -96,7 +135,44 @@ export default function Navbar() {
 
         <ul className={`nav-menu${mobileOpen ? ' active' : ''}`}>
           {navItems.map((item, i) =>
-            item.children ? (
+            item.mega ? (
+              <li
+                key={i}
+                className="nav-item-dropdown"
+                onMouseEnter={() => setActiveDropdown(i)}
+                onMouseLeave={() => setActiveDropdown(null)}
+              >
+                <span
+                  className="nav-link nav-link-dropdown"
+                  onClick={() => setActiveDropdown(activeDropdown === i ? null : i)}
+                >
+                  {item.label}
+                  <i className="fas fa-chevron-down dropdown-arrow" style={{
+                    fontSize: '10px', marginLeft: 4,
+                    transition: 'transform 0.3s',
+                    transform: activeDropdown === i ? 'rotate(180deg)' : 'none'
+                  }}></i>
+                </span>
+                <div className={`dropdown-mega${activeDropdown === i ? ' active' : ''}`}>
+                  {item.sections.map(section => (
+                    <div key={section.title} className="dropdown-mega-section">
+                      <div className="dropdown-section-header" style={{ background: section.color }}>
+                        {section.title}
+                      </div>
+                      <ul>
+                        {section.children.map(child => (
+                          <li key={child.to}>
+                            <NavLink to={child.to} onClick={() => setMobileOpen(false)}>
+                              {child.label}
+                            </NavLink>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  ))}
+                </div>
+              </li>
+            ) : item.children ? (
               <li
                 key={i}
                 className="nav-item-dropdown"
@@ -118,7 +194,7 @@ export default function Navbar() {
                   {item.children.map(child => (
                     <li key={child.to}>
                       <NavLink to={child.to} onClick={() => setMobileOpen(false)}>
-                        <i className={child.icon}></i> {child.label}
+                        {child.label}
                       </NavLink>
                     </li>
                   ))}
