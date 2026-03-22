@@ -1,5 +1,22 @@
 # Changelog
 
+## v3.1.0 (2026-03-23)
+
+### 개선
+- **스프링 메가 드롭다운**: 스프링 메뉴를 일반 드롭다운에서 메가 드롭다운으로 변경
+  - Framework 섹션 (SP01~SP08, 초록 `#10B981`)
+  - Boot 섹션 (SP09~SP16, 파랑 `#3B82F6`)
+  - 자바학습하기 메뉴와 동일한 메가 드롭다운 패턴 적용
+
+### 문서
+- Dev_md 신규 문서 4개 추가
+  - `servlet-course-guide.md`: 서블릿 과정 가이드
+  - `spring-course-guide.md`: 스프링 과정 가이드
+  - `code-runner-guide.md`: JavaCodeRunner 기술 가이드
+  - `navigation-guide.md`: 네비게이션 구현 가이드
+
+---
+
 ## v3.0.0 (2026-03-23)
 
 ### 신규 기능
