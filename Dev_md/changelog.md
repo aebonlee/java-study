@@ -1,5 +1,25 @@
 # Changelog
 
+## v3.6.1 (2026-03-23)
+
+### 신규 기능
+- **코드 실행기 복사 버튼** 추가
+  - 제목 옆에 "복사" 버튼 배치
+  - 클릭 시 코드 클립보드 복사, 2초간 "복사됨" 피드백 (체크 아이콘)
+
+### 개선
+- **메뉴 구분 컬러 농도 강화** (20% 짙게)
+  - 라이트모드: `rgba(83,130,161, 0.1 → 0.18)`
+  - 다크모드: `rgba(83,130,161, 0.2 → 0.3)`
+
+### 수정 파일
+- `src/components/JavaCodeRunner.jsx`: 복사 버튼 기능 추가
+- `src/styles/editor.css`: editor-title-area, editor-copy-btn 스타일
+- `src/styles/navbar.css`: 섹션 헤더 배경 농도 조정
+- `src/styles/dark-mode.css`: 다크모드 섹션 헤더 농도 조정
+
+---
+
 ## v3.6.0 (2026-03-23)
 
 ### 신규 기능

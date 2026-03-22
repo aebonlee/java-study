@@ -27,6 +27,7 @@
 - **코드 편집**: react-simple-code-editor + PrismJS 구문 강조
 - **실행**: Piston API (https://emkc.org/api/v2/piston/execute) - 무료, 인증 불필요
 - **출력**: 실행 결과 또는 에러 메시지 표시
+- **복사**: 제목 옆 복사 버튼으로 코드 클립보드 복사 (2초간 "복사됨" 피드백)
 - **초기화**: 기본 코드로 리셋
 
 ### Props
