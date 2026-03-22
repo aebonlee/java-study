@@ -6,6 +6,7 @@ import { levels } from '../data/lessons'
 import { servletLevels } from '../data/servletLessons'
 import { springLevels } from '../data/springLessons'
 import { practicalLevels } from '../data/practicalLessons'
+import { projectLevels } from '../data/projects'
 import BadgeCard from '../components/BadgeCard'
 
 function formatDate(dateStr) {
@@ -21,7 +22,7 @@ export default function MyPage() {
   } = useProgress()
   const { earnedBadges } = useBadge()
 
-  const allLevels = [...levels, ...servletLevels, ...springLevels, ...practicalLevels]
+  const allLevels = [...levels, ...servletLevels, ...springLevels, ...practicalLevels, ...projectLevels]
   const totalLessons = allLevels.reduce((sum, level) => sum + level.lessons.length, 0)
   const completedCount = completedLessons.length
   const totalProgress = getTotalProgress()
@@ -43,7 +44,9 @@ export default function MyPage() {
     'servlet-basic': '서블릿 기초', 'servlet-advanced': '서블릿 고급',
     'spring-framework': 'Spring Framework', 'spring-boot': 'Spring Boot',
     'practical-tools': '실무: 도구', 'practical-data': '실무: 데이터',
-    'practical-quality': '실무: 품질', 'practical-infra': '실무: 인프라'
+    'practical-quality': '실무: 품질', 'practical-infra': '실무: 인프라',
+    'project-basic': '프로젝트: 기초', 'project-advanced': '프로젝트: 심화',
+    'project-web': '프로젝트: 웹', 'project-spring': '프로젝트: Spring'
   }
 
   const certTypes = [

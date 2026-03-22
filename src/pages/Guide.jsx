@@ -20,6 +20,17 @@ export default function Guide() {
       ]
     },
     {
+      icon: 'fas fa-diagram-project',
+      title: '프로젝트',
+      content: '콘솔 주소록부터 Spring E-Commerce까지 8개 실전 프로젝트를 직접 구현합니다. 각 프로젝트에 필요한 선수 과목과 도구가 안내됩니다.',
+      links: [
+        { to: '/projects/01', label: '기초' },
+        { to: '/projects/03', label: '심화' },
+        { to: '/projects/05', label: '웹' },
+        { to: '/projects/07', label: 'Spring' },
+      ]
+    },
+    {
       icon: 'fas fa-clipboard-question',
       title: '퀴즈 센터',
       content: '각 단계별 퀴즈를 통해 학습 내용을 점검하세요. 70점 이상이면 합격이며, 제한 시간 내에 풀어야 합니다.',
@@ -28,7 +39,7 @@ export default function Guide() {
     {
       icon: 'fas fa-medal',
       title: '도장깨기 (배지)',
-      content: '학습 목표를 달성하면 배지를 획득합니다. 브론즈, 실버, 골드, 플래티넘 4등급 총 39개 배지가 있습니다.',
+      content: '학습 목표를 달성하면 배지를 획득합니다. 브론즈, 실버, 골드, 플래티넘 4등급 총 44개 배지가 있습니다.',
       link: { to: '/badges', label: '배지 확인하기' }
     },
     {
