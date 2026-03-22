@@ -20,12 +20,15 @@
 - **프로바이더 순서 변경**: `ThemeProvider > AuthProvider > ProgressProvider > BadgeProvider`
   - ProgressContext/BadgeContext에서 useAuth() 접근 가능
 - **이메일 로그인 스타일**: `.login-tabs`, `.login-form`, `.login-input`, `.login-submit-btn`, `.login-divider` + 다크모드 대응
+- **수료증 그리드 3x2 레이아웃**: `cert-grid` auto-fill → `repeat(3, 1fr)` 고정 3열
+  - 6개 수료증이 3열×2행으로 깔끔하게 배치
+  - 반응형: 768px↓ 2열, 480px↓ 1열
 
 ### 수정 파일
 - JSX 4개: App.jsx, AuthContext.jsx, ProgressContext.jsx, BadgeContext.jsx
 - JSX 1개: Login.jsx
-- CSS 1개: auth.css
-- MD 1개: changelog.md
+- CSS 2개: auth.css, mypage.css
+- MD 7개: changelog, sync-guide(신규), architecture, auth-guide, features-guide, project-plan, supabase-setup
 
 ---
 

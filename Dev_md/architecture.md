@@ -162,7 +162,7 @@ ThemeProvider > AuthProvider > ProgressProvider > BadgeProvider
 | servlet | 서블릿 퀴즈 | 10 | 12분 | 70 |
 | spring | Spring 퀴즈 | 10 | 12분 | 70 |
 
-## 수료증 시스템
+## 수료증 시스템 (3x2 그리드, `repeat(3, 1fr)`)
 | 등급 | 조건 |
 |------|------|
 | 기초 수료증 (🥉) | 기초 레슨 완료 + 기초 퀴즈 통과 |
