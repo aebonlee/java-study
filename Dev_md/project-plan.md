@@ -4,7 +4,7 @@
 - **프로젝트명**: JavaMaster (java-study)
 - **도메인**: java-study.dreamitbiz.com
 - **GitHub**: https://github.com/aebonlee/java-study
-- **기술 스택**: React 19 + Vite + Supabase
+- **기술 스택**: React 19 + Vite 7 + Supabase
 - **배포**: GitHub Pages
 
 ## 학습 커리큘럼 (17개 챕터)
@@ -49,10 +49,17 @@
 - [x] 반응형 디자인
 - [x] OG 메타 태그 (카카오/SNS 공유)
 - [x] Supabase 연동 준비
+- [x] 퀴즈 센터 (4단계 × 10문제, 타이머, 셔플)
+- [x] 도장깨기 (24개 배지, 4등급)
+- [x] 마이페이지 (통계, 수료증, 성적표)
+- [x] 이용 가이드 (10개 가이드, FAQ)
+- [x] Navbar 진도 원형 그래프
+- [x] 배지 획득 실시간 알림 팝업
 
 ## 디자인 시스템
 - **Primary**: #5382A1 (Java Blue)
-- **Accent**: #E76F00 (Java Orange)
+- **Accent**: #E76F00 (Java Orange) - 버튼, 로고에만 사용
+- **배경**: 다크블루 그라데이션 (주황색 제외)
 - **폰트**: Noto Sans KR + JetBrains Mono
 - **아이콘**: Font Awesome 6
 
