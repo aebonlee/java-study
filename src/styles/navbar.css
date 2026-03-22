@@ -24,33 +24,13 @@
   height: 100%;
 }
 
-.nav-logo {
+.logo {
   display: flex;
   align-items: center;
-  gap: 10px;
-  font-size: var(--font-size-xl);
-  font-weight: 800;
-  color: var(--text-primary);
-  text-decoration: none;
-  flex-shrink: 0;
 }
 
-.nav-logo .logo-icon {
-  width: 36px;
-  height: 36px;
-  background: var(--accent);
-  border-radius: var(--radius-sm);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  font-weight: 900;
-  font-size: 18px;
-  font-family: serif;
-}
-
-.logo-text {
-  font-size: 1.2rem;
+.logo h1 {
+  font-size: 26px;
   font-weight: 800;
 }
 
@@ -59,7 +39,7 @@
 }
 
 .brand-master {
-  color: var(--accent);
+  color: var(--accent-dark, #C45D00);
 }
 
 /* Nav Menu */

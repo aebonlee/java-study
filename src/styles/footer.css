@@ -13,28 +13,18 @@
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.footer-brand h3 {
-  font-size: var(--font-size-xl);
+.footer-logo {
+  font-size: 26px;
   font-weight: 800;
-  color: white;
   margin-bottom: 12px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
 }
 
-.footer-brand .logo-icon {
-  width: 32px;
-  height: 32px;
-  background: var(--accent);
-  border-radius: var(--radius-sm);
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  font-weight: 900;
-  font-size: 16px;
-  font-family: serif;
+.footer-logo .brand-java {
+  color: var(--accent, #E76F00);
+}
+
+.footer-logo .brand-master {
+  color: #fff;
 }
 
 .footer-brand p {

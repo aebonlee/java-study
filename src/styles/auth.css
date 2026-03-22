@@ -27,8 +27,7 @@
   margin-bottom: 12px;
 }
 
-.brand-java { color: var(--primary); }
-.brand-master { color: var(--accent); }
+/* brand-java, brand-master are in navbar.css */
 
 .login-header p {
   font-size: 15px;

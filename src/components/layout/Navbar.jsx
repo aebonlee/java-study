@@ -87,12 +87,11 @@ export default function Navbar() {
   return (
     <nav className={`navbar${scrolled ? ' scrolled' : ''}`}>
       <div className="container nav-wrapper">
-        <Link to="/" className="nav-logo">
-          <span className="logo-icon">J</span>
-          <span className="logo-text">
+        <Link to="/" className="logo">
+          <h1>
             <span className="brand-java">Java</span>
             <span className="brand-master">Master</span>
-          </span>
+          </h1>
         </Link>
 
         <ul className={`nav-menu${mobileOpen ? ' active' : ''}`}>

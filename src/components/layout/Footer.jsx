@@ -45,8 +45,7 @@ export default function Footer() {
         <div className="container">
           <div className="footer-grid">
             <div className="footer-brand">
-              <h3>
-                <span className="logo-icon">J</span>
+              <h3 className="footer-logo">
                 <span className="brand-java">Java</span><span className="brand-master">Master</span>
               </h3>
               <p>Java 기초부터 Spring Boot까지, 체계적인 학습 플랫폼입니다.</p>
