@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react'
+import { useState, useCallback, useRef } from 'react'
 import Editor from 'react-simple-code-editor'
 import Prism from 'prismjs'
 import 'prismjs/components/prism-java'
@@ -12,6 +12,16 @@ export default function JavaCodeRunner({ defaultCode = '', title = 'Java 코드 
   const [isRunning, setIsRunning] = useState(false)
   const [isError, setIsError] = useState(false)
   const { incrementCodeRuns } = useProgress()
+  const [copied, setCopied] = useState(false)
+  const copyTimer = useRef(null)
+
+  const copyCode = () => {
+    navigator.clipboard.writeText(code).then(() => {
+      setCopied(true)
+      clearTimeout(copyTimer.current)
+      copyTimer.current = setTimeout(() => setCopied(false), 2000)
+    })
+  }
 
   const highlight = useCallback((code) => {
     return Prism.highlight(code, Prism.languages.java, 'java')
@@ -63,7 +73,13 @@ export default function JavaCodeRunner({ defaultCode = '', title = 'Java 코드 
   return (
     <div className="code-editor-wrapper">
       <div className="editor-header">
-        <span>{title}</span>
+        <div className="editor-title-area">
+          <span>{title}</span>
+          <button className="editor-copy-btn" onClick={copyCode} title="코드 복사">
+            <i className={copied ? 'fas fa-check' : 'fas fa-copy'}></i>
+            {copied ? ' 복사됨' : ' 복사'}
+          </button>
+        </div>
         <div className="editor-actions">
           <button onClick={resetCode} disabled={isRunning}>
             <i className="fas fa-undo"></i> 초기화
