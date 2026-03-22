@@ -16,7 +16,7 @@ java-study/
 ├── vite.config.js
 ├── .env                    # Supabase 키 (gitignore)
 ├── supabase-setup.sql      # DB 테이블 생성 SQL
-├── Dev_md/                 # 프로젝트 문서 (15개)
+├── Dev_md/                 # 프로젝트 문서 (16개)
 │   ├── project-plan.md
 │   ├── architecture.md
 │   ├── sync-guide.md
@@ -29,6 +29,7 @@ java-study/
 │   ├── servlet-course-guide.md
 │   ├── spring-course-guide.md
 │   ├── practical-course-guide.md
+│   ├── project-section-guide.md
 │   ├── code-runner-guide.md
 │   ├── navigation-guide.md
 │   └── changelog.md
@@ -82,7 +83,8 @@ java-study/
     │   ├── servletLessons.js  # 서블릿 레슨 메타데이터 (10과)
     │   ├── springLessons.js   # 스프링 레슨 메타데이터 (16과)
     │   ├── practicalLessons.js # 실무 레슨 메타데이터 (4레벨 10과)
-    │   ├── badges.js       # 39개 배지 정의 (4등급)
+    │   ├── projects.js      # 프로젝트 메타데이터 (4레벨 8프로젝트)
+    │   ├── badges.js       # 44개 배지 정의 (4등급)
     │   └── quizzes.js      # 7개 퀴즈 (총 70문제)
     └── pages/
         ├── Home.jsx             # 랜딩 페이지
@@ -95,14 +97,17 @@ java-study/
         ├── ServletLearning.jsx  # 서블릿 허브
         ├── SpringLearning.jsx   # 스프링 허브
         ├── PracticalLearning.jsx # 실무 허브
+        ├── ProjectHub.jsx       # 프로젝트 허브
         ├── java-learning/
         │   ├── JavaLesson01.jsx ~ JavaLesson17.jsx
         ├── servlet/
         │   ├── ServletLesson01.jsx ~ ServletLesson10.jsx
         ├── spring/
         │   ├── SpringLesson01.jsx ~ SpringLesson16.jsx
-        └── practical/
-            ├── PracticalLesson01.jsx ~ PracticalLesson10.jsx
+        ├── practical/
+        │   ├── PracticalLesson01.jsx ~ PracticalLesson10.jsx
+        └── projects/
+            ├── ProjectLesson01.jsx ~ ProjectLesson08.jsx
 ```
 
 ## 라우팅
@@ -121,6 +126,8 @@ java-study/
 | `/spring/01~16` | SpringLesson01~16 | 스프링 레슨 (16개) |
 | `/practical` | PracticalLearning | 실무 과정 허브 |
 | `/practical/01~10` | PracticalLesson01~10 | 실무 레슨 (10개) |
+| `/projects` | ProjectHub | 프로젝트 허브 |
+| `/projects/01~08` | ProjectLesson01~08 | 프로젝트 (8개) |
 | `/login` | Login | 로그인 (Google/Kakao OAuth + 이메일) |
 
 ## 상태 관리
@@ -133,18 +140,18 @@ ThemeProvider > AuthProvider > ProgressProvider > BadgeProvider
 - **ThemeContext**: 라이트/다크 모드 (localStorage: `javamaster-theme`)
 - **AuthContext**: Google/Kakao OAuth + 이메일 인증, 세션 30분 자동 만료, 로그인 모달 (Supabase Auth)
 - **ProgressContext**: 레슨 완료, 퀴즈 점수, 코드 실행 횟수 (localStorage + Supabase 동기화)
-  - `getJavaProgress` / `getServletProgress` / `getSpringProgress` / `getPracticalProgress` 함수 제공
+  - `getJavaProgress` / `getServletProgress` / `getSpringProgress` / `getPracticalProgress` / `getProjectProgress` 함수 제공
   - 로그인 시 Supabase에서 로드 → localStorage와 합집합 병합
 - **BadgeContext**: 배지 획득 평가, 알림 팝업 (localStorage + Supabase 동기화)
   - 로그인 시 Supabase에서 배지 로드 → 병합
 
-## 배지 시스템 (39개)
+## 배지 시스템 (44개)
 | 등급 | 개수 | 조건 유형 |
 |------|------|-----------|
-| 브론즈 | 8 | 첫 레슨, Hello World, 서블릿 입문, 실무 입문, 코드 실행 10회, 5개 레슨 등 |
-| 실버 | 12 | 기초 마스터, 10개/20개 레슨, 코드 50회, OOP/서블릿/실무 퀴즈, 도구/데이터 마스터 등 |
-| 골드 | 15 | OOP/고급/웹/서블릿/스프링/품질/실무 마스터, 만점 퀴즈, 30개/40개 레슨, 코드 100회 |
-| 플래티넘 | 4 | ALL CLEAR, 퀴즈 챔피언, 완벽주의자, Java Master |
+| 브론즈 | 9 | 첫 레슨, Hello World, 서블릿/실무/프로젝트 입문, 코드 실행 10회, 5개 레슨 등 |
+| 실버 | 13 | 기초 마스터, 10개/20개 레슨, 코드 50회, OOP/서블릿/실무 퀴즈, 도구/데이터/기초 프로젝트 마스터 등 |
+| 골드 | 15 | OOP/고급/웹/서블릿/스프링/품질/실무/심화/웹 프로젝트 마스터, 만점 퀴즈, 30개/40개 레슨, 코드 100회 |
+| 플래티넘 | 5 | ALL CLEAR, 퀴즈 챔피언, 완벽주의자, Java Master, 프로젝트 올클리어 |
 
 ### 배지 조건 유형
 - `lessons_completed` - N개 레슨 완료
@@ -180,6 +187,18 @@ ThemeProvider > AuthProvider > ProgressProvider > BadgeProvider
 | Spring 수료증 (🍃) | 스프링 레슨(16개) 완료 + Spring 퀴즈 통과 |
 | 실무 수료증 (🔧) | 실무 레슨(10개) 완료 + 실무 퀴즈 통과 |
 | Java Master (🏆) | 모든 레슨(53개) + 모든 퀴즈(7개) |
+
+## 프로젝트 시스템 (8개, 4레벨)
+| 레벨 | ID | 제목 | 난이도 |
+|------|-----|------|--------|
+| 기초 | PJ01 | 콘솔 주소록 | beginner |
+| 기초 | PJ02 | 학생 성적 관리 | beginner |
+| 심화 | PJ03 | 도서 관리 시스템 | intermediate |
+| 심화 | PJ04 | 멀티스레드 채팅 | intermediate |
+| 웹 | PJ05 | 서블릿 게시판 | advanced |
+| 웹 | PJ06 | 서블릿 쇼핑몰 | advanced |
+| Spring | PJ07 | REST 블로그 API | expert |
+| Spring | PJ08 | E-Commerce 플랫폼 | expert |
 
 ## Supabase 테이블 (접두사: javamaster_)
 - `javamaster_users` - 사용자

@@ -1,5 +1,63 @@
 # Changelog
 
+## v3.6.0 (2026-03-23)
+
+### 신규 기능
+- **프로젝트 섹션** 추가 (8개 프로젝트, 4레벨)
+  - Level 1 - Java 기초 프로젝트 (project-basic): 콘솔 주소록, 학생 성적 관리
+  - Level 2 - Java 심화 프로젝트 (project-advanced): 도서 관리, 멀티스레드 채팅
+  - Level 3 - 웹 프로젝트 (project-web): 서블릿 게시판, 서블릿 쇼핑몰
+  - Level 4 - Spring 프로젝트 (project-spring): REST 블로그, E-Commerce
+  - 프로젝트 허브 페이지 (`/projects`)
+  - 각 프로젝트: 선수 과목, 필요 도구, 난이도, 구현 기능 안내
+- **프로젝트 배지 5개** 추가 → 총 44개 (Bronze 9 / Silver 13 / Gold 15 / Platinum 5)
+  - Bronze: `project-starter` (프로젝트 입문)
+  - Silver: `project-basic-master` (기초 프로젝트 마스터)
+  - Gold: `project-advanced-master` (심화 프로젝트 마스터), `project-web-master` (웹 프로젝트 마스터)
+  - Platinum: `project-all-master` (프로젝트 올클리어)
+
+### 개선
+- **Navbar**: "프로젝트" 메가 드롭다운 추가 (기초/심화/웹/Spring 4섹션, 2x2 그리드)
+- **메가 드롭다운 2x2 레이아웃**: 자바학습하기, 실무, 프로젝트 메뉴 가로 4열 → 2열 2행
+- **컬러 통일**: 메가 드롭다운 섹션 헤더 개별 색상 제거 → primary 투명도(`rgba(83,130,161,0.1)`)
+- **퀴즈 카드 컬러 통일**: 개별 배경색 제거 → `linear-gradient(135deg, var(--primary-dark), var(--primary))`
+- **MyPage**: projectLevels 추가 → 단계별 진도에 프로젝트 4레벨 표시 (16단계)
+- **Guide**: 프로젝트 가이드 섹션 추가, 배지 44개 업데이트
+- **Home**: 프로젝트 feature 카드, 통계 44배지
+- **Footer**: 프로젝트 링크 추가
+- **다크모드**: 드롭다운 섹션 헤더 대응
+- **프로젝트 페이지 간격 수정**: page-header와 본문 사이 `padding-top: 40px` 추가
+
+### 신규 파일 (11개)
+- `src/data/projects.js`: 프로젝트 데이터 (4레벨, 8프로젝트)
+- `src/pages/ProjectHub.jsx`: 프로젝트 허브 페이지
+- `src/pages/projects/ProjectLesson01~08.jsx`: 프로젝트 8개
+
+### 수정 파일 (10개)
+- `src/App.jsx`: lazy import 9개 + Route 9개
+- `src/components/layout/Navbar.jsx`: 프로젝트 메가 드롭다운, 2x2 그리드, 컬러 통일
+- `src/styles/navbar.css`: 2x2 그리드 CSS, 섹션 헤더 컬러 통일
+- `src/styles/quiz.css`: 퀴즈 카드 헤더 통일
+- `src/styles/dark-mode.css`: 드롭다운 섹션 헤더 다크모드
+- `src/styles/java-learning.css`: 프로젝트 페이지 간격
+- `src/contexts/ProgressContext.jsx`: project 4레벨 추가
+- `src/data/badges.js`: 프로젝트 배지 5개
+- `src/contexts/BadgeContext.jsx`: 프로젝트 배지 조건
+- `src/pages/MyPage.jsx`: projectLevels, levelLabels 추가
+- `src/pages/Guide.jsx`: 프로젝트 섹션, 배지 수 업데이트
+- `src/pages/QuizCenter.jsx`: quizMeta 컬러 제거
+- `src/pages/Home.jsx`: 프로젝트 feature 카드
+- `src/components/layout/Footer.jsx`: 프로젝트 링크
+
+### 문서
+- `Dev_md/project-section-guide.md`: 프로젝트 섹션 가이드 (신규)
+- `Dev_md/changelog.md`: v3.6.0 기록
+- `Dev_md/features-guide.md`: 프로젝트 반영
+- `Dev_md/architecture.md`: 프로젝트 반영
+- `Dev_md/project-plan.md`: 프로젝트 반영
+
+---
+
 ## v3.5.0 (2026-03-23)
 
 ### 신규 기능
