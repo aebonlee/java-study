@@ -261,7 +261,7 @@ export default function Navbar() {
                 <div className={`dropdown-mega${activeDropdown === i ? ' active' : ''}${item.grid2x2 ? ' dropdown-mega-2x2' : ''}`}>
                   {item.sections.map(section => (
                     <div key={section.title} className="dropdown-mega-section">
-                      <div className="dropdown-section-header" style={{ background: section.color }}>
+                      <div className="dropdown-section-header">
                         {section.title}
                       </div>
                       <ul>

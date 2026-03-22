@@ -90,6 +90,7 @@
 .quiz-card-header {
   padding: 20px;
   color: white;
+  background: linear-gradient(135deg, var(--primary-dark), var(--primary));
   display: flex;
   align-items: center;
   gap: 12px;

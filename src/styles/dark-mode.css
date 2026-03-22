@@ -38,6 +38,11 @@
   color: #D1D5DB;
 }
 
+[data-theme="dark"] .dropdown-section-header {
+  background: rgba(83, 130, 161, 0.2);
+  color: var(--primary-light);
+}
+
 [data-theme="dark"] code {
   background: #1F2937;
   color: var(--accent-light);

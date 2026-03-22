@@ -4,13 +4,13 @@ import { useProgress } from '../contexts/ProgressContext'
 import QuizComponent from '../components/QuizComponent'
 
 const quizMeta = {
-  basics: { icon: 'fas fa-seedling', color: '#10B981' },
-  intermediate: { icon: 'fas fa-code', color: '#3B82F6' },
-  advanced: { icon: 'fas fa-rocket', color: '#E76F00' },
-  web: { icon: 'fas fa-globe', color: '#EF4444' },
-  servlet: { icon: 'fas fa-server', color: '#C45D00' },
-  spring: { icon: 'fas fa-leaf', color: '#6DB33F' },
-  practical: { icon: 'fas fa-toolbox', color: '#8B5CF6' }
+  basics: { icon: 'fas fa-seedling' },
+  intermediate: { icon: 'fas fa-code' },
+  advanced: { icon: 'fas fa-rocket' },
+  web: { icon: 'fas fa-globe' },
+  servlet: { icon: 'fas fa-server' },
+  spring: { icon: 'fas fa-leaf' },
+  practical: { icon: 'fas fa-toolbox' }
 }
 
 function formatDate(dateStr) {
@@ -72,7 +72,7 @@ export default function QuizCenter() {
               const passed = bestScore !== undefined && bestScore >= quiz.passingScore
               return (
                 <div key={quiz.id} className="quiz-card" onClick={() => setActiveQuiz(quiz.id)}>
-                  <div className="quiz-card-header" style={{ background: quiz.meta?.color || 'var(--primary)' }}>
+                  <div className="quiz-card-header">
                     <span className="quiz-card-icon">
                       <i className={quiz.meta?.icon || 'fas fa-file-lines'}></i>
                     </span>
