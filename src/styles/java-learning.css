@@ -16,6 +16,11 @@
 .java-lesson .lesson-content {
   max-width: 860px;
   margin: 0 auto;
+  padding-top: 40px;
+}
+
+.java-lesson .lesson-content > h2:first-child {
+  margin-top: 0;
 }
 
 .java-lesson h1 {
