@@ -39,7 +39,7 @@ export default function Home() {
               <div className="hero-progress-bar">
                 <div className="hero-progress-fill" style={{ width: `${progress}%` }}></div>
               </div>
-              <span className="hero-progress-text">학습 진도 {progress}% ({completedLessons.length}/53)</span>
+              <span className="hero-progress-text">학습 진도 {progress}% ({completedLessons.length}개 완료)</span>
             </div>
           )}
         </div>
@@ -51,12 +51,12 @@ export default function Home() {
           <div className="stats-grid">
             <div className="stat-card">
               <div className="stat-icon"><i className="fas fa-book"></i></div>
-              <div className="stat-number">53</div>
-              <div className="stat-label">학습 레슨</div>
+              <div className="stat-number">61</div>
+              <div className="stat-label">학습 콘텐츠</div>
             </div>
             <div className="stat-card">
               <div className="stat-icon"><i className="fas fa-layer-group"></i></div>
-              <div className="stat-number">4</div>
+              <div className="stat-number">5</div>
               <div className="stat-label">학습 과정</div>
             </div>
             <div className="stat-card">
@@ -84,7 +84,7 @@ export default function Home() {
             <div className="feature-card">
               <div className="feature-icon"><i className="fas fa-graduation-cap"></i></div>
               <h3>체계적 커리큘럼</h3>
-              <p>Java 17챕터, 서블릿 10레슨, 스프링 16레슨, 실무 10레슨으로 구성된 53개 레슨을 학습합니다.</p>
+              <p>Java 17챕터, 서블릿 10레슨, 스프링 16레슨, 실무 10레슨, 프로젝트 8개로 구성된 61개 콘텐츠를 학습합니다.</p>
             </div>
             <div className="feature-card">
               <div className="feature-icon"><i className="fas fa-code"></i></div>
@@ -136,7 +136,7 @@ export default function Home() {
         <div className="container">
           <div className="section-header">
             <h2>학습 로드맵</h2>
-            <p>4개 과정으로 Java 풀스택 개발자가 되세요</p>
+            <p>5개 과정으로 Java 풀스택 개발자가 되세요</p>
           </div>
           <div className="path-grid">
             <div className="path-card">
@@ -181,6 +181,17 @@ export default function Home() {
                 <span className="path-topic">SQL</span>
                 <span className="path-topic">품질</span>
                 <span className="path-topic">인프라</span>
+              </div>
+            </div>
+            <div className="path-card">
+              <div className="path-step">Project</div>
+              <h3>실전 프로젝트</h3>
+              <p>콘솔 주소록부터 Spring E-Commerce까지, 8개 프로젝트로 실전 개발 능력을 완성합니다.</p>
+              <div className="path-topics">
+                <span className="path-topic">기초</span>
+                <span className="path-topic">심화</span>
+                <span className="path-topic">웹</span>
+                <span className="path-topic">Spring</span>
               </div>
             </div>
           </div>

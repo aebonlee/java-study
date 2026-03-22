@@ -5,7 +5,7 @@ export default function Guide() {
     {
       icon: 'fas fa-book-open',
       title: '전체 커리큘럼',
-      content: '53개 레슨으로 구성된 Java 학습 로드맵을 확인하세요. 기초부터 Spring Boot, 실무 기술까지 단계별로 학습할 수 있습니다.',
+      content: '61개 콘텐츠(53개 레슨 + 8개 프로젝트)로 구성된 Java 학습 로드맵을 확인하세요. 기초부터 Spring Boot, 실무, 프로젝트까지 단계별로 학습할 수 있습니다.',
       link: { to: '/java-learning', label: '커리큘럼 보기' }
     },
     {
