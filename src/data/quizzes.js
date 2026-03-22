@@ -428,5 +428,243 @@ export const quizzes = {
         explanation: 'server.port 속성으로 내장 서버의 포트를 변경할 수 있습니다. (기본값: 8080)'
       }
     ]
+  },
+
+  servlet: {
+    title: '서블릿 퀴즈',
+    description: '서블릿 컨테이너, HTTP, 세션, 필터, JSP, MVC (S01-S10)',
+    passingScore: 70,
+    timeLimit: 720,
+    questions: [
+      {
+        question: '서블릿 컨테이너(Tomcat)의 역할과 @WebServlet 애노테이션에 대한 설명으로 올바른 것은?',
+        options: [
+          '서블릿 컨테이너는 오직 정적 HTML 파일만 처리하며, @WebServlet은 클래스 레벨에 사용할 수 없다',
+          '서블릿 컨테이너는 서블릿의 생명주기 관리, HTTP 요청/응답 처리를 담당하며, @WebServlet("/path")으로 URL을 매핑한다',
+          'Tomcat은 JDK 없이도 독립적으로 동작하며, @WebServlet은 메서드 레벨에만 적용 가능하다',
+          '서블릿 컨테이너는 데이터베이스 연결만 담당하고, URL 매핑은 반드시 web.xml에서만 가능하다'
+        ],
+        correct: 1,
+        explanation: '서블릿 컨테이너(Tomcat)는 서블릿의 생명주기 관리, 멀티스레딩, HTTP 요청/응답 객체 생성 등을 담당합니다. @WebServlet 애노테이션은 클래스 레벨에 사용하여 URL 패턴을 매핑하며, web.xml 없이도 서블릿을 등록할 수 있습니다.'
+      },
+      {
+        question: 'HTTP 상태 코드와 그 의미가 올바르게 연결된 것은?',
+        options: [
+          '200 OK - 요청한 리소스를 찾을 수 없음',
+          '301 Moved Permanently - 서버 내부 오류',
+          '404 Not Found - 클라이언트 요청이 성공적으로 처리됨',
+          '302 Found - 리소스가 임시로 다른 URL로 이동되었으며, 브라우저를 리다이렉트한다'
+        ],
+        correct: 3,
+        explanation: 'HTTP 302 Found는 요청한 리소스가 임시로 다른 위치로 이동했음을 나타내며 브라우저를 해당 URL로 리다이렉트합니다. 200은 성공, 301은 영구 이동, 404는 리소스 없음, 500은 서버 내부 오류입니다.'
+      },
+      {
+        question: '서블릿 생명주기(Lifecycle)에 대한 설명으로 올바른 것은?',
+        options: [
+          'init() 메서드는 클라이언트 요청이 올 때마다 반복 호출되며, 서블릿 인스턴스는 요청마다 새로 생성된다',
+          '서블릿 컨테이너는 서블릿 인스턴스를 요청마다 생성하고 소멸시키므로 멀티스레드 문제가 발생하지 않는다',
+          '서블릿은 최초 요청 시 한 번 인스턴스화되고 init()이 호출되며, 이후 요청은 service() 메서드를 통해 처리되고, 컨테이너 종료 시 destroy()가 호출된다',
+          'destroy() 메서드는 각 요청 처리가 끝날 때마다 호출되어 리소스를 정리한다'
+        ],
+        correct: 2,
+        explanation: '서블릿 생명주기는 init() → service() → destroy() 순서입니다. 컨테이너는 서블릿 인스턴스를 하나만 생성(싱글톤)하고, 여러 요청은 각각 별도의 스레드에서 service() 메서드를 호출하여 처리합니다.'
+      },
+      {
+        question: 'HttpServletRequest의 getParameter() 사용 및 한글 인코딩 처리에 대한 설명으로 올바른 것은?',
+        options: [
+          'POST 방식에서 한글 깨짐을 방지하려면 response.setCharacterEncoding("UTF-8")을 호출해야 한다',
+          'GET 방식의 쿼리 파라미터는 getParameter()로 읽을 수 없으며, 별도의 스트림 처리가 필요하다',
+          'getParameter()는 항상 int 타입을 반환하므로 문자열 변환이 필요하다',
+          'POST 방식에서 한글이 깨지지 않으려면 getParameter() 호출 전에 request.setCharacterEncoding("UTF-8")을 설정해야 한다'
+        ],
+        correct: 3,
+        explanation: 'POST 방식으로 전송된 한글 데이터를 올바르게 읽으려면 request.setCharacterEncoding("UTF-8")을 getParameter() 호출 이전에 설정해야 합니다. getParameter()는 String 타입을 반환합니다.'
+      },
+      {
+        question: 'HttpSession과 Cookie의 차이점에 대한 설명으로 올바른 것은?',
+        options: [
+          'Cookie는 서버 메모리에 저장되고, HttpSession은 클라이언트 브라우저에 저장된다',
+          'HttpSession은 서버 측에 데이터를 저장하고 세션 ID를 쿠키로 전달하며, Cookie는 클라이언트 브라우저에 직접 데이터를 저장한다',
+          'HttpSession은 브라우저를 닫아도 영구적으로 유지되며, Cookie는 서버 재시작 시 사라진다',
+          'Cookie는 객체(Object) 타입을 저장할 수 있지만, HttpSession은 문자열만 저장 가능하다'
+        ],
+        correct: 1,
+        explanation: 'HttpSession은 데이터를 서버 측에 저장하고 클라이언트에게는 세션 ID(JSESSIONID)만 쿠키로 전달합니다. Cookie는 이름-값 쌍의 문자열 데이터를 클라이언트 브라우저에 직접 저장합니다.'
+      },
+      {
+        question: 'Filter 인터페이스와 FilterChain에 대한 설명으로 올바른 것은?',
+        options: [
+          'Filter는 서블릿 실행 이후에만 동작하며, 요청 전처리는 불가능하다',
+          'doFilter() 메서드에서 chain.doFilter()를 호출하지 않으면 다음 필터나 서블릿으로 요청이 전달되지 않는다',
+          'FilterChain은 하나의 필터만 등록할 수 있으며, 여러 필터를 체이닝하려면 별도의 설정이 필요하다',
+          'Filter 인터페이스를 구현하면 자동으로 모든 URL에 적용되므로 URL 패턴 설정이 필요 없다'
+        ],
+        correct: 1,
+        explanation: 'FilterChain의 doFilter() 메서드를 호출해야 요청이 다음 필터 또는 최종 서블릿으로 전달됩니다. chain.doFilter()를 호출하지 않으면 요청 처리가 중단됩니다.'
+      },
+      {
+        question: 'JSP의 EL(Expression Language) 표현식과 JSTL에 대한 설명으로 올바른 것은?',
+        options: [
+          'EL 표현식 ${name}은 자바 스크립틀릿 <%= name %>과 동일하게 동작하며, null일 경우 예외가 발생한다',
+          'JSTL을 사용하려면 반드시 JSP 스크립틀릿과 함께 사용해야 하며, 단독 사용은 불가능하다',
+          'EL 표현식은 requestScope, sessionScope 등으로 범위를 지정하여 속성을 조회하며, null이면 빈 문자열을 출력한다',
+          '<c:if> 태그는 else 구문을 직접 지원하므로 <c:choose> 태그는 필요하지 않다'
+        ],
+        correct: 2,
+        explanation: 'EL 표현식(${...})은 스크립틀릿보다 간결하고, 값이 null이면 예외 없이 빈 문자열을 출력합니다. <c:if>는 else를 지원하지 않아 else 처리 시 <c:choose>/<c:when>/<c:otherwise>를 사용합니다.'
+      },
+      {
+        question: 'MVC 패턴에서 forward와 sendRedirect의 차이, PRG 패턴에 대한 설명으로 올바른 것은?',
+        options: [
+          'forward는 브라우저 URL이 변경되고 새로운 HTTP 요청이 발생하며, sendRedirect는 서버 내부에서 처리된다',
+          'PRG(Post-Redirect-Get) 패턴은 POST 요청 후 GET으로 리다이렉트하여 새로고침 시 폼 중복 제출을 방지한다',
+          'sendRedirect는 request 객체의 속성(attribute)을 다음 페이지에 그대로 전달할 수 있다',
+          'forward와 sendRedirect는 기능이 동일하므로 어떤 것을 사용해도 결과가 같다'
+        ],
+        correct: 1,
+        explanation: 'PRG(Post-Redirect-Get) 패턴은 POST 요청 처리 후 sendRedirect로 GET 요청을 유도하여 브라우저 새로고침 시 폼 중복 제출을 방지합니다. forward는 서버 내부 이동으로 URL이 바뀌지 않고 request/response 객체가 유지됩니다.'
+      },
+      {
+        question: '@MultipartConfig, PreparedStatement, SQL Injection 방어에 대한 설명으로 올바른 것은?',
+        options: [
+          'PreparedStatement는 SQL 쿼리를 매번 새로 컴파일하므로 Statement보다 성능이 낮지만 보안이 강화된다',
+          'SQL Injection은 서버 방화벽으로만 방어할 수 있으며, 코드 레벨에서는 방어가 불가능하다',
+          '@MultipartConfig 애노테이션은 파일 업로드를 처리하기 위해 서블릿에 적용하며, PreparedStatement의 ? 플레이스홀더를 사용하면 SQL Injection을 효과적으로 방어할 수 있다',
+          '@MultipartConfig 없이도 request.getInputStream()으로 멀티파트 데이터를 자동 파싱할 수 있다'
+        ],
+        correct: 2,
+        explanation: '@MultipartConfig 애노테이션을 서블릿에 적용하면 multipart/form-data 형식의 파일 업로드 요청을 처리할 수 있습니다. PreparedStatement는 ? 플레이스홀더에 값을 바인딩하여 SQL Injection을 방어합니다.'
+      },
+      {
+        question: 'DAO 패턴과 커넥션 풀(Connection Pool)에 대한 설명으로 올바른 것은?',
+        options: [
+          'DAO 패턴은 비즈니스 로직과 데이터 접근 로직을 하나의 클래스에 통합하여 코드 재사용성을 높인다',
+          'Connection Pool은 매 요청마다 새로운 DB 연결을 생성하고 즉시 소멸시켜 연결 비용을 절감한다',
+          'DBCP나 HikariCP와 같은 커넥션 풀을 사용하면 DB 연결 생성 비용을 줄이고, DAO 클래스는 데이터 접근 로직을 분리하여 유지보수성을 향상시킨다',
+          '커넥션 풀에서 획득한 Connection은 사용 후 close()를 호출하면 안 되며, 수동으로 반환 메서드를 따로 호출해야 한다'
+        ],
+        correct: 2,
+        explanation: '커넥션 풀(DBCP, HikariCP 등)은 미리 생성된 DB 연결을 재사용하여 연결 생성/소멸 비용을 줄입니다. DAO(Data Access Object) 패턴은 데이터 접근 로직을 별도 클래스로 분리하여 유지보수성을 향상시킵니다.'
+      }
+    ]
+  },
+
+  spring: {
+    title: 'Spring 퀴즈',
+    description: 'Spring IoC/DI, AOP, MVC, Security, Boot, JPA (SP01-SP16)',
+    passingScore: 70,
+    timeLimit: 720,
+    questions: [
+      {
+        question: 'Spring Framework의 핵심 특징에 대한 설명으로 올바르지 않은 것은?',
+        options: [
+          'POJO(Plain Old Java Object) 기반의 경량 프레임워크이다',
+          'IoC(제어의 역전)와 DI(의존성 주입)를 핵심 원칙으로 사용한다',
+          '모든 기능이 단일 모듈에 통합되어 있어 선택적 사용이 불가능하다',
+          'AOP(관점 지향 프로그래밍)를 지원하여 횡단 관심사를 분리할 수 있다'
+        ],
+        correct: 2,
+        explanation: 'Spring은 Core, Beans, Context, AOP, Web, Data 등 다양한 모듈로 구성되어 있으며, 필요한 모듈만 선택적으로 사용할 수 있는 모듈형 구조입니다.'
+      },
+      {
+        question: 'Spring DI(의존성 주입) 방식 중 생성자 주입(Constructor Injection)의 장점으로 올바르지 않은 것은?',
+        options: [
+          '객체 생성 시 모든 의존성이 주입되어 불변성(immutability)을 보장할 수 있다',
+          '순환 의존성을 컴파일 타임에 감지할 수 있다',
+          '필드에 final 키워드를 사용할 수 있어 불변 객체를 만들기 쉽다',
+          '런타임에 의존성을 동적으로 변경할 수 있어 유연성이 높다'
+        ],
+        correct: 3,
+        explanation: '생성자 주입은 객체 생성 이후 의존성을 변경할 수 없어 불변성을 보장합니다. 런타임에 의존성을 동적으로 변경하는 것은 Setter 주입의 특징입니다. Spring에서는 생성자 주입을 권장합니다.'
+      },
+      {
+        question: 'Spring Bean 스코프에 대한 설명으로 올바른 것은?',
+        options: [
+          'prototype 스코프의 Bean은 ApplicationContext당 하나의 인스턴스만 생성된다',
+          'singleton 스코프의 Bean은 요청마다 새로운 인스턴스가 생성된다',
+          '@Component는 컴포넌트 스캔으로 Bean을 등록하고, @Bean은 @Configuration 클래스의 메서드에서 Bean을 직접 등록한다',
+          '@Bean 어노테이션은 클래스 레벨에 적용하여 Bean을 등록한다'
+        ],
+        correct: 2,
+        explanation: '@Component는 클래스 레벨에 붙여 컴포넌트 스캔을 통해 자동으로 Bean을 등록하며, @Bean은 @Configuration 클래스 내 메서드 레벨에 붙여 반환 객체를 Bean으로 등록합니다.'
+      },
+      {
+        question: 'Spring AOP에서 @Around 어드바이스에 대한 설명으로 올바른 것은?',
+        options: [
+          '@Around는 메서드 실행 전에만 동작하며 메서드 실행 후에는 개입할 수 없다',
+          '@Around 어드바이스는 ProceedingJoinPoint의 proceed() 메서드를 호출해야 대상 메서드가 실행된다',
+          'Pointcut은 Advice가 적용되는 시점(Before/After 등)을 정의하는 개념이다',
+          '@Around는 반환값을 변경할 수 없으며 예외를 처리할 수 없다'
+        ],
+        correct: 1,
+        explanation: '@Around 어드바이스는 메서드 실행 전후를 모두 제어할 수 있으며, ProceedingJoinPoint.proceed()를 호출해야 실제 대상 메서드가 실행됩니다.'
+      },
+      {
+        question: 'Spring MVC의 DispatcherServlet과 @Controller, @RestController에 대한 설명으로 올바른 것은?',
+        options: [
+          '@RestController는 @Controller와 @RequestMapping의 조합이다',
+          'DispatcherServlet은 요청을 받아 HandlerMapping으로 적절한 컨트롤러를 찾고 처리 결과를 ViewResolver에 전달하는 Front Controller이다',
+          '@Controller는 기본적으로 모든 메서드의 반환값을 JSON으로 직렬화한다',
+          'DispatcherServlet은 각 서블릿이 독립적으로 요청을 처리하는 구조에서 사용된다'
+        ],
+        correct: 1,
+        explanation: 'DispatcherServlet은 Spring MVC의 Front Controller로, 모든 HTTP 요청을 받아 HandlerMapping으로 컨트롤러를 찾고, ViewResolver를 통해 뷰를 렌더링합니다. @RestController는 @Controller + @ResponseBody의 조합입니다.'
+      },
+      {
+        question: 'Spring MVC에서 @ModelAttribute와 @Valid, MyBatis의 #{} vs ${}에 대한 설명으로 올바르지 않은 것은?',
+        options: [
+          '@ModelAttribute는 요청 파라미터를 Java 객체에 바인딩하고 Model에 추가하는 역할을 한다',
+          '@Valid는 JSR-303/380 Bean Validation 어노테이션을 통해 입력값 검증을 수행한다',
+          'MyBatis의 ${}는 PreparedStatement의 파라미터 바인딩을 사용하여 SQL 인젝션을 방지한다',
+          'MyBatis의 #{}는 값을 문자열로 처리하여 SQL 인젝션을 방지하는 안전한 방식이다'
+        ],
+        correct: 2,
+        explanation: 'MyBatis에서 #{}는 PreparedStatement 파라미터 바인딩을 사용하여 SQL 인젝션을 방지합니다. ${}는 문자열을 그대로 치환하기 때문에 SQL 인젝션 위험이 있습니다.'
+      },
+      {
+        question: 'Spring Security에서 인증(Authentication)과 인가(Authorization)에 대한 설명으로 올바른 것은?',
+        options: [
+          '인증(Authentication)은 인증된 사용자가 특정 리소스에 접근할 권한이 있는지 확인하는 과정이다',
+          'BCryptPasswordEncoder는 같은 입력에 대해 항상 동일한 해시값을 반환한다',
+          'Spring Security에서 PasswordEncoder를 사용할 때 평문 비밀번호를 DB에 저장하고 로그인 시 비교한다',
+          '인가(Authorization)는 사용자가 누구인지 신원을 확인하는 과정이며, 인증(Authentication)은 인증된 사용자의 접근 권한을 확인하는 과정이다'
+        ],
+        correct: 0,
+        explanation: '인증(Authentication)은 사용자의 신원을 확인하는 과정이고, 인가(Authorization)는 인증된 사용자가 특정 리소스에 접근할 권한이 있는지 확인하는 과정입니다. BCryptPasswordEncoder는 salt를 사용하여 같은 입력도 매번 다른 해시값을 생성합니다.'
+      },
+      {
+        question: '@SpringBootApplication 어노테이션과 ResponseEntity에 대한 설명으로 올바른 것은?',
+        options: [
+          '@SpringBootApplication은 @SpringBootConfiguration, @EnableAutoConfiguration, @ComponentScan을 포함한 복합 어노테이션이다',
+          '@SpringBootApplication은 @Configuration, @EnableAutoConfiguration, @RestController를 포함한다',
+          'ResponseEntity는 HTTP 응답 바디만 설정할 수 있으며 상태코드와 헤더는 설정할 수 없다',
+          '@SpringBootApplication이 붙은 클래스는 반드시 main 메서드를 포함하지 않아도 애플리케이션이 실행된다'
+        ],
+        correct: 0,
+        explanation: '@SpringBootApplication은 @SpringBootConfiguration(@Configuration 포함), @EnableAutoConfiguration, @ComponentScan 세 가지 어노테이션을 합친 복합 어노테이션입니다. ResponseEntity는 HTTP 상태코드, 헤더, 바디를 모두 제어할 수 있습니다.'
+      },
+      {
+        question: 'Spring Data JPA와 @ExceptionHandler에 대한 설명으로 올바르지 않은 것은?',
+        options: [
+          '@Entity 어노테이션은 해당 클래스가 JPA 엔티티임을 나타내며 DB 테이블과 매핑된다',
+          '@Id 어노테이션은 엔티티의 기본키(Primary Key) 필드를 지정한다',
+          'JpaRepository를 상속하면 save(), findById(), findAll(), delete() 등의 CRUD 메서드가 자동으로 제공된다',
+          '@ExceptionHandler는 클래스 레벨에서만 사용 가능하며 @ControllerAdvice와 함께 사용할 수 없다'
+        ],
+        correct: 3,
+        explanation: '@ExceptionHandler는 @Controller 내 메서드 레벨에서 사용하거나, @ControllerAdvice 클래스 내에서 전역 예외 처리에 사용할 수 있습니다.'
+      },
+      {
+        question: 'JWT 구조, @SpringBootTest, Swagger, Dockerfile에 대한 설명으로 올바른 것은?',
+        options: [
+          'JWT는 Header, Payload, Signature 세 부분으로 구성되며 각 부분은 점(.)으로 구분된다',
+          '@SpringBootTest는 슬라이스 테스트로 Web 레이어만 로딩하여 빠른 테스트를 지원한다',
+          'Swagger(OpenAPI)는 REST API 문서를 자동으로 생성하지만 테스트 기능은 제공하지 않는다',
+          'Dockerfile의 FROM 명령어는 이미지 빌드 완료 후 실행할 명령어를 지정한다'
+        ],
+        correct: 0,
+        explanation: 'JWT(JSON Web Token)는 Header(알고리즘/타입), Payload(클레임/데이터), Signature(서명) 세 부분이 점(.)으로 구분된 구조입니다. @SpringBootTest는 전체 애플리케이션 컨텍스트를 로딩하는 통합 테스트 어노테이션입니다.'
+      }
+    ]
   }
 }

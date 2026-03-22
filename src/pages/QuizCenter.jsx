@@ -7,7 +7,9 @@ const quizMeta = {
   basics: { icon: 'fas fa-seedling', color: '#10B981' },
   intermediate: { icon: 'fas fa-code', color: '#3B82F6' },
   advanced: { icon: 'fas fa-rocket', color: '#E76F00' },
-  web: { icon: 'fas fa-globe', color: '#EF4444' }
+  web: { icon: 'fas fa-globe', color: '#EF4444' },
+  servlet: { icon: 'fas fa-server', color: '#C45D00' },
+  spring: { icon: 'fas fa-leaf', color: '#6DB33F' }
 }
 
 function formatDate(dateStr) {

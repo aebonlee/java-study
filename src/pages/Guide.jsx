@@ -28,7 +28,7 @@ export default function Guide() {
     {
       icon: 'fas fa-medal',
       title: '도장깨기 (배지)',
-      content: '학습 목표를 달성하면 배지를 획득합니다. 브론즈, 실버, 골드, 플래티넘 4등급 총 24개 배지가 있습니다.',
+      content: '학습 목표를 달성하면 배지를 획득합니다. 브론즈, 실버, 골드, 플래티넘 4등급 총 33개 배지가 있습니다.',
       link: { to: '/badges', label: '배지 확인하기' }
     },
     {

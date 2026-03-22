@@ -3,6 +3,8 @@ import { useBadge } from '../contexts/BadgeContext'
 import { quizzes } from '../data/quizzes'
 import { badges } from '../data/badges'
 import { levels } from '../data/lessons'
+import { servletLevels } from '../data/servletLessons'
+import { springLevels } from '../data/springLessons'
 import BadgeCard from '../components/BadgeCard'
 
 function formatDate(dateStr) {
@@ -18,7 +20,8 @@ export default function MyPage() {
   } = useProgress()
   const { earnedBadges } = useBadge()
 
-  const totalLessons = levels.reduce((sum, level) => sum + level.lessons.length, 0)
+  const allLevels = [...levels, ...servletLevels, ...springLevels]
+  const totalLessons = allLevels.reduce((sum, level) => sum + level.lessons.length, 0)
   const completedCount = completedLessons.length
   const totalProgress = getTotalProgress()
   const earnedBadgeData = badges.filter(b => earnedBadges.includes(b.id))
@@ -34,13 +37,19 @@ export default function MyPage() {
   const quizAvg = quizAttempted.length > 0
     ? Math.round(quizAttempted.reduce((s, q) => s + q.bestScore, 0) / quizAttempted.length) : 0
 
-  const levelLabels = { basics: '기초', intermediate: '중급 (OOP)', advanced: '고급', web: '웹 개발' }
+  const levelLabels = {
+    basics: '기초', intermediate: '중급 (OOP)', advanced: '고급', web: '웹 개발',
+    'servlet-basic': '서블릿 기초', 'servlet-advanced': '서블릿 고급',
+    'spring-framework': 'Spring Framework', 'spring-boot': 'Spring Boot'
+  }
 
   const certTypes = [
     { type: 'bronze', label: '기초 수료증', emoji: '🥉', levels: ['basics'], quizIds: ['basics'] },
     { type: 'silver', label: '중급 수료증', emoji: '🥈', levels: ['basics', 'intermediate'], quizIds: ['basics', 'intermediate'] },
     { type: 'gold', label: '고급 수료증', emoji: '🥇', levels: ['basics', 'intermediate', 'advanced'], quizIds: ['basics', 'intermediate', 'advanced'] },
-    { type: 'master', label: 'Java Master', emoji: '🏆', levels: ['basics', 'intermediate', 'advanced', 'web'], quizIds: ['basics', 'intermediate', 'advanced', 'web'] },
+    { type: 'servlet', label: '서블릿 수료증', emoji: '🛡️', levels: ['servlet-basic', 'servlet-advanced'], quizIds: ['servlet'] },
+    { type: 'spring', label: 'Spring 수료증', emoji: '🍃', levels: ['spring-framework', 'spring-boot'], quizIds: ['spring'] },
+    { type: 'master', label: 'Java Master', emoji: '🏆', levels: ['basics', 'intermediate', 'advanced', 'web', 'servlet-basic', 'servlet-advanced', 'spring-framework', 'spring-boot'], quizIds: ['basics', 'intermediate', 'advanced', 'web', 'servlet', 'spring'] },
   ]
 
   const getCertStatus = (cert) => {
@@ -148,7 +157,7 @@ export default function MyPage() {
         <section className="mypage-section">
           <h2 className="mypage-section-title"><i className="fas fa-layer-group"></i> 단계별 진도</h2>
           <div className="progress-section">
-            {levels.map(level => {
+            {allLevels.map(level => {
               const completed = level.lessons.filter(l => completedLessons.includes(l.id)).length
               const pct = Math.round((completed / level.lessons.length) * 100)
               return (

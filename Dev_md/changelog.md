@@ -1,5 +1,47 @@
 # Changelog
 
+## v3.2.0 (2026-03-23)
+
+### 신규 기능
+- **서블릿 퀴즈** 추가 (10문제, 12분, 합격 70점)
+  - 서블릿 컨테이너/Tomcat, HTTP 상태코드, 생명주기, 한글 인코딩
+  - 세션/쿠키, Filter/FilterChain, JSP EL/JSTL, MVC/PRG 패턴
+  - @MultipartConfig/PreparedStatement, DAO/커넥션 풀
+- **Spring 퀴즈** 추가 (10문제, 12분, 합격 70점)
+  - Spring 모듈 구조, DI 생성자 주입, Bean 스코프/@Component vs @Bean
+  - AOP @Around, DispatcherServlet, MyBatis #{} vs ${}
+  - Spring Security 인증/인가, @SpringBootApplication/ResponseEntity
+  - JPA/@ExceptionHandler, JWT/Swagger/Dockerfile
+- **신규 배지 8개** 추가 → 총 33개 (Bronze 7 / Silver 9 / Gold 13 / Platinum 4)
+  - Bronze: `servlet-starter` (서블릿 입문)
+  - Silver: `servlet-quiz` (서블릿 퀴즈 통과), `twenty-lessons` (스무 고개)
+  - Gold: `spring-quiz` (Spring 퀴즈 통과), `servlet-master` (서블릿 마스터), `spring-fw-master` (Framework 마스터), `spring-boot-master` (Boot 마스터), `forty-lessons` (40개 돌파!)
+
+### 개선
+- **기존 배지 7개 수정**
+  - `spring-starter`: Ch.15 → SP01 대응
+  - `servlet-warrior`: Ch.13-14 → S01-S03 대응
+  - `half-way`: 9개 → 22개 (전체 43개의 절반)
+  - `spring-boot-pro`: Ch.16-17 → SP09-SP10 대응
+  - `fifteen-lessons`: 15개 → 30개, 타이틀 "30개 돌파!"
+  - `all-clear`: 설명 "모든 레슨(43개)"
+  - `quiz-champion`: 설명 "모든 퀴즈(6개)"
+- **BadgeContext 평가 로직 확장**
+  - `multi_level_completed` 조건 유형 추가
+  - `all_quizzes_passed/perfect` → 6개 퀴즈 ID
+  - `all_completed` → 8개 레벨 ID
+  - `java_master` → 8개 레벨 + 6개 퀴즈
+- **QuizCenter**: servlet/spring quizMeta 추가
+- **MyPage 확장**
+  - 서블릿/스프링 레벨 import, totalLessons 43개
+  - levelLabels 4개 추가 (servlet-basic, servlet-advanced, spring-framework, spring-boot)
+  - certTypes: 서블릿 수료증, Spring 수료증 추가, master 조건 확장
+  - 단계별 진도: 8단계 표시
+- **Home**: 퀴즈 4 → 6, 배지 24 → 33
+- **Guide**: 배지 24 → 33
+
+---
+
 ## v3.1.0 (2026-03-23)
 
 ### 개선

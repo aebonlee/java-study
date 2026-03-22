@@ -48,14 +48,17 @@ export function BadgeProvider({ children }) {
         case 'quiz_perfect':
           earned = getQuizBestScore(condition.quizId) === 100
           break
+        case 'multi_level_completed':
+          earned = condition.levels.every(id => isLevelCompleted(id))
+          break
         case 'all_quizzes_passed':
-          earned = ['basics', 'intermediate', 'advanced', 'web'].every(id => {
+          earned = ['basics', 'intermediate', 'advanced', 'web', 'servlet', 'spring'].every(id => {
             const bs = getQuizBestScore(id)
             return bs !== undefined && bs >= 70
           })
           break
         case 'all_quizzes_perfect':
-          earned = ['basics', 'intermediate', 'advanced', 'web'].every(id =>
+          earned = ['basics', 'intermediate', 'advanced', 'web', 'servlet', 'spring'].every(id =>
             getQuizBestScore(id) === 100
           )
           break
@@ -63,14 +66,14 @@ export function BadgeProvider({ children }) {
           earned = codeRuns >= condition.count
           break
         case 'all_completed':
-          earned = ['basics', 'intermediate', 'advanced', 'web'].every(id => isLevelCompleted(id))
+          earned = ['basics', 'intermediate', 'advanced', 'web', 'servlet-basic', 'servlet-advanced', 'spring-framework', 'spring-boot'].every(id => isLevelCompleted(id))
           break
         case 'specific_lessons':
           earned = condition.lessons.every(id => completedLessons.includes(id))
           break
         case 'java_master':
-          earned = ['basics', 'intermediate', 'advanced', 'web'].every(id => isLevelCompleted(id)) &&
-            ['basics', 'intermediate', 'advanced', 'web'].every(id => {
+          earned = ['basics', 'intermediate', 'advanced', 'web', 'servlet-basic', 'servlet-advanced', 'spring-framework', 'spring-boot'].every(id => isLevelCompleted(id)) &&
+            ['basics', 'intermediate', 'advanced', 'web', 'servlet', 'spring'].every(id => {
               const bs = getQuizBestScore(id)
               return bs !== undefined && bs >= 70
             })

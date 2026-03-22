@@ -43,10 +43,18 @@ export const badges = [
   {
     id: 'spring-starter',
     title: 'Spring 입문',
-    description: 'Spring 기초 레슨(Ch.15)을 완료했습니다',
+    description: 'Spring 소개 레슨(SP01)을 완료했습니다',
     icon: '🍃',
     tier: 'bronze',
-    condition: { type: 'specific_lessons', lessons: ['15'] }
+    condition: { type: 'specific_lessons', lessons: ['SP01'] }
+  },
+  {
+    id: 'servlet-starter',
+    title: '서블릿 입문',
+    description: '서블릿 첫 레슨(S01)을 완료했습니다',
+    icon: '🌊',
+    tier: 'bronze',
+    condition: { type: 'specific_lessons', lessons: ['S01'] }
   },
 
   // === Silver Tier ===
@@ -85,18 +93,18 @@ export const badges = [
   {
     id: 'half-way',
     title: '절반 달성',
-    description: '전체 레슨의 절반을 완료했습니다',
+    description: '전체 레슨의 절반(22개)을 완료했습니다',
     icon: '⭐',
     tier: 'silver',
-    condition: { type: 'lessons_completed', count: 9 }
+    condition: { type: 'lessons_completed', count: 22 }
   },
   {
     id: 'servlet-warrior',
     title: '서블릿 전사',
-    description: '서블릿 기초(Ch.13)와 JSP(Ch.14)를 완료했습니다',
+    description: '서블릿 입문(S01~S03)을 완료했습니다',
     icon: '🛡️',
     tier: 'silver',
-    condition: { type: 'specific_lessons', lessons: ['13', '14'] }
+    condition: { type: 'specific_lessons', lessons: ['S01', 'S02', 'S03'] }
   },
   {
     id: 'advanced-quiz',
@@ -105,6 +113,22 @@ export const badges = [
     icon: '🎓',
     tier: 'silver',
     condition: { type: 'quiz_passed', quizId: 'advanced', minScore: 70 }
+  },
+  {
+    id: 'servlet-quiz',
+    title: '서블릿 퀴즈 통과',
+    description: '서블릿 퀴즈를 통과했습니다',
+    icon: '🏹',
+    tier: 'silver',
+    condition: { type: 'quiz_passed', quizId: 'servlet', minScore: 70 }
+  },
+  {
+    id: 'twenty-lessons',
+    title: '스무 고개',
+    description: '20개 레슨을 완료했습니다',
+    icon: '📚',
+    tier: 'silver',
+    condition: { type: 'lessons_completed', count: 20 }
   },
 
   // === Gold Tier ===
@@ -150,11 +174,11 @@ export const badges = [
   },
   {
     id: 'fifteen-lessons',
-    title: '거의 다 왔어!',
-    description: '15개 레슨을 완료했습니다',
+    title: '30개 돌파!',
+    description: '30개 레슨을 완료했습니다',
     icon: '🏃',
     tier: 'gold',
-    condition: { type: 'lessons_completed', count: 15 }
+    condition: { type: 'lessons_completed', count: 30 }
   },
   {
     id: 'code-master',
@@ -167,17 +191,57 @@ export const badges = [
   {
     id: 'spring-boot-pro',
     title: 'Spring Boot Pro',
-    description: 'Spring Boot(Ch.16)와 Spring MVC(Ch.17)를 완료했습니다',
+    description: 'Spring Boot(SP09)와 REST API(SP10)를 완료했습니다',
     icon: '🏆',
     tier: 'gold',
-    condition: { type: 'specific_lessons', lessons: ['16', '17'] }
+    condition: { type: 'specific_lessons', lessons: ['SP09', 'SP10'] }
+  },
+  {
+    id: 'spring-quiz',
+    title: 'Spring 퀴즈 통과',
+    description: 'Spring 퀴즈를 통과했습니다',
+    icon: '🍃',
+    tier: 'gold',
+    condition: { type: 'quiz_passed', quizId: 'spring', minScore: 70 }
+  },
+  {
+    id: 'servlet-master',
+    title: '서블릿 마스터',
+    description: '서블릿 과정을 모두 완료했습니다',
+    icon: '⚔️',
+    tier: 'gold',
+    condition: { type: 'multi_level_completed', levels: ['servlet-basic', 'servlet-advanced'] }
+  },
+  {
+    id: 'spring-fw-master',
+    title: 'Framework 마스터',
+    description: 'Spring Framework 과정을 모두 완료했습니다',
+    icon: '🌱',
+    tier: 'gold',
+    condition: { type: 'level_completed', level: 'spring-framework' }
+  },
+  {
+    id: 'spring-boot-master',
+    title: 'Boot 마스터',
+    description: 'Spring Boot 과정을 모두 완료했습니다',
+    icon: '🚀',
+    tier: 'gold',
+    condition: { type: 'level_completed', level: 'spring-boot' }
+  },
+  {
+    id: 'forty-lessons',
+    title: '40개 돌파!',
+    description: '40개 레슨을 완료했습니다',
+    icon: '🏃',
+    tier: 'gold',
+    condition: { type: 'lessons_completed', count: 40 }
   },
 
   // === Platinum Tier ===
   {
     id: 'all-clear',
     title: 'ALL CLEAR!',
-    description: '모든 레슨(17개)을 완료했습니다',
+    description: '모든 레슨(43개)을 완료했습니다',
     icon: '☕',
     tier: 'platinum',
     condition: { type: 'all_completed' }
@@ -185,7 +249,7 @@ export const badges = [
   {
     id: 'quiz-champion',
     title: '퀴즈 챔피언',
-    description: '모든 퀴즈를 통과했습니다',
+    description: '모든 퀴즈(6개)를 통과했습니다',
     icon: '👑',
     tier: 'platinum',
     condition: { type: 'all_quizzes_passed' }

@@ -61,12 +61,12 @@ export default function Home() {
             </div>
             <div className="stat-card">
               <div className="stat-icon"><i className="fas fa-pen-nib"></i></div>
-              <div className="stat-number">4</div>
+              <div className="stat-number">6</div>
               <div className="stat-label">단계별 퀴즈</div>
             </div>
             <div className="stat-card">
               <div className="stat-icon"><i className="fas fa-trophy"></i></div>
-              <div className="stat-number">24</div>
+              <div className="stat-number">33</div>
               <div className="stat-label">달성 배지</div>
             </div>
           </div>
@@ -94,7 +94,7 @@ export default function Home() {
             <div className="feature-card">
               <div className="feature-icon"><i className="fas fa-trophy"></i></div>
               <h3>도장깨기 (배지)</h3>
-              <p>학습 목표를 달성하면 배지를 획득! 24개 배지를 모두 수집해보세요.</p>
+              <p>학습 목표를 달성하면 배지를 획득! 33개 배지를 모두 수집해보세요.</p>
               <Link to="/badges" className="feature-link">배지 확인하기 <i className="fas fa-arrow-right"></i></Link>
             </div>
             <div className="feature-card">
