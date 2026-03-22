@@ -16,7 +16,7 @@ java-study/
 ├── vite.config.js
 ├── .env                    # Supabase 키 (gitignore)
 ├── supabase-setup.sql      # DB 테이블 생성 SQL
-├── Dev_md/                 # 프로젝트 문서 (16개)
+├── Dev_md/                 # 프로젝트 문서 (17개)
 │   ├── project-plan.md
 │   ├── architecture.md
 │   ├── sync-guide.md
@@ -32,6 +32,7 @@ java-study/
 │   ├── project-section-guide.md
 │   ├── code-runner-guide.md
 │   ├── navigation-guide.md
+│   ├── site-evaluation-report.md
 │   └── changelog.md
 ├── scripts/
 │   └── generate-og-image.mjs  # OG 이미지 생성 (sharp)
