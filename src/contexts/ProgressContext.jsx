@@ -58,20 +58,45 @@ export function ProgressProvider({ children }) {
 
   const isLessonCompleted = (lessonId) => progress.completedLessons.includes(lessonId)
 
+  const isLevelCompleted = (levelId) => {
+    const levelLessons = {
+      basics: ['01', '02', '03', '04'],
+      intermediate: ['05', '06', '07', '08'],
+      advanced: ['09', '10', '11', '12'],
+      web: ['13', '14', '15', '16', '17']
+    }
+    const lessons = levelLessons[levelId]
+    return lessons ? lessons.every(id => progress.completedLessons.includes(id)) : false
+  }
+
   const getTotalProgress = () => {
     const total = 17
     return Math.round((progress.completedLessons.length / total) * 100)
   }
 
+  const getQuizBestScore = (quizId) => {
+    return progress.quizScores[quizId]?.bestScore
+  }
+
+  const getQuizAttempts = (quizId) => {
+    return progress.quizScores[quizId]?.attempts || []
+  }
+
   return (
     <ProgressContext.Provider value={{
       progress,
+      completedLessons: progress.completedLessons,
+      quizScores: progress.quizScores,
+      codeRuns: progress.codeRuns,
       completeLesson,
       uncompleteLesson,
       isLessonCompleted,
+      isLevelCompleted,
       saveQuizScore,
       incrementCodeRuns,
-      getTotalProgress
+      getTotalProgress,
+      getQuizBestScore,
+      getQuizAttempts
     }}>
       {children}
     </ProgressContext.Provider>

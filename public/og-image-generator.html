@@ -1,58 +1,119 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>OG Image Generator</title>
-<style>
-body { margin: 0; background: #000; display: flex; align-items: center; justify-content: center; min-height: 100vh; }
-.og-card {
-  width: 1200px; height: 630px; position: relative; overflow: hidden;
-  background: linear-gradient(135deg, #1a3a52 0%, #2d5a7b 30%, #5382A1 60%, #E76F00 100%);
-  font-family: 'Noto Sans KR', sans-serif;
-}
-.content { position: relative; z-index: 2; padding: 80px; height: 100%; box-sizing: border-box; display: flex; flex-direction: column; justify-content: center; }
-.logo-row { display: flex; align-items: center; gap: 16px; margin-bottom: 24px; }
-.logo-icon { width: 72px; height: 72px; background: rgba(255,255,255,0.15); border-radius: 14px; display: flex; align-items: center; justify-content: center; color: white; font-size: 42px; font-weight: bold; font-family: serif; }
-.logo-text { font-size: 52px; font-weight: 900; color: white; }
-.subtitle { font-size: 30px; color: rgba(255,255,255,0.85); margin-bottom: 8px; }
-.desc { font-size: 22px; color: rgba(255,255,255,0.6); margin-bottom: 32px; }
-.tags { display: flex; gap: 12px; }
-.tag { padding: 8px 20px; background: rgba(255,255,255,0.15); border-radius: 20px; color: rgba(255,255,255,0.8); font-size: 15px; font-weight: 500; }
-.url { position: absolute; bottom: 40px; left: 0; right: 0; text-align: center; font-size: 17px; color: rgba(255,255,255,0.35); }
-.code-bg { position: absolute; right: 40px; top: 50%; transform: translateY(-50%); font-family: 'JetBrains Mono', monospace; font-size: 15px; color: rgba(255,255,255,0.06); white-space: pre; line-height: 1.8; }
-</style>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@900&family=JetBrains+Mono&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <title>JavaMaster OG Image Generator</title>
+  <style>
+    body { margin: 0; padding: 20px; background: #f5f5f5; font-family: sans-serif; text-align: center; }
+    h2 { margin-bottom: 10px; }
+    p { color: #666; margin-bottom: 20px; }
+    canvas { border: 1px solid #ddd; display: block; margin: 0 auto 16px; }
+    button { padding: 12px 24px; background: #5382A1; color: white; border: none; border-radius: 8px; font-size: 16px; cursor: pointer; }
+    button:hover { background: #E76F00; }
+  </style>
 </head>
 <body>
-<div class="og-card">
-  <div class="code-bg">public class JavaMaster {
-  public static void main(String[] args) {
-    System.out.println("Hello World!");
-  }
-}
+  <h2>JavaMaster OG Image Generator</h2>
+  <p>"PNG 다운로드" 버튼을 눌러 og-image.png를 다운로드한 뒤 public/ 폴더에 저장하세요.</p>
+  <canvas id="canvas" width="1200" height="630"></canvas>
+  <button onclick="download()">PNG 다운로드 (og-image.png)</button>
 
-@SpringBootApplication
-@RestController
-@GetMapping("/api/hello")
-@Autowired
-private UserService userService;</div>
-  <div class="content">
-    <div class="logo-row">
-      <div class="logo-icon">J</div>
-      <div class="logo-text">JavaMaster</div>
-    </div>
-    <div class="subtitle">Java 기초부터 Spring Boot까지</div>
-    <div class="desc">체계적인 17개 챕터 학습 플랫폼</div>
-    <div class="tags">
-      <span class="tag">Java</span>
-      <span class="tag">Spring Boot</span>
-      <span class="tag">Servlet</span>
-      <span class="tag">OOP</span>
-      <span class="tag">JPA</span>
-    </div>
-  </div>
-  <div class="url">java-study.dreamitbiz.com</div>
-</div>
-<p style="color:#888; margin-top: 20px; text-align:center;">이 페이지를 브라우저에서 열고 스크린샷(1200x630)을 찍어 og-image.png로 저장하세요.</p>
+  <script>
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+
+    // Background gradient
+    const grad = ctx.createLinearGradient(0, 0, 1200, 630);
+    grad.addColorStop(0, '#0f1f2e');
+    grad.addColorStop(0.4, '#1a3a52');
+    grad.addColorStop(0.7, '#2d5a7b');
+    grad.addColorStop(1, '#3a6d94');
+    ctx.fillStyle = grad;
+    ctx.fillRect(0, 0, 1200, 630);
+
+    // Decorative circles
+    ctx.globalAlpha = 0.06;
+    ctx.fillStyle = '#ffffff';
+    ctx.beginPath(); ctx.arc(200, 500, 200, 0, Math.PI * 2); ctx.fill();
+    ctx.beginPath(); ctx.arc(1000, 150, 250, 0, Math.PI * 2); ctx.fill();
+    ctx.globalAlpha = 1;
+
+    // Floating code text
+    ctx.globalAlpha = 0.08;
+    ctx.fillStyle = '#ffffff';
+    ctx.font = '16px monospace';
+    ctx.textAlign = 'left';
+    ctx.fillText('public class Main {', 60, 80);
+    ctx.fillText('System.out.println("Hello");', 900, 120);
+    ctx.fillText('@SpringBootApplication', 80, 560);
+    ctx.fillText('interface Runnable {', 850, 550);
+    ctx.fillText('List<String> list = new ArrayList<>();', 300, 60);
+    ctx.fillText('@Autowired private Service service;', 600, 590);
+    ctx.globalAlpha = 1;
+
+    // Logo box
+    ctx.fillStyle = '#E76F00';
+    roundRect(ctx, 490, 130, 70, 70, 14);
+    ctx.fill();
+    ctx.fillStyle = '#ffffff';
+    ctx.font = 'bold 42px Georgia, serif';
+    ctx.textAlign = 'center';
+    ctx.fillText('J', 525, 182);
+
+    // Title
+    ctx.fillStyle = '#ffffff';
+    ctx.font = 'bold 64px sans-serif';
+    ctx.fillText('JavaMaster', 600, 280);
+
+    // Subtitle
+    ctx.font = '28px sans-serif';
+    ctx.fillStyle = 'rgba(255,255,255,0.85)';
+    ctx.fillText('Java 기초부터 Spring Boot까지', 600, 335);
+
+    // Description
+    ctx.font = '20px sans-serif';
+    ctx.fillStyle = 'rgba(255,255,255,0.6)';
+    ctx.fillText('체계적인 17개 챕터 Java 학습 플랫폼', 600, 375);
+
+    // Tags
+    const tags = ['Java 기초', 'OOP', '제네릭/스트림', '서블릿/JSP', 'Spring Boot'];
+    const tagWidth = 130;
+    const startX = 600 - (tags.length * tagWidth) / 2;
+    tags.forEach((tag, i) => {
+      const x = startX + i * tagWidth + tagWidth / 2;
+      ctx.fillStyle = 'rgba(255,255,255,0.12)';
+      roundRect(ctx, x - 55, 420, 110, 34, 17);
+      ctx.fill();
+      ctx.fillStyle = 'rgba(255,255,255,0.8)';
+      ctx.font = '14px sans-serif';
+      ctx.fillText(tag, x, 442);
+    });
+
+    // URL
+    ctx.fillStyle = 'rgba(255,255,255,0.4)';
+    ctx.font = '16px sans-serif';
+    ctx.fillText('java-study.dreamitbiz.com', 600, 530);
+
+    function roundRect(ctx, x, y, w, h, r) {
+      ctx.beginPath();
+      ctx.moveTo(x + r, y);
+      ctx.lineTo(x + w - r, y);
+      ctx.quadraticCurveTo(x + w, y, x + w, y + r);
+      ctx.lineTo(x + w, y + h - r);
+      ctx.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
+      ctx.lineTo(x + r, y + h);
+      ctx.quadraticCurveTo(x, y + h, x, y + h - r);
+      ctx.lineTo(x, y + r);
+      ctx.quadraticCurveTo(x, y, x + r, y);
+      ctx.closePath();
+    }
+
+    function download() {
+      const link = document.createElement('a');
+      link.download = 'og-image.png';
+      link.href = canvas.toDataURL('image/png');
+      link.click();
+    }
+  </script>
 </body>
 </html>

@@ -2,12 +2,17 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { Suspense, lazy } from 'react'
 import { ThemeProvider } from './contexts/ThemeContext'
 import { ProgressProvider } from './contexts/ProgressContext'
+import { BadgeProvider } from './contexts/BadgeContext'
 import Navbar from './components/layout/Navbar'
 import Footer from './components/layout/Footer'
 import ErrorBoundary from './components/ErrorBoundary'
 
 const Home = lazy(() => import('./pages/Home'))
 const JavaLearning = lazy(() => import('./pages/JavaLearning'))
+const QuizCenter = lazy(() => import('./pages/QuizCenter'))
+const BadgeCollection = lazy(() => import('./pages/BadgeCollection'))
+const MyPage = lazy(() => import('./pages/MyPage'))
+const Guide = lazy(() => import('./pages/Guide'))
 const JavaLesson01 = lazy(() => import('./pages/java-learning/JavaLesson01'))
 const JavaLesson02 = lazy(() => import('./pages/java-learning/JavaLesson02'))
 const JavaLesson03 = lazy(() => import('./pages/java-learning/JavaLesson03'))
@@ -48,36 +53,42 @@ export default function App() {
   return (
     <ThemeProvider>
       <ProgressProvider>
-        <BrowserRouter>
-          <ErrorBoundary>
-            <Navbar />
-            <Suspense fallback={<PageLoader />}>
-              <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/java-learning" element={<JavaLearning />} />
-                <Route path="/java-learning/01" element={<JavaLesson01 />} />
-                <Route path="/java-learning/02" element={<JavaLesson02 />} />
-                <Route path="/java-learning/03" element={<JavaLesson03 />} />
-                <Route path="/java-learning/04" element={<JavaLesson04 />} />
-                <Route path="/java-learning/05" element={<JavaLesson05 />} />
-                <Route path="/java-learning/06" element={<JavaLesson06 />} />
-                <Route path="/java-learning/07" element={<JavaLesson07 />} />
-                <Route path="/java-learning/08" element={<JavaLesson08 />} />
-                <Route path="/java-learning/09" element={<JavaLesson09 />} />
-                <Route path="/java-learning/10" element={<JavaLesson10 />} />
-                <Route path="/java-learning/11" element={<JavaLesson11 />} />
-                <Route path="/java-learning/12" element={<JavaLesson12 />} />
-                <Route path="/java-learning/13" element={<JavaLesson13 />} />
-                <Route path="/java-learning/14" element={<JavaLesson14 />} />
-                <Route path="/java-learning/15" element={<JavaLesson15 />} />
-                <Route path="/java-learning/16" element={<JavaLesson16 />} />
-                <Route path="/java-learning/17" element={<JavaLesson17 />} />
-                <Route path="*" element={<NotFound />} />
-              </Routes>
-            </Suspense>
-            <Footer />
-          </ErrorBoundary>
-        </BrowserRouter>
+        <BadgeProvider>
+          <BrowserRouter>
+            <ErrorBoundary>
+              <Navbar />
+              <Suspense fallback={<PageLoader />}>
+                <Routes>
+                  <Route path="/" element={<Home />} />
+                  <Route path="/java-learning" element={<JavaLearning />} />
+                  <Route path="/quiz" element={<QuizCenter />} />
+                  <Route path="/badges" element={<BadgeCollection />} />
+                  <Route path="/my" element={<MyPage />} />
+                  <Route path="/guide" element={<Guide />} />
+                  <Route path="/java-learning/01" element={<JavaLesson01 />} />
+                  <Route path="/java-learning/02" element={<JavaLesson02 />} />
+                  <Route path="/java-learning/03" element={<JavaLesson03 />} />
+                  <Route path="/java-learning/04" element={<JavaLesson04 />} />
+                  <Route path="/java-learning/05" element={<JavaLesson05 />} />
+                  <Route path="/java-learning/06" element={<JavaLesson06 />} />
+                  <Route path="/java-learning/07" element={<JavaLesson07 />} />
+                  <Route path="/java-learning/08" element={<JavaLesson08 />} />
+                  <Route path="/java-learning/09" element={<JavaLesson09 />} />
+                  <Route path="/java-learning/10" element={<JavaLesson10 />} />
+                  <Route path="/java-learning/11" element={<JavaLesson11 />} />
+                  <Route path="/java-learning/12" element={<JavaLesson12 />} />
+                  <Route path="/java-learning/13" element={<JavaLesson13 />} />
+                  <Route path="/java-learning/14" element={<JavaLesson14 />} />
+                  <Route path="/java-learning/15" element={<JavaLesson15 />} />
+                  <Route path="/java-learning/16" element={<JavaLesson16 />} />
+                  <Route path="/java-learning/17" element={<JavaLesson17 />} />
+                  <Route path="*" element={<NotFound />} />
+                </Routes>
+              </Suspense>
+              <Footer />
+            </ErrorBoundary>
+          </BrowserRouter>
+        </BadgeProvider>
       </ProgressProvider>
     </ThemeProvider>
   )

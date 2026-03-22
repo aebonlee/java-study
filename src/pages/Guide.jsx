@@ -1,0 +1,141 @@
+import { Link } from 'react-router-dom'
+
+export default function Guide() {
+  const sections = [
+    {
+      icon: 'fas fa-book-open',
+      title: '전체 커리큘럼',
+      content: '17개 챕터로 구성된 Java 학습 로드맵을 확인하세요. 기초부터 Spring Boot까지 단계별로 학습할 수 있습니다.',
+      link: { to: '/java-learning', label: '커리큘럼 보기' }
+    },
+    {
+      icon: 'fas fa-layer-group',
+      title: '단계별 학습',
+      content: '기초, 중급(OOP), 고급, 웹 개발 4단계로 나누어져 있습니다. 각 단계를 순서대로 학습하는 것을 권장합니다.',
+      links: [
+        { to: '/java-learning/01', label: '기초' },
+        { to: '/java-learning/05', label: '중급' },
+        { to: '/java-learning/09', label: '고급' },
+        { to: '/java-learning/13', label: '웹 개발' },
+      ]
+    },
+    {
+      icon: 'fas fa-clipboard-question',
+      title: '퀴즈 센터',
+      content: '각 단계별 퀴즈를 통해 학습 내용을 점검하세요. 70점 이상이면 합격이며, 제한 시간 내에 풀어야 합니다.',
+      link: { to: '/quiz', label: '퀴즈 풀러 가기' }
+    },
+    {
+      icon: 'fas fa-medal',
+      title: '도장깨기 (배지)',
+      content: '학습 목표를 달성하면 배지를 획득합니다. 브론즈, 실버, 골드, 플래티넘 4등급 총 24개 배지가 있습니다.',
+      link: { to: '/badges', label: '배지 확인하기' }
+    },
+    {
+      icon: 'fas fa-user-circle',
+      title: '마이페이지',
+      content: '학습 통계, 수료증 현황, 획득 배지, 퀴즈 성적표를 한눈에 확인할 수 있습니다.',
+      link: { to: '/my', label: '마이페이지 가기' }
+    },
+    {
+      icon: 'fas fa-check-circle',
+      title: '학습 완료 체크',
+      content: '각 레슨 하단의 "학습 완료" 버튼을 클릭하면 해당 레슨이 완료 처리됩니다. 완료 상태는 브라우저에 저장됩니다.',
+      link: null
+    },
+    {
+      icon: 'fas fa-moon',
+      title: '다크 모드',
+      content: '우측 상단의 테마 전환 버튼으로 다크 모드를 켜고 끌 수 있습니다. 어두운 환경에서 눈의 피로를 줄여줍니다.',
+      link: null
+    },
+    {
+      icon: 'fas fa-chart-line',
+      title: '학습 진도 추적',
+      content: '네비게이션 바의 진도 원형 그래프로 전체 진도를 확인할 수 있습니다. 완료한 레슨 비율이 표시됩니다.',
+      link: null
+    },
+    {
+      icon: 'fas fa-scroll',
+      title: '수료증',
+      content: '각 단계를 완료하고 퀴즈를 통과하면 수료증을 획득할 수 있습니다. 기초, 중급, 고급, Master 4종류가 있습니다.',
+      link: { to: '/my', label: '수료증 확인' }
+    },
+    {
+      icon: 'fas fa-mobile-alt',
+      title: '반응형 디자인',
+      content: '모바일, 태블릿, 데스크톱 등 어떤 기기에서도 최적화된 학습 경험을 제공합니다.',
+      link: null
+    },
+  ]
+
+  const faqs = [
+    {
+      q: '학습 데이터는 어디에 저장되나요?',
+      a: '학습 진도, 퀴즈 점수, 배지 등의 데이터는 브라우저의 localStorage에 저장됩니다. 브라우저 데이터를 삭제하면 초기화될 수 있습니다.'
+    },
+    {
+      q: '퀴즈는 몇 번이나 풀 수 있나요?',
+      a: '퀴즈는 횟수 제한 없이 여러 번 풀 수 있습니다. 가장 높은 점수가 기록됩니다.'
+    },
+    {
+      q: '다크 모드는 어떻게 설정하나요?',
+      a: '화면 우측 상단의 해/달 아이콘을 클릭하면 테마가 전환됩니다. 설정은 자동으로 저장됩니다.'
+    },
+    {
+      q: '학습 순서를 꼭 지켜야 하나요?',
+      a: '권장 순서가 있지만 필수는 아닙니다. 다만, 기초 → 중급 → 고급 → 웹 개발 순서로 학습하면 이해가 더 쉽습니다.'
+    },
+  ]
+
+  return (
+    <div className="guide-page">
+      <section className="guide-header">
+        <div className="container">
+          <h1 className="guide-title"><i className="fas fa-book"></i> 이용 가이드</h1>
+          <p className="guide-subtitle">JavaMaster의 모든 기능을 활용하는 방법을 안내합니다</p>
+        </div>
+      </section>
+
+      <section className="guide-content">
+        <div className="container">
+          <div className="guide-grid">
+            {sections.map((sec, i) => (
+              <div key={i} className="guide-section-card">
+                <div className="guide-card-icon"><i className={sec.icon}></i></div>
+                <div className="guide-card-body">
+                  <h3 className="guide-card-title">{sec.title}</h3>
+                  <p className="guide-card-text">{sec.content}</p>
+                  {sec.link && (
+                    <Link to={sec.link.to} className="guide-card-link">
+                      {sec.link.label} <i className="fas fa-arrow-right"></i>
+                    </Link>
+                  )}
+                  {sec.links && (
+                    <div className="guide-card-links">
+                      {sec.links.map((l, li) => (
+                        <Link key={li} to={l.to} className="guide-card-link-chip">{l.label}</Link>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="guide-faq">
+            <h2 className="guide-faq-title"><i className="fas fa-circle-question"></i> 자주 묻는 질문</h2>
+            <div className="guide-faq-list">
+              {faqs.map((faq, i) => (
+                <div key={i} className="guide-faq-item">
+                  <div className="guide-faq-q"><span className="guide-faq-badge">Q</span>{faq.q}</div>
+                  <div className="guide-faq-a"><span className="guide-faq-badge guide-faq-badge-a">A</span>{faq.a}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  )
+}

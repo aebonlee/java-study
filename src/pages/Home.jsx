@@ -1,6 +1,12 @@
 import { Link } from 'react-router-dom'
+import { useProgress } from '../contexts/ProgressContext'
+import { useBadge } from '../contexts/BadgeContext'
 
 export default function Home() {
+  const { getTotalProgress, completedLessons } = useProgress()
+  const { earnedBadges } = useBadge()
+  const progress = getTotalProgress()
+
   return (
     <main>
       {/* Hero */}
@@ -28,6 +34,14 @@ export default function Home() {
               <i className="fas fa-book-open"></i> 커리큘럼 보기
             </Link>
           </div>
+          {progress > 0 && (
+            <div className="hero-progress">
+              <div className="hero-progress-bar">
+                <div className="hero-progress-fill" style={{ width: `${progress}%` }}></div>
+              </div>
+              <span className="hero-progress-text">학습 진도 {progress}% ({completedLessons.length}/17)</span>
+            </div>
+          )}
         </div>
       </section>
 
@@ -46,13 +60,13 @@ export default function Home() {
               <div className="stat-label">학습 단계</div>
             </div>
             <div className="stat-card">
-              <div className="stat-icon"><i className="fas fa-code"></i></div>
-              <div className="stat-number">100+</div>
-              <div className="stat-label">코드 예제</div>
+              <div className="stat-icon"><i className="fas fa-pen-nib"></i></div>
+              <div className="stat-number">4</div>
+              <div className="stat-label">단계별 퀴즈</div>
             </div>
             <div className="stat-card">
               <div className="stat-icon"><i className="fas fa-trophy"></i></div>
-              <div className="stat-number">10</div>
+              <div className="stat-number">24</div>
               <div className="stat-label">달성 배지</div>
             </div>
           </div>
@@ -73,19 +87,21 @@ export default function Home() {
               <p>기초부터 Spring Boot까지 단계별로 설계된 17개 챕터로 빈틈없이 학습합니다.</p>
             </div>
             <div className="feature-card">
-              <div className="feature-icon"><i className="fas fa-laptop-code"></i></div>
-              <h3>풍부한 코드 예제</h3>
-              <p>모든 개념을 실제 코드 예제와 함께 설명하여 바로 실습할 수 있습니다.</p>
+              <div className="feature-icon"><i className="fas fa-pen-nib"></i></div>
+              <h3>단계별 퀴즈</h3>
+              <p>각 단계를 마치면 퀴즈로 실력을 점검하고, 합격 기준을 달성하세요.</p>
+              <Link to="/quiz" className="feature-link">퀴즈 풀러 가기 <i className="fas fa-arrow-right"></i></Link>
+            </div>
+            <div className="feature-card">
+              <div className="feature-icon"><i className="fas fa-trophy"></i></div>
+              <h3>도장깨기 (배지)</h3>
+              <p>학습 목표를 달성하면 배지를 획득! 24개 배지를 모두 수집해보세요.</p>
+              <Link to="/badges" className="feature-link">배지 확인하기 <i className="fas fa-arrow-right"></i></Link>
             </div>
             <div className="feature-card">
               <div className="feature-icon"><i className="fas fa-server"></i></div>
               <h3>웹 개발 완성</h3>
               <p>Servlet, JSP, Spring Framework, Spring Boot까지 웹 개발의 전체 과정을 다룹니다.</p>
-            </div>
-            <div className="feature-card">
-              <div className="feature-icon"><i className="fas fa-cubes"></i></div>
-              <h3>OOP 심화</h3>
-              <p>상속, 다형성, 인터페이스 등 객체지향의 핵심을 깊이 있게 학습합니다.</p>
             </div>
             <div className="feature-card">
               <div className="feature-icon"><i className="fas fa-moon"></i></div>
@@ -96,6 +112,7 @@ export default function Home() {
               <div className="feature-icon"><i className="fas fa-chart-line"></i></div>
               <h3>학습 진도 추적</h3>
               <p>완료한 챕터를 추적하고 전체 학습 진도를 한눈에 확인할 수 있습니다.</p>
+              <Link to="/my" className="feature-link">마이페이지 <i className="fas fa-arrow-right"></i></Link>
             </div>
           </div>
         </div>
@@ -162,9 +179,14 @@ export default function Home() {
         <div className="container">
           <h2>지금 바로 Java 학습을 시작하세요</h2>
           <p>모든 학습 콘텐츠는 무료로 제공됩니다</p>
-          <Link to="/java-learning/01" className="btn btn-accent btn-lg">
-            <i className="fas fa-rocket"></i> 첫 번째 챕터 시작
-          </Link>
+          <div className="cta-buttons">
+            <Link to="/java-learning/01" className="btn btn-accent btn-lg">
+              <i className="fas fa-rocket"></i> 첫 번째 챕터 시작
+            </Link>
+            <Link to="/guide" className="btn btn-outline btn-lg">
+              <i className="fas fa-book"></i> 이용 가이드
+            </Link>
+          </div>
         </div>
       </section>
     </main>
