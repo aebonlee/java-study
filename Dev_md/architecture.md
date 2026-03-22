@@ -77,6 +77,7 @@ java-study/
     │   ├── BadgeCard.jsx        # 배지 카드 컴포넌트
     │   ├── QuizComponent.jsx    # 퀴즈 엔진 (타이머, 셔플)
     │   ├── JavaCodeRunner.jsx   # Java 코드 실행기 (Piston API)
+    │   ├── CodeBlockCopy.jsx   # 전역 코드블록 복사 버튼 자동 삽입
     │   └── ErrorBoundary.jsx
     ├── data/
     │   ├── lessons.js      # Java 레슨 메타데이터 (3단계 17과)
@@ -88,7 +89,7 @@ java-study/
     │   └── quizzes.js      # 7개 퀴즈 (총 70문제)
     └── pages/
         ├── Home.jsx             # 랜딩 페이지
-        ├── JavaLearning.jsx     # 전체 커리큘럼
+        ├── JavaLearning.jsx     # 전체 커리큘럼 (5개 과정 통합)
         ├── QuizCenter.jsx       # 퀴즈 센터
         ├── BadgeCollection.jsx  # 도장깨기
         ├── MyPage.jsx           # 마이페이지
@@ -114,7 +115,7 @@ java-study/
 | 경로 | 컴포넌트 | 설명 |
 |------|----------|------|
 | `/` | Home | 랜딩 페이지 |
-| `/java-learning` | JavaLearning | 전체 커리큘럼 |
+| `/java-learning` | JavaLearning | 전체 커리큘럼 (5개 과정 61개 콘텐츠 통합) |
 | `/java-learning/01~17` | JavaLesson01~17 | 개별 레슨 |
 | `/quiz` | QuizCenter | 퀴즈 센터 |
 | `/badges` | BadgeCollection | 도장깨기 (배지) |
