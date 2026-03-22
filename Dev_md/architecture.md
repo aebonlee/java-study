@@ -16,7 +16,7 @@ java-study/
 ├── vite.config.js
 ├── .env                    # Supabase 키 (gitignore)
 ├── supabase-setup.sql      # DB 테이블 생성 SQL
-├── Dev_md/                 # 프로젝트 문서 (14개)
+├── Dev_md/                 # 프로젝트 문서 (15개)
 │   ├── project-plan.md
 │   ├── architecture.md
 │   ├── sync-guide.md
@@ -28,6 +28,7 @@ java-study/
 │   ├── og-meta-guide.md
 │   ├── servlet-course-guide.md
 │   ├── spring-course-guide.md
+│   ├── practical-course-guide.md
 │   ├── code-runner-guide.md
 │   ├── navigation-guide.md
 │   └── changelog.md
@@ -80,8 +81,9 @@ java-study/
     │   ├── lessons.js      # Java 레슨 메타데이터 (3단계 17과)
     │   ├── servletLessons.js  # 서블릿 레슨 메타데이터 (10과)
     │   ├── springLessons.js   # 스프링 레슨 메타데이터 (16과)
-    │   ├── badges.js       # 33개 배지 정의 (4등급)
-    │   └── quizzes.js      # 6개 퀴즈 (총 60문제)
+    │   ├── practicalLessons.js # 실무 레슨 메타데이터 (4레벨 10과)
+    │   ├── badges.js       # 39개 배지 정의 (4등급)
+    │   └── quizzes.js      # 7개 퀴즈 (총 70문제)
     └── pages/
         ├── Home.jsx             # 랜딩 페이지
         ├── JavaLearning.jsx     # 전체 커리큘럼
@@ -92,12 +94,15 @@ java-study/
         ├── Login.jsx            # 로그인 페이지
         ├── ServletLearning.jsx  # 서블릿 허브
         ├── SpringLearning.jsx   # 스프링 허브
+        ├── PracticalLearning.jsx # 실무 허브
         ├── java-learning/
         │   ├── JavaLesson01.jsx ~ JavaLesson17.jsx
         ├── servlet/
         │   ├── ServletLesson01.jsx ~ ServletLesson10.jsx
-        └── spring/
-            ├── SpringLesson01.jsx ~ SpringLesson16.jsx
+        ├── spring/
+        │   ├── SpringLesson01.jsx ~ SpringLesson16.jsx
+        └── practical/
+            ├── PracticalLesson01.jsx ~ PracticalLesson10.jsx
 ```
 
 ## 라우팅
@@ -114,6 +119,8 @@ java-study/
 | `/spring` | SpringLearning | 스프링 과정 허브 |
 | `/servlet/01~10` | ServletLesson01~10 | 서블릿 레슨 (10개) |
 | `/spring/01~16` | SpringLesson01~16 | 스프링 레슨 (16개) |
+| `/practical` | PracticalLearning | 실무 과정 허브 |
+| `/practical/01~10` | PracticalLesson01~10 | 실무 레슨 (10개) |
 | `/login` | Login | 로그인 (Google/Kakao OAuth + 이메일) |
 
 ## 상태 관리
@@ -126,17 +133,17 @@ ThemeProvider > AuthProvider > ProgressProvider > BadgeProvider
 - **ThemeContext**: 라이트/다크 모드 (localStorage: `javamaster-theme`)
 - **AuthContext**: Google/Kakao OAuth + 이메일 인증, 세션 30분 자동 만료, 로그인 모달 (Supabase Auth)
 - **ProgressContext**: 레슨 완료, 퀴즈 점수, 코드 실행 횟수 (localStorage + Supabase 동기화)
-  - `getJavaProgress` / `getServletProgress` / `getSpringProgress` 함수 제공
+  - `getJavaProgress` / `getServletProgress` / `getSpringProgress` / `getPracticalProgress` 함수 제공
   - 로그인 시 Supabase에서 로드 → localStorage와 합집합 병합
 - **BadgeContext**: 배지 획득 평가, 알림 팝업 (localStorage + Supabase 동기화)
   - 로그인 시 Supabase에서 배지 로드 → 병합
 
-## 배지 시스템 (33개)
+## 배지 시스템 (39개)
 | 등급 | 개수 | 조건 유형 |
 |------|------|-----------|
-| 브론즈 | 7 | 첫 레슨, Hello World, 서블릿 입문, 코드 실행 10회, 5개 레슨 등 |
-| 실버 | 9 | 기초 마스터, 10개/20개 레슨, 코드 50회, OOP/서블릿 퀴즈 등 |
-| 골드 | 13 | OOP/고급/웹/서블릿/스프링 마스터, 만점 퀴즈, 30개/40개 레슨, 코드 100회 |
+| 브론즈 | 8 | 첫 레슨, Hello World, 서블릿 입문, 실무 입문, 코드 실행 10회, 5개 레슨 등 |
+| 실버 | 12 | 기초 마스터, 10개/20개 레슨, 코드 50회, OOP/서블릿/실무 퀴즈, 도구/데이터 마스터 등 |
+| 골드 | 15 | OOP/고급/웹/서블릿/스프링/품질/실무 마스터, 만점 퀴즈, 30개/40개 레슨, 코드 100회 |
 | 플래티넘 | 4 | ALL CLEAR, 퀴즈 챔피언, 완벽주의자, Java Master |
 
 ### 배지 조건 유형
@@ -145,12 +152,12 @@ ThemeProvider > AuthProvider > ProgressProvider > BadgeProvider
 - `multi_level_completed` - 복수 레벨 완료
 - `quiz_passed` - 특정 퀴즈 N점 이상
 - `quiz_perfect` - 특정 퀴즈 만점
-- `all_quizzes_passed` - 모든 퀴즈(6개) 통과
-- `all_quizzes_perfect` - 모든 퀴즈(6개) 만점
+- `all_quizzes_passed` - 모든 퀴즈(7개) 통과
+- `all_quizzes_perfect` - 모든 퀴즈(7개) 만점
 - `code_runs` - 코드 실행 N회
-- `all_completed` - 43개 레슨 모두 완료
+- `all_completed` - 53개 레슨 모두 완료
 - `specific_lessons` - 특정 레슨 완료
-- `java_master` - 43개 레슨 + 6개 퀴즈 모두 완료
+- `java_master` - 53개 레슨 + 7개 퀴즈 모두 완료
 
 ## 퀴즈 시스템
 | 퀴즈 ID | 제목 | 문제 수 | 제한시간 | 합격점 |
@@ -161,6 +168,7 @@ ThemeProvider > AuthProvider > ProgressProvider > BadgeProvider
 | web | 웹 개발 퀴즈 | 10 | 12분 | 70 |
 | servlet | 서블릿 퀴즈 | 10 | 12분 | 70 |
 | spring | Spring 퀴즈 | 10 | 12분 | 70 |
+| practical | 실무 Java 퀴즈 | 10 | 12분 | 70 |
 
 ## 수료증 시스템 (3x2 그리드, `repeat(3, 1fr)`)
 | 등급 | 조건 |
@@ -170,7 +178,8 @@ ThemeProvider > AuthProvider > ProgressProvider > BadgeProvider
 | 고급 수료증 (🥇) | 기초+중급+고급 레슨 + 3개 퀴즈 |
 | 서블릿 수료증 (🛡️) | 서블릿 레슨(10개) 완료 + 서블릿 퀴즈 통과 |
 | Spring 수료증 (🍃) | 스프링 레슨(16개) 완료 + Spring 퀴즈 통과 |
-| Java Master (🏆) | 모든 레슨(43개) + 모든 퀴즈(6개) |
+| 실무 수료증 (🔧) | 실무 레슨(10개) 완료 + 실무 퀴즈 통과 |
+| Java Master (🏆) | 모든 레슨(53개) + 모든 퀴즈(7개) |
 
 ## Supabase 테이블 (접두사: javamaster_)
 - `javamaster_users` - 사용자

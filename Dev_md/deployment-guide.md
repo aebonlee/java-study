@@ -64,6 +64,8 @@ node scripts/generate-og-image.mjs
 | `/servlet/01~10` | 서블릿 레슨 (10개) |
 | `/spring` | 스프링 과정 허브 |
 | `/spring/01~16` | 스프링 레슨 (16개) |
+| `/practical` | 실무 과정 허브 |
+| `/practical/01~10` | 실무 레슨 (10개) |
 | `/quiz` | 퀴즈 센터 |
 | `/badges` | 도장깨기 (배지) |
 | `/my` | 마이페이지 |
