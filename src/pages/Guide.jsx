@@ -5,7 +5,7 @@ export default function Guide() {
     {
       icon: 'fas fa-book-open',
       title: '전체 커리큘럼',
-      content: '17개 챕터로 구성된 Java 학습 로드맵을 확인하세요. 기초부터 Spring Boot까지 단계별로 학습할 수 있습니다.',
+      content: '53개 레슨으로 구성된 Java 학습 로드맵을 확인하세요. 기초부터 Spring Boot, 실무 기술까지 단계별로 학습할 수 있습니다.',
       link: { to: '/java-learning', label: '커리큘럼 보기' }
     },
     {
@@ -28,7 +28,7 @@ export default function Guide() {
     {
       icon: 'fas fa-medal',
       title: '도장깨기 (배지)',
-      content: '학습 목표를 달성하면 배지를 획득합니다. 브론즈, 실버, 골드, 플래티넘 4등급 총 33개 배지가 있습니다.',
+      content: '학습 목표를 달성하면 배지를 획득합니다. 브론즈, 실버, 골드, 플래티넘 4등급 총 39개 배지가 있습니다.',
       link: { to: '/badges', label: '배지 확인하기' }
     },
     {
@@ -58,7 +58,7 @@ export default function Guide() {
     {
       icon: 'fas fa-scroll',
       title: '수료증',
-      content: '각 단계를 완료하고 퀴즈를 통과하면 수료증을 획득할 수 있습니다. 기초, 중급, 고급, Master 4종류가 있습니다.',
+      content: '각 단계를 완료하고 퀴즈를 통과하면 수료증을 획득할 수 있습니다. 기초, 중급, 고급, 서블릿, 스프링, 실무, Master 7종류가 있습니다.',
       link: { to: '/my', label: '수료증 확인' }
     },
     {

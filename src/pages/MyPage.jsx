@@ -5,6 +5,7 @@ import { badges } from '../data/badges'
 import { levels } from '../data/lessons'
 import { servletLevels } from '../data/servletLessons'
 import { springLevels } from '../data/springLessons'
+import { practicalLevels } from '../data/practicalLessons'
 import BadgeCard from '../components/BadgeCard'
 
 function formatDate(dateStr) {
@@ -20,7 +21,7 @@ export default function MyPage() {
   } = useProgress()
   const { earnedBadges } = useBadge()
 
-  const allLevels = [...levels, ...servletLevels, ...springLevels]
+  const allLevels = [...levels, ...servletLevels, ...springLevels, ...practicalLevels]
   const totalLessons = allLevels.reduce((sum, level) => sum + level.lessons.length, 0)
   const completedCount = completedLessons.length
   const totalProgress = getTotalProgress()
@@ -40,7 +41,9 @@ export default function MyPage() {
   const levelLabels = {
     basics: '기초', intermediate: '중급 (OOP)', advanced: '고급', web: '웹 개발',
     'servlet-basic': '서블릿 기초', 'servlet-advanced': '서블릿 고급',
-    'spring-framework': 'Spring Framework', 'spring-boot': 'Spring Boot'
+    'spring-framework': 'Spring Framework', 'spring-boot': 'Spring Boot',
+    'practical-tools': '실무: 도구', 'practical-data': '실무: 데이터',
+    'practical-quality': '실무: 품질', 'practical-infra': '실무: 인프라'
   }
 
   const certTypes = [
@@ -49,7 +52,8 @@ export default function MyPage() {
     { type: 'gold', label: '고급 수료증', emoji: '🥇', levels: ['basics', 'intermediate', 'advanced'], quizIds: ['basics', 'intermediate', 'advanced'] },
     { type: 'servlet', label: '서블릿 수료증', emoji: '🛡️', levels: ['servlet-basic', 'servlet-advanced'], quizIds: ['servlet'] },
     { type: 'spring', label: 'Spring 수료증', emoji: '🍃', levels: ['spring-framework', 'spring-boot'], quizIds: ['spring'] },
-    { type: 'master', label: 'Java Master', emoji: '🏆', levels: ['basics', 'intermediate', 'advanced', 'web', 'servlet-basic', 'servlet-advanced', 'spring-framework', 'spring-boot'], quizIds: ['basics', 'intermediate', 'advanced', 'web', 'servlet', 'spring'] },
+    { type: 'practical', label: '실무 수료증', emoji: '🔧', levels: ['practical-tools', 'practical-data', 'practical-quality', 'practical-infra'], quizIds: ['practical'] },
+    { type: 'master', label: 'Java Master', emoji: '🏆', levels: ['basics', 'intermediate', 'advanced', 'web', 'servlet-basic', 'servlet-advanced', 'spring-framework', 'spring-boot', 'practical-tools', 'practical-data', 'practical-quality', 'practical-infra'], quizIds: ['basics', 'intermediate', 'advanced', 'web', 'servlet', 'spring', 'practical'] },
   ]
 
   const getCertStatus = (cert) => {

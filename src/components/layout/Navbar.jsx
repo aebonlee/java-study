@@ -137,6 +137,46 @@ export default function Navbar() {
         },
       ]
     },
+    {
+      label: '실무',
+      mega: true,
+      sections: [
+        {
+          title: '도구',
+          color: '#8B5CF6',
+          children: [
+            { to: '/practical/01', label: 'IntelliJ IDEA' },
+            { to: '/practical/02', label: 'Git과 GitHub' },
+            { to: '/practical/03', label: 'Maven과 Gradle' },
+          ]
+        },
+        {
+          title: '데이터',
+          color: '#EC4899',
+          children: [
+            { to: '/practical/04', label: 'SQL 기초' },
+            { to: '/practical/05', label: 'JDBC 심화' },
+            { to: '/practical/06', label: 'JSON 처리' },
+          ]
+        },
+        {
+          title: '품질',
+          color: '#F59E0B',
+          children: [
+            { to: '/practical/07', label: '클린 코드' },
+            { to: '/practical/08', label: '로깅과 디버깅' },
+          ]
+        },
+        {
+          title: '인프라',
+          color: '#06B6D4',
+          children: [
+            { to: '/practical/09', label: '날짜/시간 API' },
+            { to: '/practical/10', label: 'Linux와 서버' },
+          ]
+        },
+      ]
+    },
     { to: '/java-learning', label: '커리큘럼' },
     { to: '/quiz', label: '퀴즈' },
     { to: '/badges', label: '도장깨기' },

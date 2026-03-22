@@ -25,6 +25,8 @@ export default function Footer() {
     { path: '/servlet/01', label: '서블릿: 개요와 환경설정' },
     { path: '/spring', label: '스프링 과정' },
     { path: '/spring/01', label: '스프링: Framework 소개' },
+    { path: '/practical', label: '실무 Java 과정' },
+    { path: '/practical/01', label: '실무: IntelliJ IDEA' },
   ]
 
   const familySites = [
@@ -49,7 +51,7 @@ export default function Footer() {
               <h3 className="footer-logo">
                 <span className="brand-java">Java</span><span className="brand-master">Master</span>
               </h3>
-              <p>Java 기초부터 서블릿, Spring Boot까지 체계적인 학습 플랫폼입니다.</p>
+              <p>Java 기초부터 서블릿, Spring Boot, 실무 기술까지 체계적인 학습 플랫폼입니다.</p>
               <p className="footer-desc">누구나 무료로 Java 프로그래밍을 배울 수 있습니다.</p>
               <div className="footer-family">
                 <select onChange={handleFamilySite} defaultValue="">

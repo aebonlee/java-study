@@ -60,6 +60,17 @@ const SpringLesson13 = lazy(() => import('./pages/spring/SpringLesson13'))
 const SpringLesson14 = lazy(() => import('./pages/spring/SpringLesson14'))
 const SpringLesson15 = lazy(() => import('./pages/spring/SpringLesson15'))
 const SpringLesson16 = lazy(() => import('./pages/spring/SpringLesson16'))
+const PracticalLearning = lazy(() => import('./pages/PracticalLearning'))
+const PracticalLesson01 = lazy(() => import('./pages/practical/PracticalLesson01'))
+const PracticalLesson02 = lazy(() => import('./pages/practical/PracticalLesson02'))
+const PracticalLesson03 = lazy(() => import('./pages/practical/PracticalLesson03'))
+const PracticalLesson04 = lazy(() => import('./pages/practical/PracticalLesson04'))
+const PracticalLesson05 = lazy(() => import('./pages/practical/PracticalLesson05'))
+const PracticalLesson06 = lazy(() => import('./pages/practical/PracticalLesson06'))
+const PracticalLesson07 = lazy(() => import('./pages/practical/PracticalLesson07'))
+const PracticalLesson08 = lazy(() => import('./pages/practical/PracticalLesson08'))
+const PracticalLesson09 = lazy(() => import('./pages/practical/PracticalLesson09'))
+const PracticalLesson10 = lazy(() => import('./pages/practical/PracticalLesson10'))
 
 function PageLoader() {
   return (
@@ -94,6 +105,7 @@ export default function App() {
                   <Route path="/java-learning" element={<JavaLearning />} />
                   <Route path="/servlet" element={<ServletLearning />} />
                   <Route path="/spring" element={<SpringLearning />} />
+                  <Route path="/practical" element={<PracticalLearning />} />
                   <Route path="/quiz" element={<QuizCenter />} />
                   <Route path="/badges" element={<BadgeCollection />} />
                   <Route path="/my" element={<MyPage />} />
@@ -142,6 +154,16 @@ export default function App() {
                   <Route path="/spring/14" element={<SpringLesson14 />} />
                   <Route path="/spring/15" element={<SpringLesson15 />} />
                   <Route path="/spring/16" element={<SpringLesson16 />} />
+                  <Route path="/practical/01" element={<PracticalLesson01 />} />
+                  <Route path="/practical/02" element={<PracticalLesson02 />} />
+                  <Route path="/practical/03" element={<PracticalLesson03 />} />
+                  <Route path="/practical/04" element={<PracticalLesson04 />} />
+                  <Route path="/practical/05" element={<PracticalLesson05 />} />
+                  <Route path="/practical/06" element={<PracticalLesson06 />} />
+                  <Route path="/practical/07" element={<PracticalLesson07 />} />
+                  <Route path="/practical/08" element={<PracticalLesson08 />} />
+                  <Route path="/practical/09" element={<PracticalLesson09 />} />
+                  <Route path="/practical/10" element={<PracticalLesson10 />} />
                   <Route path="*" element={<NotFound />} />
                 </Routes>
               </Suspense>

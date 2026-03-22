@@ -195,6 +195,10 @@ export function ProgressProvider({ children }) {
       'servlet-advanced': ['S06', 'S07', 'S08', 'S09', 'S10'],
       'spring-framework': ['SP01', 'SP02', 'SP03', 'SP04', 'SP05', 'SP06', 'SP07', 'SP08'],
       'spring-boot': ['SP09', 'SP10', 'SP11', 'SP12', 'SP13', 'SP14', 'SP15', 'SP16'],
+      'practical-tools': ['PR01', 'PR02', 'PR03'],
+      'practical-data': ['PR04', 'PR05', 'PR06'],
+      'practical-quality': ['PR07', 'PR08'],
+      'practical-infra': ['PR09', 'PR10'],
     }
     const lessons = levelLessons[levelId]
     return lessons ? lessons.every(id => progress.completedLessons.includes(id)) : false
@@ -218,10 +222,16 @@ export function ProgressProvider({ children }) {
     return Math.round((done / ids.length) * 100)
   }
 
+  const getPracticalProgress = () => {
+    const ids = ['PR01','PR02','PR03','PR04','PR05','PR06','PR07','PR08','PR09','PR10']
+    const done = ids.filter(id => progress.completedLessons.includes(id)).length
+    return Math.round((done / ids.length) * 100)
+  }
+
   const getTotalProgress = () => {
-    const total = 43
+    const total = 53
     const completed = progress.completedLessons.filter(id =>
-      /^(0[1-9]|1[0-7])$/.test(id) || /^S\d{2}$/.test(id) || /^SP\d{2}$/.test(id)
+      /^(0[1-9]|1[0-7])$/.test(id) || /^S\d{2}$/.test(id) || /^SP\d{2}$/.test(id) || /^PR\d{2}$/.test(id)
     ).length
     return Math.round((completed / total) * 100)
   }
@@ -250,6 +260,7 @@ export function ProgressProvider({ children }) {
       getJavaProgress,
       getServletProgress,
       getSpringProgress,
+      getPracticalProgress,
       getQuizBestScore,
       getQuizAttempts
     }}>

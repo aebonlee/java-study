@@ -39,7 +39,7 @@ export default function Home() {
               <div className="hero-progress-bar">
                 <div className="hero-progress-fill" style={{ width: `${progress}%` }}></div>
               </div>
-              <span className="hero-progress-text">학습 진도 {progress}% ({completedLessons.length}/43)</span>
+              <span className="hero-progress-text">학습 진도 {progress}% ({completedLessons.length}/53)</span>
             </div>
           )}
         </div>
@@ -51,22 +51,22 @@ export default function Home() {
           <div className="stats-grid">
             <div className="stat-card">
               <div className="stat-icon"><i className="fas fa-book"></i></div>
-              <div className="stat-number">43</div>
+              <div className="stat-number">53</div>
               <div className="stat-label">학습 레슨</div>
             </div>
             <div className="stat-card">
               <div className="stat-icon"><i className="fas fa-layer-group"></i></div>
-              <div className="stat-number">3</div>
+              <div className="stat-number">4</div>
               <div className="stat-label">학습 과정</div>
             </div>
             <div className="stat-card">
               <div className="stat-icon"><i className="fas fa-pen-nib"></i></div>
-              <div className="stat-number">6</div>
+              <div className="stat-number">7</div>
               <div className="stat-label">단계별 퀴즈</div>
             </div>
             <div className="stat-card">
               <div className="stat-icon"><i className="fas fa-trophy"></i></div>
-              <div className="stat-number">33</div>
+              <div className="stat-number">39</div>
               <div className="stat-label">달성 배지</div>
             </div>
           </div>
@@ -84,7 +84,7 @@ export default function Home() {
             <div className="feature-card">
               <div className="feature-icon"><i className="fas fa-graduation-cap"></i></div>
               <h3>체계적 커리큘럼</h3>
-              <p>Java 기초 17챕터, 서블릿 10레슨, 스프링 16레슨으로 구성된 43개 레슨을 학습합니다.</p>
+              <p>Java 17챕터, 서블릿 10레슨, 스프링 16레슨, 실무 10레슨으로 구성된 53개 레슨을 학습합니다.</p>
             </div>
             <div className="feature-card">
               <div className="feature-icon"><i className="fas fa-code"></i></div>
@@ -94,7 +94,7 @@ export default function Home() {
             <div className="feature-card">
               <div className="feature-icon"><i className="fas fa-trophy"></i></div>
               <h3>도장깨기 (배지)</h3>
-              <p>학습 목표를 달성하면 배지를 획득! 33개 배지를 모두 수집해보세요.</p>
+              <p>학습 목표를 달성하면 배지를 획득! 39개 배지를 모두 수집해보세요.</p>
               <Link to="/badges" className="feature-link">배지 확인하기 <i className="fas fa-arrow-right"></i></Link>
             </div>
             <div className="feature-card">
@@ -108,6 +108,12 @@ export default function Home() {
               <h3>스프링 과정</h3>
               <p>Spring Framework, Spring Boot, JPA, Security, Docker까지 현대적 백엔드를 완성합니다.</p>
               <Link to="/spring" className="feature-link">스프링 시작 <i className="fas fa-arrow-right"></i></Link>
+            </div>
+            <div className="feature-card">
+              <div className="feature-icon"><i className="fas fa-toolbox"></i></div>
+              <h3>실무 Java 과정</h3>
+              <p>IntelliJ, Git, SQL, 클린코드, Linux 등 취업 전 반드시 알아야 할 실무 기술을 배웁니다.</p>
+              <Link to="/practical" className="feature-link">실무 시작 <i className="fas fa-arrow-right"></i></Link>
             </div>
             <div className="feature-card">
               <div className="feature-icon"><i className="fas fa-chart-line"></i></div>
@@ -124,7 +130,7 @@ export default function Home() {
         <div className="container">
           <div className="section-header">
             <h2>학습 로드맵</h2>
-            <p>3개 과정으로 Java 풀스택 개발자가 되세요</p>
+            <p>4개 과정으로 Java 풀스택 개발자가 되세요</p>
           </div>
           <div className="path-grid">
             <div className="path-card">
@@ -158,6 +164,17 @@ export default function Home() {
                 <span className="path-topic">Boot</span>
                 <span className="path-topic">JPA</span>
                 <span className="path-topic">배포</span>
+              </div>
+            </div>
+            <div className="path-card">
+              <div className="path-step">Course 4</div>
+              <h3>실무 Java</h3>
+              <p>IntelliJ, Git, SQL, 클린코드, Linux 등 현업에서 바로 쓸 수 있는 실무 기술을 익힙니다.</p>
+              <div className="path-topics">
+                <span className="path-topic">도구</span>
+                <span className="path-topic">SQL</span>
+                <span className="path-topic">품질</span>
+                <span className="path-topic">인프라</span>
               </div>
             </div>
           </div>

@@ -1,5 +1,59 @@
 # Changelog
 
+## v3.5.0 (2026-03-23)
+
+### 신규 기능
+- **실무 Java 과정** 추가 (10개 레슨, PR01~PR10, 4개 레벨)
+  - Level 1 - 개발 환경과 도구 (practical-tools): IntelliJ IDEA, Git/GitHub, Maven/Gradle
+  - Level 2 - 데이터와 SQL (practical-data): SQL 기초, JDBC 심화/트랜잭션, JSON 처리
+  - Level 3 - 코드 품질과 실무 기법 (practical-quality): 클린 코드/리팩토링, 로깅/디버깅
+  - Level 4 - 인프라와 날짜/시간 (practical-infra): Java 날짜/시간 API, Linux/서버 환경
+  - 전용 허브 페이지 (`/practical`)
+- **실무 Java 퀴즈** 추가 (10문제, 12분, 합격 70점)
+  - IntelliJ, Git, Maven, SQL, JDBC, Jackson, SOLID, SLF4J, java.time, Linux
+- **신규 배지 6개** 추가 → 총 39개 (Bronze 8 / Silver 12 / Gold 13 / Platinum 4)
+  - Bronze: `practical-starter` (실무 입문)
+  - Silver: `practical-tools-master` (도구 마스터), `practical-data-master` (데이터 마스터), `practical-quiz` (실무 퀴즈 통과)
+  - Gold: `practical-quality-master` (품질 마스터), `practical-all-master` (실무 마스터)
+- **실무 수료증** 추가 (마이페이지)
+  - 실무 4레벨 완료 + 실무 퀴즈 70점 이상
+
+### 개선
+- **전체 통계 업데이트**: 43 → 53 레슨, 3 → 4 과정, 6 → 7 퀴즈, 33 → 39 배지
+- **Navbar**: "실무" 메가 드롭다운 추가 (도구/데이터/품질/인프라 4섹션)
+- **ProgressContext**: practical 레벨 4개 추가, `getPracticalProgress()`, total 43→53
+- **BadgeContext**: `all_completed`/`java_master`에 practical 레벨 추가, `all_quizzes`에 practical 추가
+- **Home**: 통계 53레슨/4과정/7퀴즈/39배지, 실무 Java 기능 카드, Course 4 로드맵 카드
+- **MyPage**: practicalLevels import, 실무 수료증, Master 조건 확장 (12레벨+7퀴즈), levelLabels 4개 추가
+- **Guide**: 배지 39개, 수료증 7종류
+- **Footer**: 실무 과정 링크 추가
+- **QuizCenter**: practical quizMeta 추가
+
+### 신규 파일 (12개)
+- `src/data/practicalLessons.js`: 실무 레슨 데이터 (4레벨, 10레슨, 헬퍼함수)
+- `src/pages/PracticalLearning.jsx`: 실무 허브 페이지
+- `src/pages/practical/PracticalLesson01~10.jsx`: 실무 레슨 10개
+
+### 수정 파일 (10개)
+- `src/App.jsx`: lazy import 11개, Route 11개
+- `src/components/layout/Navbar.jsx`: 실무 메가 드롭다운
+- `src/contexts/ProgressContext.jsx`: practical 레벨, getPracticalProgress, total 53
+- `src/contexts/BadgeContext.jsx`: 조건 업데이트
+- `src/data/badges.js`: 실무 배지 6개
+- `src/data/quizzes.js`: 실무 퀴즈 10문제
+- `src/pages/QuizCenter.jsx`: practical quizMeta
+- `src/pages/Home.jsx`: 통계, 로드맵, 기능 카드
+- `src/pages/MyPage.jsx`: practicalLevels, 수료증, levelLabels
+- `src/pages/Guide.jsx`: 수치 업데이트
+- `src/components/layout/Footer.jsx`: 실무 링크
+
+### 문서
+- `Dev_md/changelog.md`: v3.5.0 기록
+- `Dev_md/practical-course-guide.md`: 실무 과정 가이드 (신규)
+- `Dev_md/project-plan.md`: 커리큘럼 업데이트
+
+---
+
 ## v3.4.0 (2026-03-23)
 
 ### 신규 기능

@@ -1,0 +1,64 @@
+export const practicalLevels = [
+  {
+    id: 'practical-tools',
+    title: '개발 환경과 도구',
+    description: 'IntelliJ IDEA, Git/GitHub, Maven/Gradle 등 실무 필수 도구를 학습합니다',
+    icon: 'fa-toolbox',
+    color: '#8B5CF6',
+    lessons: [
+      { id: 'PR01', title: 'IntelliJ IDEA 완벽 가이드', desc: '설치, 프로젝트 생성, 디버깅, 단축키, 플러그인을 배웁니다', difficulty: 'beginner' },
+      { id: 'PR02', title: 'Git과 GitHub 버전 관리', desc: 'git 명령어, 브랜치, merge/rebase, GitHub PR, 협업을 학습합니다', difficulty: 'beginner' },
+      { id: 'PR03', title: 'Maven과 Gradle 빌드 도구', desc: 'pom.xml/build.gradle, 의존성, 라이프사이클, 멀티모듈을 다룹니다', difficulty: 'intermediate' },
+    ]
+  },
+  {
+    id: 'practical-data',
+    title: '데이터와 SQL',
+    description: 'SQL, JDBC, JSON 처리 등 데이터 관련 실무 기술을 학습합니다',
+    icon: 'fa-database',
+    color: '#EC4899',
+    lessons: [
+      { id: 'PR04', title: 'SQL 기초', desc: 'DDL/DML, JOIN 5종, 서브쿼리, 인덱스, 제약조건을 학습합니다', difficulty: 'beginner' },
+      { id: 'PR05', title: 'JDBC 심화와 트랜잭션', desc: 'ACID, 격리수준, HikariCP, DAO/Repository 패턴을 배웁니다', difficulty: 'intermediate' },
+      { id: 'PR06', title: 'JSON 처리 (Jackson, Gson)', desc: 'ObjectMapper, 어노테이션, DTO 변환, REST 연동을 학습합니다', difficulty: 'intermediate' },
+    ]
+  },
+  {
+    id: 'practical-quality',
+    title: '코드 품질과 실무 기법',
+    description: '클린 코드, SOLID, 리팩토링, 로깅, 디버깅을 학습합니다',
+    icon: 'fa-gem',
+    color: '#F59E0B',
+    lessons: [
+      { id: 'PR07', title: '클린 코드와 리팩토링', desc: '네이밍, SOLID 5원칙, 리팩토링 기법, 코드 스멜을 배웁니다', difficulty: 'intermediate' },
+      { id: 'PR08', title: '로깅과 디버깅', desc: 'SLF4J, Logback, 로그 레벨/패턴, MDC, 디버깅 전략을 학습합니다', difficulty: 'intermediate' },
+    ]
+  },
+  {
+    id: 'practical-infra',
+    title: '인프라와 날짜/시간',
+    description: 'Java 날짜/시간 API, Linux, WAS 구조, 서버 환경을 학습합니다',
+    icon: 'fa-cloud',
+    color: '#06B6D4',
+    lessons: [
+      { id: 'PR09', title: 'Java 날짜/시간 API', desc: 'LocalDate/Time, Duration, Period, DateTimeFormatter를 다룹니다', difficulty: 'intermediate' },
+      { id: 'PR10', title: 'Linux와 서버 환경', desc: 'Linux 명령어, Tomcat/WAS, JAR/WAR, 환경변수, 클라우드를 학습합니다', difficulty: 'advanced' },
+    ]
+  }
+]
+
+export const allPracticalLessons = practicalLevels.flatMap(level =>
+  level.lessons.map(lesson => ({ ...lesson, level: level.id, levelTitle: level.title }))
+)
+
+export function getPracticalLessonById(id) {
+  return allPracticalLessons.find(l => l.id === id)
+}
+
+export function getAdjacentPracticalLessons(id) {
+  const idx = allPracticalLessons.findIndex(l => l.id === id)
+  return {
+    prev: idx > 0 ? allPracticalLessons[idx - 1] : null,
+    next: idx < allPracticalLessons.length - 1 ? allPracticalLessons[idx + 1] : null
+  }
+}

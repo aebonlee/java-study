@@ -57,6 +57,15 @@ export const badges = [
     condition: { type: 'specific_lessons', lessons: ['S01'] }
   },
 
+  {
+    id: 'practical-starter',
+    title: '실무 입문',
+    description: '실무 Java 첫 레슨(PR01)을 완료했습니다',
+    icon: '🔧',
+    tier: 'bronze',
+    condition: { type: 'specific_lessons', lessons: ['PR01'] }
+  },
+
   // === Silver Tier ===
   {
     id: 'basics-master',
@@ -129,6 +138,31 @@ export const badges = [
     icon: '📚',
     tier: 'silver',
     condition: { type: 'lessons_completed', count: 20 }
+  },
+
+  {
+    id: 'practical-tools-master',
+    title: '도구 마스터',
+    description: '실무 도구 과정(PR01-PR03)을 모두 완료했습니다',
+    icon: '🛠️',
+    tier: 'silver',
+    condition: { type: 'level_completed', level: 'practical-tools' }
+  },
+  {
+    id: 'practical-data-master',
+    title: '데이터 마스터',
+    description: '데이터/SQL 과정(PR04-PR06)을 모두 완료했습니다',
+    icon: '🗄️',
+    tier: 'silver',
+    condition: { type: 'level_completed', level: 'practical-data' }
+  },
+  {
+    id: 'practical-quiz',
+    title: '실무 퀴즈 통과',
+    description: '실무 Java 퀴즈를 통과했습니다',
+    icon: '🎯',
+    tier: 'silver',
+    condition: { type: 'quiz_passed', quizId: 'practical', minScore: 70 }
   },
 
   // === Gold Tier ===
@@ -237,11 +271,28 @@ export const badges = [
     condition: { type: 'lessons_completed', count: 40 }
   },
 
+  {
+    id: 'practical-quality-master',
+    title: '품질 마스터',
+    description: '코드 품질 과정(PR07-PR08)을 모두 완료했습니다',
+    icon: '💎',
+    tier: 'gold',
+    condition: { type: 'level_completed', level: 'practical-quality' }
+  },
+  {
+    id: 'practical-all-master',
+    title: '실무 마스터',
+    description: '실무 Java 과정을 모두 완료했습니다',
+    icon: '🏗️',
+    tier: 'gold',
+    condition: { type: 'multi_level_completed', levels: ['practical-tools', 'practical-data', 'practical-quality', 'practical-infra'] }
+  },
+
   // === Platinum Tier ===
   {
     id: 'all-clear',
     title: 'ALL CLEAR!',
-    description: '모든 레슨(43개)을 완료했습니다',
+    description: '모든 레슨(53개)을 완료했습니다',
     icon: '☕',
     tier: 'platinum',
     condition: { type: 'all_completed' }
@@ -249,7 +300,7 @@ export const badges = [
   {
     id: 'quiz-champion',
     title: '퀴즈 챔피언',
-    description: '모든 퀴즈(6개)를 통과했습니다',
+    description: '모든 퀴즈(7개)를 통과했습니다',
     icon: '👑',
     tier: 'platinum',
     condition: { type: 'all_quizzes_passed' }

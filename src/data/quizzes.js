@@ -666,5 +666,124 @@ export const quizzes = {
         explanation: 'JWT(JSON Web Token)는 Header(알고리즘/타입), Payload(클레임/데이터), Signature(서명) 세 부분이 점(.)으로 구분된 구조입니다. @SpringBootTest는 전체 애플리케이션 컨텍스트를 로딩하는 통합 테스트 어노테이션입니다.'
       }
     ]
+  },
+
+  practical: {
+    title: '실무 Java 퀴즈',
+    description: 'IntelliJ, Git, SQL, JSON, 클린코드, 로깅, 날짜/시간, Linux (PR01-PR10)',
+    passingScore: 70,
+    timeLimit: 720,
+    questions: [
+      {
+        question: 'IntelliJ IDEA에서 코드를 자동 정렬(Reformat Code)하는 단축키는? (Windows 기준)',
+        options: [
+          'Ctrl + Alt + L',
+          'Ctrl + Shift + F',
+          'Alt + Enter',
+          'Ctrl + D'
+        ],
+        correct: 0,
+        explanation: 'IntelliJ에서 Ctrl + Alt + L은 코드를 자동 정렬(Reformat Code)하는 단축키입니다. Ctrl + Shift + F는 전체 검색(Find in Files)입니다.'
+      },
+      {
+        question: 'Git에서 이미 커밋한 내용을 되돌리되, 커밋 이력을 남기면서 되돌리는 명령어는?',
+        options: [
+          'git revert',
+          'git reset --hard',
+          'git checkout',
+          'git clean'
+        ],
+        correct: 0,
+        explanation: 'git revert는 기존 커밋을 취소하는 새로운 커밋을 생성하여 이력을 보존합니다. git reset --hard는 이력 자체를 삭제합니다.'
+      },
+      {
+        question: 'Maven의 빌드 라이프사이클에서 올바른 실행 순서는?',
+        options: [
+          'compile → test → package → install → deploy',
+          'package → compile → test → deploy → install',
+          'test → compile → package → install → deploy',
+          'compile → package → test → install → deploy'
+        ],
+        correct: 0,
+        explanation: 'Maven의 기본 빌드 라이프사이클은 validate → compile → test → package → verify → install → deploy 순서로 실행됩니다.'
+      },
+      {
+        question: 'SQL에서 두 테이블의 교집합만 반환하는 JOIN은?',
+        options: [
+          'INNER JOIN',
+          'LEFT JOIN',
+          'RIGHT JOIN',
+          'FULL OUTER JOIN'
+        ],
+        correct: 0,
+        explanation: 'INNER JOIN은 두 테이블에서 조건이 일치하는 행(교집합)만 반환합니다. LEFT/RIGHT JOIN은 한쪽 테이블의 모든 행을 포함합니다.'
+      },
+      {
+        question: 'JDBC에서 트랜잭션의 ACID 속성 중 "하나의 트랜잭션은 모두 성공하거나 모두 실패해야 한다"는 것은?',
+        options: [
+          'Atomicity (원자성)',
+          'Consistency (일관성)',
+          'Isolation (격리성)',
+          'Durability (지속성)'
+        ],
+        correct: 0,
+        explanation: 'Atomicity(원자성)는 트랜잭션의 모든 작업이 하나의 단위로 처리되어, 전부 성공하거나 전부 롤백되어야 함을 의미합니다.'
+      },
+      {
+        question: 'Jackson의 ObjectMapper에서 Java 객체를 JSON 문자열로 변환하는 메서드는?',
+        options: [
+          'writeValueAsString()',
+          'readValue()',
+          'toJson()',
+          'serialize()'
+        ],
+        correct: 0,
+        explanation: 'ObjectMapper의 writeValueAsString()은 Java 객체를 JSON 문자열로 직렬화합니다. readValue()는 JSON을 Java 객체로 역직렬화합니다.'
+      },
+      {
+        question: 'SOLID 원칙 중 "클래스는 확장에는 열려 있고, 변경에는 닫혀 있어야 한다"는 원칙은?',
+        options: [
+          'OCP (개방-폐쇄 원칙)',
+          'SRP (단일 책임 원칙)',
+          'LSP (리스코프 치환 원칙)',
+          'DIP (의존 역전 원칙)'
+        ],
+        correct: 0,
+        explanation: 'OCP(Open-Closed Principle)는 기존 코드를 수정하지 않고도 기능을 확장할 수 있어야 한다는 원칙입니다.'
+      },
+      {
+        question: 'SLF4J의 로그 레벨 중 가장 심각도가 높은 것부터 낮은 순서로 올바른 것은?',
+        options: [
+          'ERROR > WARN > INFO > DEBUG > TRACE',
+          'TRACE > DEBUG > INFO > WARN > ERROR',
+          'ERROR > INFO > WARN > DEBUG > TRACE',
+          'WARN > ERROR > INFO > DEBUG > TRACE'
+        ],
+        correct: 0,
+        explanation: '로그 레벨은 ERROR(가장 심각) > WARN > INFO > DEBUG > TRACE(가장 상세) 순서입니다.'
+      },
+      {
+        question: 'Java 8의 날짜/시간 API에서 날짜와 시간을 모두 포함하는 클래스는?',
+        options: [
+          'LocalDateTime',
+          'LocalDate',
+          'LocalTime',
+          'Duration'
+        ],
+        correct: 0,
+        explanation: 'LocalDateTime은 날짜와 시간을 모두 포함합니다. LocalDate는 날짜만, LocalTime은 시간만, Duration은 시간 차이를 나타냅니다.'
+      },
+      {
+        question: 'Linux에서 파일의 읽기/쓰기/실행 권한을 변경하는 명령어는?',
+        options: [
+          'chmod',
+          'chown',
+          'chgrp',
+          'ls -l'
+        ],
+        correct: 0,
+        explanation: 'chmod는 파일의 권한(읽기/쓰기/실행)을 변경합니다. chown은 소유자를, chgrp는 그룹을 변경합니다.'
+      }
+    ]
   }
 }

@@ -116,13 +116,13 @@ export function BadgeProvider({ children }) {
           earned = condition.levels.every(id => isLevelCompleted(id))
           break
         case 'all_quizzes_passed':
-          earned = ['basics', 'intermediate', 'advanced', 'web', 'servlet', 'spring'].every(id => {
+          earned = ['basics', 'intermediate', 'advanced', 'web', 'servlet', 'spring', 'practical'].every(id => {
             const bs = getQuizBestScore(id)
             return bs !== undefined && bs >= 70
           })
           break
         case 'all_quizzes_perfect':
-          earned = ['basics', 'intermediate', 'advanced', 'web', 'servlet', 'spring'].every(id =>
+          earned = ['basics', 'intermediate', 'advanced', 'web', 'servlet', 'spring', 'practical'].every(id =>
             getQuizBestScore(id) === 100
           )
           break
@@ -130,14 +130,14 @@ export function BadgeProvider({ children }) {
           earned = codeRuns >= condition.count
           break
         case 'all_completed':
-          earned = ['basics', 'intermediate', 'advanced', 'web', 'servlet-basic', 'servlet-advanced', 'spring-framework', 'spring-boot'].every(id => isLevelCompleted(id))
+          earned = ['basics', 'intermediate', 'advanced', 'web', 'servlet-basic', 'servlet-advanced', 'spring-framework', 'spring-boot', 'practical-tools', 'practical-data', 'practical-quality', 'practical-infra'].every(id => isLevelCompleted(id))
           break
         case 'specific_lessons':
           earned = condition.lessons.every(id => completedLessons.includes(id))
           break
         case 'java_master':
-          earned = ['basics', 'intermediate', 'advanced', 'web', 'servlet-basic', 'servlet-advanced', 'spring-framework', 'spring-boot'].every(id => isLevelCompleted(id)) &&
-            ['basics', 'intermediate', 'advanced', 'web', 'servlet', 'spring'].every(id => {
+          earned = ['basics', 'intermediate', 'advanced', 'web', 'servlet-basic', 'servlet-advanced', 'spring-framework', 'spring-boot', 'practical-tools', 'practical-data', 'practical-quality', 'practical-infra'].every(id => isLevelCompleted(id)) &&
+            ['basics', 'intermediate', 'advanced', 'web', 'servlet', 'spring', 'practical'].every(id => {
               const bs = getQuizBestScore(id)
               return bs !== undefined && bs >= 70
             })
