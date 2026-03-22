@@ -11,8 +11,8 @@
 
 | 항목 | 수치 |
 |------|------|
-| 총 라우트 | 83개 |
-| Lazy 로드 컴포넌트 | 66개 |
+| 총 라우트 | 73개 |
+| Lazy 로드 컴포넌트 | 72개 |
 | 학습 콘텐츠 | 61개 (5개 과정: 53레슨 + 8프로젝트) |
 | 프로젝트 | 8개 (4레벨) |
 | 퀴즈 | 7개 (총 70문제) |
@@ -234,11 +234,10 @@
 
 | 등급 | 개수 | 예시 |
 |------|------|------|
-| 브론즈 | 8개 | 첫 레슨, Hello World, 코드 실행 10회 |
-| 실버 | 11개 | 기초 마스터, 10개 레슨, OOP 퀴즈 합격 |
-| 골드 | 17개 | 스프링 마스터, 만점 퀴즈, 40개 레슨 |
-| 플래티넘 | 4개 | ALL CLEAR, Java Master, 프로젝트 올클리어 |
-| 프로젝트 | 4개 | 프로젝트 입문~올클리어 |
+| 브론즈 | 9개 | 첫 레슨, Hello World, 코드 실행 10회, 서블릿/실무/프로젝트 입문 |
+| 실버 | 13개 | 기초 마스터, 10개/20개 레슨, OOP/서블릿/실무 퀴즈, 도구/데이터/기초 프로젝트 마스터 |
+| 골드 | 17개 | OOP/고급/웹/서블릿/스프링/품질/실무/심화/웹 프로젝트 마스터, 만점 퀴즈, 30개/40개 레슨 |
+| 플래티넘 | 5개 | ALL CLEAR, 퀴즈 챔피언, 완벽주의자, Java Master, 프로젝트 올클리어 |
 
 **조건 유형:** 11가지 (lessons_completed, level_completed, quiz_passed, quiz_perfect, multi_level_completed, all_quizzes_passed, all_quizzes_perfect, code_runs, all_completed, specific_lessons, java_master)
 
@@ -284,7 +283,7 @@
 |------|------|
 | 빌드 도구 | Vite 7.3.1 |
 | 번들 크기 (index.js) | 454KB (gzip: 134KB) |
-| 코드 스플리팅 | 66개 청크 (lazy loading) |
+| 코드 스플리팅 | 72개 청크 (lazy loading) |
 | 소스맵 | 비활성 (프로덕션 최적화) |
 | 배포 방식 | gh-pages → GitHub Pages |
 | 커스텀 도메인 | CNAME 설정 완료 |

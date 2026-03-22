@@ -7,7 +7,7 @@
 <meta property="og:url" content="https://java-study.dreamitbiz.com" />
 <meta property="og:type" content="website" />
 <meta property="og:title" content="JavaMaster - Java 학습 플랫폼" />
-<meta property="og:description" content="Java 기초부터 Spring Boot까지, 체계적인 17개 챕터 Java 학습 플랫폼" />
+<meta property="og:description" content="Java 기초부터 Spring Boot까지, 체계적인 17개 챕터 Java 학습 플랫폼. 객체지향, 서블릿, Spring Framework를 단계별로 학습하세요." />
 <meta property="og:image" content="https://java-study.dreamitbiz.com/og-image.png" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />

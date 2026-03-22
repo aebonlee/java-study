@@ -66,6 +66,8 @@ node scripts/generate-og-image.mjs
 | `/spring/01~16` | 스프링 레슨 (16개) |
 | `/practical` | 실무 과정 허브 |
 | `/practical/01~10` | 실무 레슨 (10개) |
+| `/projects` | 프로젝트 허브 |
+| `/projects/01~08` | 프로젝트 (8개) |
 | `/quiz` | 퀴즈 센터 |
 | `/badges` | 도장깨기 (배지) |
 | `/my` | 마이페이지 |
