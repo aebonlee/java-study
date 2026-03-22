@@ -66,7 +66,7 @@ export default function Home() {
             </div>
             <div className="stat-card">
               <div className="stat-icon"><i className="fas fa-trophy"></i></div>
-              <div className="stat-number">39</div>
+              <div className="stat-number">44</div>
               <div className="stat-label">달성 배지</div>
             </div>
           </div>
@@ -94,7 +94,7 @@ export default function Home() {
             <div className="feature-card">
               <div className="feature-icon"><i className="fas fa-trophy"></i></div>
               <h3>도장깨기 (배지)</h3>
-              <p>학습 목표를 달성하면 배지를 획득! 39개 배지를 모두 수집해보세요.</p>
+              <p>학습 목표를 달성하면 배지를 획득! 44개 배지를 모두 수집해보세요.</p>
               <Link to="/badges" className="feature-link">배지 확인하기 <i className="fas fa-arrow-right"></i></Link>
             </div>
             <div className="feature-card">
@@ -114,6 +114,12 @@ export default function Home() {
               <h3>실무 Java 과정</h3>
               <p>IntelliJ, Git, SQL, 클린코드, Linux 등 취업 전 반드시 알아야 할 실무 기술을 배웁니다.</p>
               <Link to="/practical" className="feature-link">실무 시작 <i className="fas fa-arrow-right"></i></Link>
+            </div>
+            <div className="feature-card">
+              <div className="feature-icon"><i className="fas fa-project-diagram"></i></div>
+              <h3>실전 프로젝트</h3>
+              <p>콘솔 앱부터 Spring E-Commerce까지, 8개 프로젝트로 실전 개발 능력을 키웁니다.</p>
+              <Link to="/projects" className="feature-link">프로젝트 시작 <i className="fas fa-arrow-right"></i></Link>
             </div>
             <div className="feature-card">
               <div className="feature-icon"><i className="fas fa-chart-line"></i></div>

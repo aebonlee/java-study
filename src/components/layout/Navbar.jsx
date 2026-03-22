@@ -177,6 +177,44 @@ export default function Navbar() {
         },
       ]
     },
+    {
+      label: '프로젝트',
+      mega: true,
+      sections: [
+        {
+          title: '기초',
+          color: '#10B981',
+          children: [
+            { to: '/projects/01', label: '콘솔 주소록' },
+            { to: '/projects/02', label: '성적 관리' },
+          ]
+        },
+        {
+          title: '심화',
+          color: '#3B82F6',
+          children: [
+            { to: '/projects/03', label: '도서 관리' },
+            { to: '/projects/04', label: '채팅 앱' },
+          ]
+        },
+        {
+          title: '웹',
+          color: '#E76F00',
+          children: [
+            { to: '/projects/05', label: '서블릿 게시판' },
+            { to: '/projects/06', label: '서블릿 쇼핑몰' },
+          ]
+        },
+        {
+          title: 'Spring',
+          color: '#6DB33F',
+          children: [
+            { to: '/projects/07', label: 'REST 블로그' },
+            { to: '/projects/08', label: 'E-Commerce' },
+          ]
+        },
+      ]
+    },
     { to: '/java-learning', label: '커리큘럼' },
     { to: '/quiz', label: '퀴즈' },
     { to: '/badges', label: '도장깨기' },

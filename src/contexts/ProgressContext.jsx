@@ -199,6 +199,10 @@ export function ProgressProvider({ children }) {
       'practical-data': ['PR04', 'PR05', 'PR06'],
       'practical-quality': ['PR07', 'PR08'],
       'practical-infra': ['PR09', 'PR10'],
+      'project-basic': ['PJ01', 'PJ02'],
+      'project-advanced': ['PJ03', 'PJ04'],
+      'project-web': ['PJ05', 'PJ06'],
+      'project-spring': ['PJ07', 'PJ08'],
     }
     const lessons = levelLessons[levelId]
     return lessons ? lessons.every(id => progress.completedLessons.includes(id)) : false
@@ -236,6 +240,12 @@ export function ProgressProvider({ children }) {
     return Math.round((completed / total) * 100)
   }
 
+  const getProjectProgress = () => {
+    const ids = ['PJ01','PJ02','PJ03','PJ04','PJ05','PJ06','PJ07','PJ08']
+    const done = ids.filter(id => progress.completedLessons.includes(id)).length
+    return Math.round((done / ids.length) * 100)
+  }
+
   const getQuizBestScore = (quizId) => {
     return progress.quizScores[quizId]?.bestScore
   }
@@ -261,6 +271,7 @@ export function ProgressProvider({ children }) {
       getServletProgress,
       getSpringProgress,
       getPracticalProgress,
+      getProjectProgress,
       getQuizBestScore,
       getQuizAttempts
     }}>

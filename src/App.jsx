@@ -61,6 +61,15 @@ const SpringLesson14 = lazy(() => import('./pages/spring/SpringLesson14'))
 const SpringLesson15 = lazy(() => import('./pages/spring/SpringLesson15'))
 const SpringLesson16 = lazy(() => import('./pages/spring/SpringLesson16'))
 const PracticalLearning = lazy(() => import('./pages/PracticalLearning'))
+const ProjectHub = lazy(() => import('./pages/ProjectHub'))
+const ProjectLesson01 = lazy(() => import('./pages/projects/ProjectLesson01'))
+const ProjectLesson02 = lazy(() => import('./pages/projects/ProjectLesson02'))
+const ProjectLesson03 = lazy(() => import('./pages/projects/ProjectLesson03'))
+const ProjectLesson04 = lazy(() => import('./pages/projects/ProjectLesson04'))
+const ProjectLesson05 = lazy(() => import('./pages/projects/ProjectLesson05'))
+const ProjectLesson06 = lazy(() => import('./pages/projects/ProjectLesson06'))
+const ProjectLesson07 = lazy(() => import('./pages/projects/ProjectLesson07'))
+const ProjectLesson08 = lazy(() => import('./pages/projects/ProjectLesson08'))
 const PracticalLesson01 = lazy(() => import('./pages/practical/PracticalLesson01'))
 const PracticalLesson02 = lazy(() => import('./pages/practical/PracticalLesson02'))
 const PracticalLesson03 = lazy(() => import('./pages/practical/PracticalLesson03'))
@@ -164,6 +173,15 @@ export default function App() {
                   <Route path="/practical/08" element={<PracticalLesson08 />} />
                   <Route path="/practical/09" element={<PracticalLesson09 />} />
                   <Route path="/practical/10" element={<PracticalLesson10 />} />
+                  <Route path="/projects" element={<ProjectHub />} />
+                  <Route path="/projects/01" element={<ProjectLesson01 />} />
+                  <Route path="/projects/02" element={<ProjectLesson02 />} />
+                  <Route path="/projects/03" element={<ProjectLesson03 />} />
+                  <Route path="/projects/04" element={<ProjectLesson04 />} />
+                  <Route path="/projects/05" element={<ProjectLesson05 />} />
+                  <Route path="/projects/06" element={<ProjectLesson06 />} />
+                  <Route path="/projects/07" element={<ProjectLesson07 />} />
+                  <Route path="/projects/08" element={<ProjectLesson08 />} />
                   <Route path="*" element={<NotFound />} />
                 </Routes>
               </Suspense>

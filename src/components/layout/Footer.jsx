@@ -27,6 +27,8 @@ export default function Footer() {
     { path: '/spring/01', label: '스프링: Framework 소개' },
     { path: '/practical', label: '실무 Java 과정' },
     { path: '/practical/01', label: '실무: IntelliJ IDEA' },
+    { path: '/projects', label: '프로젝트 허브' },
+    { path: '/projects/01', label: '프로젝트: 콘솔 주소록' },
   ]
 
   const familySites = [

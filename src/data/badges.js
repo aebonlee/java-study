@@ -288,6 +288,48 @@ export const badges = [
     condition: { type: 'multi_level_completed', levels: ['practical-tools', 'practical-data', 'practical-quality', 'practical-infra'] }
   },
 
+  // === Project Badges ===
+  {
+    id: 'project-starter',
+    title: '프로젝트 입문',
+    description: '첫 번째 프로젝트(PJ01)를 완료했습니다',
+    icon: '🏗️',
+    tier: 'bronze',
+    condition: { type: 'specific_lessons', lessons: ['PJ01'] }
+  },
+  {
+    id: 'project-basic-master',
+    title: '기초 프로젝트 마스터',
+    description: '기초 프로젝트(PJ01-PJ02)를 모두 완료했습니다',
+    icon: '🌿',
+    tier: 'silver',
+    condition: { type: 'level_completed', level: 'project-basic' }
+  },
+  {
+    id: 'project-advanced-master',
+    title: '심화 프로젝트 마스터',
+    description: '심화 프로젝트(PJ03-PJ04)를 모두 완료했습니다',
+    icon: '🔬',
+    tier: 'gold',
+    condition: { type: 'level_completed', level: 'project-advanced' }
+  },
+  {
+    id: 'project-web-master',
+    title: '웹 프로젝트 마스터',
+    description: '웹 프로젝트(PJ05-PJ06)를 모두 완료했습니다',
+    icon: '🌍',
+    tier: 'gold',
+    condition: { type: 'level_completed', level: 'project-web' }
+  },
+  {
+    id: 'project-all-master',
+    title: '프로젝트 올클리어',
+    description: '모든 프로젝트(8개)를 완료했습니다',
+    icon: '👑',
+    tier: 'platinum',
+    condition: { type: 'multi_level_completed', levels: ['project-basic', 'project-advanced', 'project-web', 'project-spring'] }
+  },
+
   // === Platinum Tier ===
   {
     id: 'all-clear',
