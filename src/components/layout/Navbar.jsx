@@ -94,23 +94,36 @@ export default function Navbar() {
     },
     {
       label: '스프링',
-      children: [
-        { to: '/spring/01', label: 'Spring Framework 소개' },
-        { to: '/spring/02', label: 'IoC와 DI' },
-        { to: '/spring/03', label: 'Spring Bean과 컨테이너' },
-        { to: '/spring/04', label: 'AOP (관점지향)' },
-        { to: '/spring/05', label: 'Spring MVC 기초' },
-        { to: '/spring/06', label: '데이터 바인딩과 검증' },
-        { to: '/spring/07', label: 'MyBatis 연동' },
-        { to: '/spring/08', label: 'Spring Security 기초' },
-        { to: '/spring/09', label: 'Spring Boot 시작하기' },
-        { to: '/spring/10', label: 'REST API 설계와 구현' },
-        { to: '/spring/11', label: 'Spring Data JPA' },
-        { to: '/spring/12', label: '예외처리와 응답 표준화' },
-        { to: '/spring/13', label: 'Spring Security + JWT' },
-        { to: '/spring/14', label: '테스트 (JUnit5, MockMvc)' },
-        { to: '/spring/15', label: 'Swagger/OpenAPI 문서화' },
-        { to: '/spring/16', label: '배포 (Docker, CI/CD)' },
+      mega: true,
+      sections: [
+        {
+          title: 'Framework',
+          color: '#10B981',
+          children: [
+            { to: '/spring/01', label: 'Framework 소개' },
+            { to: '/spring/02', label: 'IoC와 DI' },
+            { to: '/spring/03', label: 'Bean과 컨테이너' },
+            { to: '/spring/04', label: 'AOP (관점지향)' },
+            { to: '/spring/05', label: 'MVC 기초' },
+            { to: '/spring/06', label: '데이터 바인딩과 검증' },
+            { to: '/spring/07', label: 'MyBatis 연동' },
+            { to: '/spring/08', label: 'Security 기초' },
+          ]
+        },
+        {
+          title: 'Boot',
+          color: '#3B82F6',
+          children: [
+            { to: '/spring/09', label: 'Boot 시작하기' },
+            { to: '/spring/10', label: 'REST API 구현' },
+            { to: '/spring/11', label: 'Spring Data JPA' },
+            { to: '/spring/12', label: '예외처리 표준화' },
+            { to: '/spring/13', label: 'Security + JWT' },
+            { to: '/spring/14', label: '테스트 (JUnit5)' },
+            { to: '/spring/15', label: 'Swagger 문서화' },
+            { to: '/spring/16', label: '배포 (Docker)' },
+          ]
+        },
       ]
     },
     { to: '/java-learning', label: '커리큘럼' },
