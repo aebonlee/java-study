@@ -8,6 +8,13 @@
   - "Java" = Primary 블루, "Master" = Accent Dark 주황
   - font-size: 26px, font-weight: 800
   - Footer: logo-icon 제거 → footer-logo 텍스트 (Java=주황, Master=흰색)
+- Supabase SQL 스크립트 개선
+  - users PK → `auth.users(id)` 참조 (Supabase Auth 연동)
+  - 모든 FK → `auth.users(id)` 직접 참조
+  - `DROP POLICY/TRIGGER IF EXISTS` 추가 (안전한 재실행)
+  - 관리자(`aebon@kakao.com`) 전체 조회 RLS 정책
+  - quiz_scores에 `max_score`, `updated_at` 추가
+  - 추가 인덱스 (`quiz_id`, `likes_post`)
 
 ---
 
