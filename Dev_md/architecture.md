@@ -54,7 +54,8 @@ java-study/
     ├── contexts/
     │   ├── ThemeContext.jsx     # 다크모드
     │   ├── ProgressContext.jsx  # 학습 진도, 퀴즈 점수
-    │   └── BadgeContext.jsx     # 배지 평가 엔진
+    │   ├── BadgeContext.jsx     # 배지 평가 엔진
+    │   └── AuthContext.jsx      # 인증 (Google/Kakao OAuth, 세션 관리)
     ├── config/
     │   └── supabase.js
     ├── components/
@@ -75,6 +76,7 @@ java-study/
         ├── BadgeCollection.jsx  # 도장깨기
         ├── MyPage.jsx           # 마이페이지
         ├── Guide.jsx            # 이용 가이드
+        ├── Login.jsx            # 로그인 페이지
         └── java-learning/
             ├── JavaLesson01.jsx ~ JavaLesson17.jsx
 ```
@@ -89,11 +91,13 @@ java-study/
 | `/badges` | BadgeCollection | 도장깨기 (배지) |
 | `/my` | MyPage | 마이페이지 |
 | `/guide` | Guide | 이용 가이드 |
+| `/login` | Login | 로그인 (Google/Kakao OAuth) |
 
 ## 상태 관리
 - **ThemeContext**: 라이트/다크 모드 (localStorage: `javamaster-theme`)
 - **ProgressContext**: 레슨 완료, 퀴즈 점수, 코드 실행 횟수 (localStorage: `javamaster-progress`)
 - **BadgeContext**: 배지 획득 평가, 알림 팝업 (localStorage: `javamaster-badges`)
+- **AuthContext**: Google/Kakao OAuth 인증, 세션 30분 자동 만료, 로그인 모달 (Supabase Auth)
 
 ## 배지 시스템 (24개)
 | 등급 | 개수 | 조건 유형 |

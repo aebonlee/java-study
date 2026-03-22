@@ -156,13 +156,42 @@
 
 ---
 
-## 7. 다크 모드
+## 7. 로그인 시스템 (`/login`)
+
+### OAuth 로그인
+- **Google 로그인**: Supabase Auth + Google OAuth
+- **Kakao 로그인**: Supabase Auth + Kakao OAuth
+- Supabase 미설정 시 에러 메시지 표시
+
+### 세션 관리
+- 30분 자동 세션 만료
+- 만료 5분 전 경고 배너 표시
+- "연장하기" 버튼으로 세션 갱신
+- localStorage(`javamaster-session-expiry`)에 만료 시간 저장
+
+### Navbar 사용자 메뉴
+- **로그인 전**: "로그인" 버튼 표시
+- **로그인 후**: 사용자 아바타 표시
+  - 클릭 시 풍선 드롭다운 메뉴
+  - 사용자 이름, 이메일
+  - 마이페이지 링크
+  - 관리자 메뉴 (관리자 이메일만)
+  - 로그아웃 버튼
+
+### 로그인 모달 (requireAuth)
+- 로그인 필요 기능 접근 시 자동 팝업
+- Google/Kakao 로그인 버튼
+- 로그인 완료 후 원래 작업 자동 수행
+
+---
+
+## 8. 다크 모드
 - ThemeContext로 관리 (localStorage: `javamaster-theme`)
 - CSS Custom Properties 오버라이드
 - 모든 컴포넌트 다크모드 대응
 - `[data-theme="dark"]` 선택자 사용
 
-## 8. 반응형 디자인
+## 9. 반응형 디자인
 - **데스크톱**: 1280px 컨테이너
 - **태블릿**: 1024px 이하 - 2열 그리드
 - **모바일**: 768px 이하 - 1열, 햄버거 메뉴

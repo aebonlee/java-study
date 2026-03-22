@@ -1,5 +1,26 @@
 # Changelog
 
+## v2.1.0 (2026-03-22)
+
+### 신규 기능
+- 로그인 시스템 구현
+  - Google OAuth 로그인
+  - Kakao OAuth 로그인
+  - AuthContext: 세션 관리 (30분 자동 만료, 연장 가능)
+  - 로그인 모달 (requireAuth 패턴)
+  - Navbar 사용자 메뉴 (아바타, 프로필, 로그아웃)
+  - Login 페이지 (`/login`)
+- OG 이미지 PNG 자동 생성 (sharp 기반 스크립트)
+  - `scripts/generate-og-image.mjs`
+
+### 개선
+- 파비콘: 그라데이션 제거 → 순수 주황색 (#E76F00)
+- 로고 아이콘: 그라데이션 제거 → 순수 주황색
+- 타이틀 컬러: "Java" = Primary 블루, "Master" = Accent 주황
+- Supabase 클라이언트 설정 개선 (auth 옵션 추가)
+
+---
+
 ## v2.0.0 (2026-03-22)
 
 ### 신규 기능

@@ -3,6 +3,7 @@ import { Suspense, lazy } from 'react'
 import { ThemeProvider } from './contexts/ThemeContext'
 import { ProgressProvider } from './contexts/ProgressContext'
 import { BadgeProvider } from './contexts/BadgeContext'
+import { AuthProvider } from './contexts/AuthContext'
 import Navbar from './components/layout/Navbar'
 import Footer from './components/layout/Footer'
 import ErrorBoundary from './components/ErrorBoundary'
@@ -13,6 +14,7 @@ const QuizCenter = lazy(() => import('./pages/QuizCenter'))
 const BadgeCollection = lazy(() => import('./pages/BadgeCollection'))
 const MyPage = lazy(() => import('./pages/MyPage'))
 const Guide = lazy(() => import('./pages/Guide'))
+const Login = lazy(() => import('./pages/Login'))
 const JavaLesson01 = lazy(() => import('./pages/java-learning/JavaLesson01'))
 const JavaLesson02 = lazy(() => import('./pages/java-learning/JavaLesson02'))
 const JavaLesson03 = lazy(() => import('./pages/java-learning/JavaLesson03'))
@@ -54,6 +56,7 @@ export default function App() {
     <ThemeProvider>
       <ProgressProvider>
         <BadgeProvider>
+          <AuthProvider>
           <BrowserRouter>
             <ErrorBoundary>
               <Navbar />
@@ -65,6 +68,7 @@ export default function App() {
                   <Route path="/badges" element={<BadgeCollection />} />
                   <Route path="/my" element={<MyPage />} />
                   <Route path="/guide" element={<Guide />} />
+                  <Route path="/login" element={<Login />} />
                   <Route path="/java-learning/01" element={<JavaLesson01 />} />
                   <Route path="/java-learning/02" element={<JavaLesson02 />} />
                   <Route path="/java-learning/03" element={<JavaLesson03 />} />
@@ -88,6 +92,7 @@ export default function App() {
               <Footer />
             </ErrorBoundary>
           </BrowserRouter>
+          </AuthProvider>
         </BadgeProvider>
       </ProgressProvider>
     </ThemeProvider>

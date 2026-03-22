@@ -1,7 +1,8 @@
-import { useState, useEffect } from 'react'
-import { Link, NavLink, useLocation } from 'react-router-dom'
+import { useState, useEffect, useRef } from 'react'
+import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom'
 import { useTheme } from '../../contexts/ThemeContext'
 import { useProgress } from '../../contexts/ProgressContext'
+import { useAuth } from '../../contexts/AuthContext'
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
@@ -9,7 +10,11 @@ export default function Navbar() {
   const [activeDropdown, setActiveDropdown] = useState(null)
   const { theme, toggleTheme } = useTheme()
   const { getTotalProgress } = useProgress()
+  const { user, isAuthenticated, isAdmin, signOut } = useAuth()
+  const [userMenuOpen, setUserMenuOpen] = useState(false)
+  const userMenuRef = useRef(null)
   const location = useLocation()
+  const navigate = useNavigate()
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20)
@@ -20,7 +25,18 @@ export default function Navbar() {
   useEffect(() => {
     setMobileOpen(false)
     setActiveDropdown(null)
+    setUserMenuOpen(false)
   }, [location])
+
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (userMenuRef.current && !userMenuRef.current.contains(e.target)) {
+        setUserMenuOpen(false)
+      }
+    }
+    document.addEventListener('mousedown', handleClickOutside)
+    return () => document.removeEventListener('mousedown', handleClickOutside)
+  }, [])
 
   const totalProgress = getTotalProgress()
 
@@ -65,12 +81,18 @@ export default function Navbar() {
     { to: '/my', label: '마이페이지' },
   ]
 
+  const userAvatar = user?.user_metadata?.avatar_url || user?.user_metadata?.picture
+  const userName = user?.user_metadata?.full_name || user?.user_metadata?.name || user?.email?.split('@')[0]
+
   return (
     <nav className={`navbar${scrolled ? ' scrolled' : ''}`}>
       <div className="container nav-wrapper">
         <Link to="/" className="nav-logo">
           <span className="logo-icon">J</span>
-          <span className="logo-text">Java<span className="logo-accent">Master</span></span>
+          <span className="logo-text">
+            <span className="brand-java">Java</span>
+            <span className="brand-master">Master</span>
+          </span>
         </Link>
 
         <ul className={`nav-menu${mobileOpen ? ' active' : ''}`}>
@@ -140,6 +162,49 @@ export default function Navbar() {
               <i className="fas fa-moon"></i>
             )}
           </button>
+
+          {/* Auth UI */}
+          {isAuthenticated ? (
+            <div className="nav-user-menu" ref={userMenuRef}>
+              <button
+                className="nav-user-trigger"
+                onClick={() => setUserMenuOpen(!userMenuOpen)}
+                aria-label="사용자 메뉴"
+              >
+                {userAvatar ? (
+                  <img src={userAvatar} alt={userName} className="nav-user-avatar" />
+                ) : (
+                  <div className="nav-user-avatar nav-user-avatar-placeholder">
+                    {userName?.charAt(0)?.toUpperCase()}
+                  </div>
+                )}
+              </button>
+              <div className={`nav-user-balloon${userMenuOpen ? ' active' : ''}`}>
+                <div className="nav-balloon-arrow" />
+                <div className="nav-user-info">
+                  <div className="nav-user-name">{userName}</div>
+                  <div className="nav-user-email">{user?.email}</div>
+                </div>
+                <div className="nav-balloon-links">
+                  <Link to="/my" className="nav-balloon-link" onClick={() => setUserMenuOpen(false)}>
+                    <i className="fa-solid fa-user-circle" /> 마이페이지
+                  </Link>
+                  {isAdmin && (
+                    <Link to="/admin" className="nav-balloon-link" onClick={() => setUserMenuOpen(false)}>
+                      <i className="fa-solid fa-shield-halved" /> 관리자
+                    </Link>
+                  )}
+                </div>
+                <button className="nav-balloon-logout" onClick={() => { signOut(); setUserMenuOpen(false); navigate('/login') }}>
+                  <i className="fa-solid fa-right-from-bracket" /> 로그아웃
+                </button>
+              </div>
+            </div>
+          ) : (
+            <button className="nav-login-btn" onClick={() => navigate('/login')}>
+              <i className="fa-solid fa-user" /> 로그인
+            </button>
+          )}
 
           <button
             className={`mobile-toggle${mobileOpen ? ' active' : ''}`}

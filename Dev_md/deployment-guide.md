@@ -57,6 +57,7 @@ npm run deploy
 | `/badges` | 도장깨기 (배지) |
 | `/my` | 마이페이지 |
 | `/guide` | 이용 가이드 |
+| `/login` | 로그인 |
 
 ## 트러블슈팅
 - **404 에러**: `public/CNAME` 파일 존재 확인

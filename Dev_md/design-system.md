@@ -48,6 +48,12 @@
 
 ## 타이포그래피
 
+### 브랜드 로고 컬러
+- **"Java"**: `var(--primary)` (#5382A1 블루)
+- **"Master"**: `var(--accent)` (#E76F00 주황)
+- **J 아이콘**: 순수 주황색 (#E76F00) 배경, 흰색 J
+- **파비콘**: 순수 주황색 (#E76F00) 배경 (그라데이션 없음)
+
 ### 폰트 패밀리
 - **본문**: `'Noto Sans KR', -apple-system, BlinkMacSystemFont, sans-serif`
 - **코드**: `'JetBrains Mono', 'Fira Code', monospace`

@@ -47,7 +47,7 @@ export default function Footer() {
             <div className="footer-brand">
               <h3>
                 <span className="logo-icon">J</span>
-                JavaMaster
+                <span className="brand-java">Java</span><span className="brand-master">Master</span>
               </h3>
               <p>Java 기초부터 Spring Boot까지, 체계적인 학습 플랫폼입니다.</p>
               <p className="footer-desc">누구나 무료로 Java 프로그래밍을 배울 수 있습니다.</p>
