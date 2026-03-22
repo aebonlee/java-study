@@ -141,6 +141,7 @@ export default function Navbar() {
     {
       label: '실무',
       mega: true,
+      grid2x2: true,
       sections: [
         {
           title: '도구',
