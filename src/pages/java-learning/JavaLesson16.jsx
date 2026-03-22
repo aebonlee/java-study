@@ -180,7 +180,7 @@ record ErrorResponse(String code, String message) {}`}</code></pre>
           </div>
 
           <div style={{marginTop:'32px', textAlign:'center'}}>
-            <button className={`btn ${isLessonCompleted('16') ? 'btn-secondary' : 'btn-accent'}`}
+            <button className={`btn ${isLessonCompleted('16') ? 'btn-primary' : 'btn-accent'}`}
               onClick={() => completeLesson('16')}>
               {isLessonCompleted('16') ? '✓ 학습 완료!' : '학습 완료하기'}
             </button>

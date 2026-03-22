@@ -234,7 +234,7 @@ System.out.println(info);
           </div>
 
           <div style={{marginTop:'32px', textAlign:'center'}}>
-            <button className={`btn ${isLessonCompleted('04') ? 'btn-secondary' : 'btn-accent'}`}
+            <button className={`btn ${isLessonCompleted('04') ? 'btn-primary' : 'btn-accent'}`}
               onClick={() => completeLesson('04')}>
               {isLessonCompleted('04') ? '✓ 학습 완료!' : '학습 완료하기'}
             </button>

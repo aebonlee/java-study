@@ -181,7 +181,7 @@ UserService userService = ctx.getBean(UserService.class);`}</code></pre>
           </div>
 
           <div style={{marginTop:'32px', textAlign:'center'}}>
-            <button className={`btn ${isLessonCompleted('15') ? 'btn-secondary' : 'btn-accent'}`}
+            <button className={`btn ${isLessonCompleted('15') ? 'btn-primary' : 'btn-accent'}`}
               onClick={() => completeLesson('15')}>
               {isLessonCompleted('15') ? '✓ 학습 완료!' : '학습 완료하기'}
             </button>

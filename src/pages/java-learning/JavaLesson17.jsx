@@ -268,7 +268,7 @@ public class UserService {
 
           <div style={{marginTop:'32px', textAlign:'center'}}>
             <button
-              className={`btn ${isLessonCompleted('17') ? 'btn-secondary' : 'btn-accent'}`}
+              className={`btn ${isLessonCompleted('17') ? 'btn-primary' : 'btn-accent'}`}
               onClick={() => completeLesson('17')}
             >
               {isLessonCompleted('17') ? '✓ 전체 학습 완료!' : '학습 완료하기'}

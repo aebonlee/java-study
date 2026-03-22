@@ -197,7 +197,7 @@ descriptions.put(Season.SUMMER, "무더운 여름");`}</code></pre>
           </div>
 
           <div style={{marginTop:'32px', textAlign:'center'}}>
-            <button className={`btn ${isLessonCompleted('09') ? 'btn-secondary' : 'btn-accent'}`}
+            <button className={`btn ${isLessonCompleted('09') ? 'btn-primary' : 'btn-accent'}`}
               onClick={() => completeLesson('09')}>
               {isLessonCompleted('09') ? '✓ 학습 완료!' : '학습 완료하기'}
             </button>

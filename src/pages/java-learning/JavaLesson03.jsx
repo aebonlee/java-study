@@ -261,7 +261,7 @@ for (int i = 0; i < 3; i++) {
           </div>
 
           <div style={{marginTop:'32px', textAlign:'center'}}>
-            <button className={`btn ${isLessonCompleted('03') ? 'btn-secondary' : 'btn-accent'}`}
+            <button className={`btn ${isLessonCompleted('03') ? 'btn-primary' : 'btn-accent'}`}
               onClick={() => completeLesson('03')}>
               {isLessonCompleted('03') ? '✓ 학습 완료!' : '학습 완료하기'}
             </button>

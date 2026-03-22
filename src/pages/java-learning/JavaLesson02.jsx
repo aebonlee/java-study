@@ -261,7 +261,7 @@ var list = new ArrayList<String>();  // ArrayList<String>
 
           <div style={{marginTop:'32px', textAlign:'center'}}>
             <button
-              className={`btn ${isLessonCompleted('02') ? 'btn-secondary' : 'btn-accent'}`}
+              className={`btn ${isLessonCompleted('02') ? 'btn-primary' : 'btn-accent'}`}
               onClick={() => completeLesson('02')}
             >
               {isLessonCompleted('02') ? '✓ 학습 완료!' : '학습 완료하기'}

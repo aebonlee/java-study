@@ -444,7 +444,7 @@ public class MyServlet extends HttpServlet { ... }`}</code></pre>
 
           <div style={{marginTop:'32px', textAlign:'center'}}>
             <button
-              className={`btn ${isLessonCompleted('S03') ? 'btn-secondary' : 'btn-accent'}`}
+              className={`btn ${isLessonCompleted('S03') ? 'btn-primary' : 'btn-accent'}`}
               onClick={() => completeLesson('S03')}
             >
               {isLessonCompleted('S03') ? '✓ 학습 완료!' : '학습 완료하기'}

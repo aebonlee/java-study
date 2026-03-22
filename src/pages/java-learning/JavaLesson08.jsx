@@ -209,7 +209,7 @@ Collections.unmodifiableList(list); // 읽기 전용 래퍼`}</code></pre>
           </div>
 
           <div style={{marginTop:'32px', textAlign:'center'}}>
-            <button className={`btn ${isLessonCompleted('08') ? 'btn-secondary' : 'btn-accent'}`}
+            <button className={`btn ${isLessonCompleted('08') ? 'btn-primary' : 'btn-accent'}`}
               onClick={() => completeLesson('08')}>
               {isLessonCompleted('08') ? '✓ 학습 완료!' : '학습 완료하기'}
             </button>

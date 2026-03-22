@@ -354,7 +354,7 @@ public class Main {
           </div>
 
           <div style={{marginTop:'32px', textAlign:'center'}}>
-            <button className={`btn ${isLessonCompleted('SP13') ? 'btn-secondary' : 'btn-accent'}`}
+            <button className={`btn ${isLessonCompleted('SP13') ? 'btn-primary' : 'btn-accent'}`}
               onClick={() => completeLesson('SP13')}>
               {isLessonCompleted('SP13') ? '✓ 학습 완료!' : '학습 완료하기'}
             </button>

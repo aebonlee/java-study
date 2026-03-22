@@ -73,9 +73,19 @@ export default function MyPage() {
 
   return (
     <div className="mypage">
-      <div className="container">
-        <h1 className="mypage-title"><i className="fas fa-user-circle"></i> 마이페이지</h1>
+      <section className="mypage-header">
+        <div className="container">
+          <div className="page-header-title-row">
+            <span className="page-header-icon"><i className="fas fa-user-circle"></i></span>
+            <div>
+              <h1>마이페이지</h1>
+              <p>학습 현황과 성과를 한눈에 확인하세요</p>
+            </div>
+          </div>
+        </div>
+      </section>
 
+      <div className="container">
         {/* Profile Card */}
         <section className="profile-card">
           <div className="profile-avatar">J</div>

@@ -194,7 +194,7 @@ final int MAX_VALUE = 100;
           </div>
 
           <div style={{marginTop:'32px', textAlign:'center'}}>
-            <button className={`btn ${isLessonCompleted('06') ? 'btn-secondary' : 'btn-accent'}`}
+            <button className={`btn ${isLessonCompleted('06') ? 'btn-primary' : 'btn-accent'}`}
               onClick={() => completeLesson('06')}>
               {isLessonCompleted('06') ? '✓ 학습 완료!' : '학습 완료하기'}
             </button>

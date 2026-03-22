@@ -226,7 +226,7 @@ public class Comments {
 
           <div style={{marginTop:'32px', textAlign:'center'}}>
             <button
-              className={`btn ${isLessonCompleted('01') ? 'btn-secondary' : 'btn-accent'}`}
+              className={`btn ${isLessonCompleted('01') ? 'btn-primary' : 'btn-accent'}`}
               onClick={() => completeLesson('01')}
             >
               {isLessonCompleted('01') ? '✓ 학습 완료!' : '학습 완료하기'}

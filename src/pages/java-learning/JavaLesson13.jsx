@@ -155,7 +155,7 @@ public class EncodingFilter implements Filter {
           </div>
 
           <div style={{marginTop:'32px', textAlign:'center'}}>
-            <button className={`btn ${isLessonCompleted('13') ? 'btn-secondary' : 'btn-accent'}`}
+            <button className={`btn ${isLessonCompleted('13') ? 'btn-primary' : 'btn-accent'}`}
               onClick={() => completeLesson('13')}>
               {isLessonCompleted('13') ? '✓ 학습 완료!' : '학습 완료하기'}
             </button>

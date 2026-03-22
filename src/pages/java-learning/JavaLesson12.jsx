@@ -184,7 +184,7 @@ client.sendAsync(request, HttpResponse.BodyHandlers.ofString())
           </div>
 
           <div style={{marginTop:'32px', textAlign:'center'}}>
-            <button className={`btn ${isLessonCompleted('12') ? 'btn-secondary' : 'btn-accent'}`}
+            <button className={`btn ${isLessonCompleted('12') ? 'btn-primary' : 'btn-accent'}`}
               onClick={() => completeLesson('12')}>
               {isLessonCompleted('12') ? '✓ 학습 완료!' : '학습 완료하기'}
             </button>

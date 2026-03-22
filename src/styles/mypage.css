@@ -1,17 +1,33 @@
 /* ===== My Page ===== */
 .mypage {
-  padding-top: calc(var(--nav-height) + 40px);
+  padding-top: var(--nav-height);
   padding-bottom: 60px;
   min-height: 100vh;
 }
 
-.mypage-title {
-  font-size: var(--font-size-2xl);
-  font-weight: 800;
-  margin-bottom: 32px;
+.mypage-header {
+  padding: 48px 0 32px;
+  background: linear-gradient(135deg, #1a3a52, #5382A1);
+  color: white;
+  margin-bottom: 40px;
+}
+
+.mypage-header .page-header-title-row {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 16px;
+}
+
+.mypage-header h1 {
+  font-size: var(--font-size-2xl);
+  font-weight: 800;
+  margin-bottom: 4px;
+  color: white;
+}
+
+.mypage-header p {
+  font-size: var(--font-size-sm);
+  color: rgba(255, 255, 255, 0.8);
 }
 
 .mypage-section {
