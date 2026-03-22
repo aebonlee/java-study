@@ -32,6 +32,16 @@
 - **트위터**: https://cards-dev.twitter.com/validator
 
 ## OG 이미지 생성 방법
+
+### 방법 1: Node.js 스크립트 (권장)
+```bash
+node scripts/generate-og-image.mjs
+```
+- sharp 패키지로 SVG → PNG 변환
+- `public/og-image.png` 자동 생성
+- 배포: `npm run deploy`
+
+### 방법 2: 브라우저 Canvas
 1. `public/og-image-generator.html`을 브라우저에서 열기
 2. Canvas 기반으로 자동 렌더링됨 (다크블루 그라데이션 배경)
 3. **"PNG 다운로드"** 버튼 클릭

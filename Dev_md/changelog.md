@@ -1,5 +1,16 @@
 # Changelog
 
+## v2.2.0 (2026-03-23)
+
+### 개선
+- 타이틀 디자인 python-study와 동일하게 변경
+  - Navbar: J 아이콘 박스 제거 → `<h1>` 텍스트 로고
+  - "Java" = Primary 블루, "Master" = Accent Dark 주황
+  - font-size: 26px, font-weight: 800
+  - Footer: logo-icon 제거 → footer-logo 텍스트 (Java=주황, Master=흰색)
+
+---
+
 ## v2.1.0 (2026-03-22)
 
 ### 신규 기능
@@ -15,7 +26,6 @@
 
 ### 개선
 - 파비콘: 그라데이션 제거 → 순수 주황색 (#E76F00)
-- 로고 아이콘: 그라데이션 제거 → 순수 주황색
 - 타이틀 컬러: "Java" = Primary 블루, "Master" = Accent 주황
 - Supabase 클라이언트 설정 개선 (auth 옵션 추가)
 

@@ -36,6 +36,13 @@ npm run deploy
 - ⚠️ `public/CNAME` 파일이 없으면 배포 시 404 에러 발생
 
 ## OG 이미지 생성
+### 스크립트 (권장)
+```bash
+node scripts/generate-og-image.mjs
+# public/og-image.png 자동 생성
+```
+
+### 브라우저 (대안)
 1. `public/og-image-generator.html`을 브라우저에서 열기
 2. **"PNG 다운로드"** 버튼 클릭
 3. 다운로드된 `og-image.png`를 `public/` 폴더에 저장

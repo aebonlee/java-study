@@ -19,10 +19,15 @@ java-study/
 ├── Dev_md/                 # 프로젝트 문서
 │   ├── project-plan.md
 │   ├── architecture.md
+│   ├── features-guide.md
+│   ├── design-system.md
+│   ├── auth-guide.md
 │   ├── supabase-setup.md
 │   ├── deployment-guide.md
 │   ├── og-meta-guide.md
 │   └── changelog.md
+├── scripts/
+│   └── generate-og-image.mjs  # OG 이미지 생성 (sharp)
 ├── public/
 │   ├── CNAME               # 커스텀 도메인
 │   ├── favicon.svg
@@ -60,8 +65,8 @@ java-study/
     │   └── supabase.js
     ├── components/
     │   ├── layout/
-    │   │   ├── Navbar.jsx       # 진도 원형, 드롭다운, 네비
-    │   │   └── Footer.jsx       # 연락처, 패밀리사이트
+    │   │   ├── Navbar.jsx       # 텍스트 로고, 드롭다운, 진도 원형, 로그인 메뉴
+    │   │   └── Footer.jsx       # 텍스트 로고, 연락처, 패밀리사이트
     │   ├── BadgeCard.jsx        # 배지 카드 컴포넌트
     │   ├── QuizComponent.jsx    # 퀴즈 엔진 (타이머, 셔플)
     │   └── ErrorBoundary.jsx

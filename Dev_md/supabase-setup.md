@@ -30,6 +30,21 @@ VITE_SUPABASE_URL=https://hcmgdztsgjvzcyxyayaj.supabase.co
 VITE_SUPABASE_ANON_KEY=<anon key>
 ```
 
-## OAuth 설정 (선택)
-- Supabase Authentication → Providers에서 Google/Kakao 활성화
-- Redirect URL: `https://java-study.dreamitbiz.com`
+## OAuth 설정
+
+### Google OAuth
+1. Supabase Dashboard → Authentication → Providers → Google
+2. Google Cloud Console에서 OAuth 2.0 Client ID 생성
+3. Authorized redirect URI: `https://hcmgdztsgjvzcyxyayaj.supabase.co/auth/v1/callback`
+4. Supabase에 Client ID / Client Secret 입력
+
+### Kakao OAuth
+1. Supabase Dashboard → Authentication → Providers → Kakao
+2. Kakao Developers에서 앱 생성 → REST API 키 복사
+3. Redirect URI: `https://hcmgdztsgjvzcyxyayaj.supabase.co/auth/v1/callback`
+4. Supabase에 Client ID / Client Secret 입력
+
+### Redirect URL 설정
+- Supabase Dashboard → Authentication → URL Configuration
+- Site URL: `https://java-study.dreamitbiz.com`
+- Redirect URLs: `https://java-study.dreamitbiz.com`, `http://localhost:5173`
