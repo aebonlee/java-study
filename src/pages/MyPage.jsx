@@ -23,7 +23,8 @@ export default function MyPage() {
   const { earnedBadges } = useBadge()
 
   const allLevels = [...levels, ...servletLevels, ...springLevels, ...practicalLevels, ...projectLevels]
-  const totalLessons = allLevels.reduce((sum, level) => sum + level.lessons.length, 0)
+  const getLessons = (level) => level.lessons || level.projects || []
+  const totalLessons = allLevels.reduce((sum, level) => sum + getLessons(level).length, 0)
   const completedCount = completedLessons.length
   const totalProgress = getTotalProgress()
   const earnedBadgeData = badges.filter(b => earnedBadges.includes(b.id))
@@ -175,13 +176,14 @@ export default function MyPage() {
           <h2 className="mypage-section-title"><i className="fas fa-layer-group"></i> 단계별 진도</h2>
           <div className="progress-section">
             {allLevels.map(level => {
-              const completed = level.lessons.filter(l => completedLessons.includes(l.id)).length
-              const pct = Math.round((completed / level.lessons.length) * 100)
+              const items = getLessons(level)
+              const completed = items.filter(l => completedLessons.includes(l.id)).length
+              const pct = Math.round((completed / items.length) * 100)
               return (
                 <div key={level.id} className="progress-item">
                   <div className="progress-label">
                     <span><i className={`fas ${level.icon}`} style={{ color: level.color, marginRight: 8 }}></i> {level.title}</span>
-                    <span>{completed}/{level.lessons.length} ({pct}%)</span>
+                    <span>{completed}/{items.length} ({pct}%)</span>
                   </div>
                   <div className="progress-bar">
                     <div className="progress-fill" style={{ width: `${pct}%`, background: level.color }} />
