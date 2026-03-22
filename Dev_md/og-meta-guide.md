@@ -33,11 +33,15 @@
 
 ## OG 이미지 생성 방법
 1. `public/og-image-generator.html`을 브라우저에서 열기
-2. 1200x630 영역을 스크린샷으로 캡처
-3. `public/og-image.png`로 저장
-4. 배포 후 카카오 디버거에서 캐시 초기화
+2. Canvas 기반으로 자동 렌더링됨 (다크블루 그라데이션 배경)
+3. **"PNG 다운로드"** 버튼 클릭
+4. 다운로드된 `og-image.png`를 `public/` 폴더에 저장
+5. `npm run deploy`로 배포
+6. 카카오 디버거에서 URL 입력 후 캐시 초기화
 
-## 주의사항
+## ⚠️ 주의사항
 - og:image는 반드시 **절대 URL** 사용
-- 이미지는 PNG/JPG만 지원 (SVG 불가)
+- 이미지는 **PNG/JPG만 지원** (SVG 불가)
+- 현재 `og-image.svg`만 있고 `og-image.png`가 없으면 미리보기 안됨
 - 카카오는 캐시가 있으므로 변경 시 디버거에서 초기화 필요
+- 이미지 용량은 5MB 이하 권장

@@ -31,16 +31,34 @@ npm run deploy
 4. GitHub Pages가 자동으로 해당 브랜치에서 서빙
 
 ## CNAME 설정
-- GitHub 리포지토리에 CNAME 파일: `java-study.dreamitbiz.com`
+- `public/CNAME` 파일: `java-study.dreamitbiz.com`
 - DNS에 CNAME 레코드 추가: `java-study.dreamitbiz.com` → `aebonlee.github.io`
+- ⚠️ `public/CNAME` 파일이 없으면 배포 시 404 에러 발생
 
 ## OG 이미지 생성
 1. `public/og-image-generator.html`을 브라우저에서 열기
-2. 1200x630 크기로 스크린샷 촬영
-3. `public/og-image.png`로 저장
+2. **"PNG 다운로드"** 버튼 클릭
+3. 다운로드된 `og-image.png`를 `public/` 폴더에 저장
 4. 빌드 & 배포
+5. 카카오 디버거에서 캐시 초기화
 
 ## SPA 라우팅 (GitHub Pages)
 - `public/404.html`: SPA 리다이렉트 처리
 - `index.html`: sessionStorage 기반 경로 복원
 - React Router의 BrowserRouter 사용
+
+## 전체 라우트 목록
+| 경로 | 페이지 |
+|------|--------|
+| `/` | 홈 (랜딩 페이지) |
+| `/java-learning` | 전체 커리큘럼 |
+| `/java-learning/01~17` | 개별 레슨 (17개) |
+| `/quiz` | 퀴즈 센터 |
+| `/badges` | 도장깨기 (배지) |
+| `/my` | 마이페이지 |
+| `/guide` | 이용 가이드 |
+
+## 트러블슈팅
+- **404 에러**: `public/CNAME` 파일 존재 확인
+- **OG 미리보기 안됨**: `public/og-image.png` (PNG 파일) 존재 확인, 카카오 디버거 캐시 초기화
+- **SPA 라우팅 안됨**: `public/404.html` 존재 확인
