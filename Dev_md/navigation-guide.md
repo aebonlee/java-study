@@ -102,16 +102,54 @@ v3.0.0에서 Navbar를 전면 재구성했습니다.
 ### 변경 사항
 - 메가 드롭다운 → 세로 레이아웃 (flex-direction: column)
 - 모든 드롭다운 → 아코디언 형태
-- 햄버거 메뉴 (`.menu-toggle`) 표시
+- 햄버거 메뉴 (`.mobile-toggle`) 표시
+
+### 모바일 메뉴 UX (v3.6.2)
+- **body 스크롤 잠금**: 메뉴 열릴 때 `document.body.style.overflow = 'hidden'` → 배경 스크롤 방지
+- **배경 오버레이**: `.mobile-backdrop` (반투명 검정, z-index: 998) → 탭하면 메뉴 닫힘
+- **hover/touch 분리**: `isMobile()` 체크 → 모바일에서는 hover 이벤트 무시, onClick만 동작
+- **z-index 체계**: `.mobile-backdrop` (998) < `.nav-menu` (999) < `.navbar` (1000)
 
 ### CSS
 ```css
+/* 배경 오버레이 */
+.mobile-backdrop {
+  display: none;
+}
+
 @media (max-width: 1100px) {
+  .mobile-backdrop {
+    display: block;
+    position: fixed;
+    top: var(--nav-height);
+    left: 0; right: 0; bottom: 0;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 998;
+  }
+
+  .nav-menu {
+    z-index: 999;
+  }
+
   .dropdown-mega {
     flex-direction: column;
     min-width: auto;
   }
 }
+```
+
+### JS (Navbar.jsx)
+```javascript
+// body 스크롤 잠금
+useEffect(() => {
+  document.body.style.overflow = mobileOpen ? 'hidden' : ''
+  return () => { document.body.style.overflow = '' }
+}, [mobileOpen])
+
+// hover/touch 분리
+const isMobile = () => window.innerWidth <= 1100
+const handleMouseEnter = (i) => { if (!isMobile()) setActiveDropdown(i) }
+const handleMouseLeave = () => { if (!isMobile()) setActiveDropdown(null) }
 ```
 
 ## 다크모드 대응
@@ -153,3 +191,4 @@ v3.0.0에서 Navbar를 전면 재구성했습니다.
 | v3.3.0 | 자바학습하기 메가 드롭다운에 "웹 개발" 섹션 추가 (3→4섹션) |
 | v3.5.0 | "실무" 메가 드롭다운 추가 (4섹션: 도구/데이터/품질/인프라) |
 | v3.6.0 | "프로젝트" 메가 드롭다운 추가 (4섹션: 기초/심화/웹/Spring) |
+| v3.6.2 | 모바일 메뉴 UX 개선 (body 스크롤 잠금, 배경 오버레이, hover/touch 분리, z-index) |

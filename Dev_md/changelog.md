@@ -1,5 +1,26 @@
 # Changelog
 
+## v3.6.2 (2026-03-23)
+
+### 수정 (모바일 메뉴 점검)
+- **body 스크롤 잠금**: 모바일 메뉴 열릴 때 배경 페이지 스크롤 방지 (`document.body.style.overflow = 'hidden'`)
+- **hover/touch 이벤트 분리**: `onMouseEnter`/`onMouseLeave`가 모바일 터치에서 드롭다운 간섭하던 버그 수정
+  - 데스크톱(>1100px): hover로 드롭다운 열기/닫기
+  - 모바일(≤1100px): onClick만으로 드롭다운 토글
+- **모바일 배경 오버레이 추가**: 메뉴 열릴 때 반투명 배경(`rgba(0,0,0,0.4)`) 표시, 탭하면 메뉴 닫힘
+- **모바일 메뉴 z-index 명시**: `.nav-menu` z-index: 999, `.mobile-backdrop` z-index: 998
+
+### 수정 파일
+- `src/components/layout/Navbar.jsx`: body 스크롤 잠금 useEffect, isMobile() 헬퍼, handleMouseEnter/Leave, mobile-backdrop
+- `src/styles/navbar.css`: .mobile-backdrop 스타일, 모바일 .nav-menu z-index 추가
+
+### 문서
+- `Dev_md/changelog.md`: v3.6.2 기록
+- `Dev_md/navigation-guide.md`: 모바일 메뉴 개선 사항 반영
+- `Dev_md/project-plan.md`: 기능 목록 업데이트
+
+---
+
 ## v3.6.1 (2026-03-23)
 
 ### 신규 기능

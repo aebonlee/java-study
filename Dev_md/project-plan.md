@@ -141,6 +141,7 @@
 - [x] 코드블록 전역 복사 버튼 (CodeBlockCopy 컴포넌트, 모든 .code-block 자동 적용)
 - [x] 홈페이지 통계 수치 업데이트 (61개 콘텐츠, 5개 과정)
 - [x] 학습 로드맵 프로젝트 과정 추가 (Course 5: 실전 프로젝트)
+- [x] 모바일 메뉴 UX 개선 (body 스크롤 잠금, 배경 오버레이, hover/touch 분리, z-index)
 
 ## 디자인 시스템
 - **Primary**: #5382A1 (Java Blue)

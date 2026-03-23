@@ -28,6 +28,16 @@ export default function Navbar() {
     setUserMenuOpen(false)
   }, [location])
 
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    if (mobileOpen) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = ''
+    }
+    return () => { document.body.style.overflow = '' }
+  }, [mobileOpen])
+
   useEffect(() => {
     const handleClickOutside = (e) => {
       if (userMenuRef.current && !userMenuRef.current.contains(e.target)) {
@@ -225,6 +235,15 @@ export default function Navbar() {
     { to: '/my', label: '마이페이지' },
   ]
 
+  const isMobile = () => window.innerWidth <= 1100
+
+  const handleMouseEnter = (i) => {
+    if (!isMobile()) setActiveDropdown(i)
+  }
+  const handleMouseLeave = () => {
+    if (!isMobile()) setActiveDropdown(null)
+  }
+
   const userAvatar = user?.user_metadata?.avatar_url || user?.user_metadata?.picture
   const userName = user?.user_metadata?.full_name || user?.user_metadata?.name || user?.email?.split('@')[0]
 
@@ -238,14 +257,17 @@ export default function Navbar() {
           </h1>
         </Link>
 
+        {mobileOpen && (
+          <div className="mobile-backdrop" onClick={() => setMobileOpen(false)} />
+        )}
         <ul className={`nav-menu${mobileOpen ? ' active' : ''}`}>
           {navItems.map((item, i) =>
             item.mega ? (
               <li
                 key={i}
                 className="nav-item-dropdown"
-                onMouseEnter={() => setActiveDropdown(i)}
-                onMouseLeave={() => setActiveDropdown(null)}
+                onMouseEnter={() => handleMouseEnter(i)}
+                onMouseLeave={handleMouseLeave}
               >
                 <span
                   className="nav-link nav-link-dropdown"
@@ -281,8 +303,8 @@ export default function Navbar() {
               <li
                 key={i}
                 className="nav-item-dropdown"
-                onMouseEnter={() => setActiveDropdown(i)}
-                onMouseLeave={() => setActiveDropdown(null)}
+                onMouseEnter={() => handleMouseEnter(i)}
+                onMouseLeave={handleMouseLeave}
               >
                 <span
                   className="nav-link nav-link-dropdown"
