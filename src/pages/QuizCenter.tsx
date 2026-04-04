@@ -24,10 +24,10 @@ export default function QuizCenter() {
   const { getQuizBestScore, getQuizAttempts } = useProgress()
   const handleQuizComplete = useCallback(() => {}, [])
 
-  const quizList = Object.entries(quizzes).map(([key, quiz]) => ({
+  const quizList = Object.entries(quizzes).map(([key, quiz]: [string, any]) => ({
     id: key,
     ...quiz,
-    meta: quizMeta[key]
+    meta: (quizMeta as any)[key]
   }))
 
   if (activeQuiz) {

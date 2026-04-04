@@ -56,7 +56,7 @@ export default function JavaCodeRunner({ defaultCode = '', title = 'Java 코드 
         setIsError(false)
       }
       incrementCodeRuns()
-    } catch (err) {
+    } catch (err: any) {
       setOutput('실행 오류: ' + err.message)
       setIsError(true)
     } finally {

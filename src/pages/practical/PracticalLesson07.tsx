@@ -974,21 +974,21 @@ public class Customer {
               <tr><th>카테고리</th><th>체크 항목</th><th>우선순위</th></tr>
             </thead>
             <tbody>
-              <tr><td rowSpan="4"><strong>네이밍</strong></td><td>변수/메서드/클래스 이름이 의도를 명확히 전달하는가?</td><td>필수</td></tr>
+              <tr><td rowSpan={4}><strong>네이밍</strong></td><td>변수/메서드/클래스 이름이 의도를 명확히 전달하는가?</td><td>필수</td></tr>
               <tr><td>축약어 없이 전체 단어를 사용했는가?</td><td>필수</td></tr>
               <tr><td>boolean 변수는 is/has/can 접두사를 사용했는가?</td><td>권장</td></tr>
               <tr><td>같은 개념에 일관된 용어를 사용했는가?</td><td>필수</td></tr>
-              <tr><td rowSpan="4"><strong>함수</strong></td><td>함수가 한 가지 일만 하는가?</td><td>필수</td></tr>
+              <tr><td rowSpan={4}><strong>함수</strong></td><td>함수가 한 가지 일만 하는가?</td><td>필수</td></tr>
               <tr><td>함수 길이가 20줄 이내인가?</td><td>권장</td></tr>
               <tr><td>파라미터가 3개 이하인가?</td><td>권장</td></tr>
               <tr><td>부수효과(Side Effect)가 없는가?</td><td>필수</td></tr>
-              <tr><td rowSpan="3"><strong>코드 구조</strong></td><td>중복 코드가 없는가? (DRY 원칙)</td><td>필수</td></tr>
+              <tr><td rowSpan={3}><strong>코드 구조</strong></td><td>중복 코드가 없는가? (DRY 원칙)</td><td>필수</td></tr>
               <tr><td>매직 넘버 대신 상수를 사용했는가?</td><td>필수</td></tr>
               <tr><td>들여쓰기 깊이가 2단계 이하인가?</td><td>권장</td></tr>
-              <tr><td rowSpan="3"><strong>설계</strong></td><td>SOLID 원칙을 위반하지 않았는가?</td><td>권장</td></tr>
+              <tr><td rowSpan={3}><strong>설계</strong></td><td>SOLID 원칙을 위반하지 않았는가?</td><td>권장</td></tr>
               <tr><td>구현이 아닌 인터페이스에 의존하는가?</td><td>권장</td></tr>
               <tr><td>적절한 예외 처리를 했는가?</td><td>필수</td></tr>
-              <tr><td rowSpan="3"><strong>기타</strong></td><td>불필요한 주석을 제거했는가?</td><td>권장</td></tr>
+              <tr><td rowSpan={3}><strong>기타</strong></td><td>불필요한 주석을 제거했는가?</td><td>권장</td></tr>
               <tr><td>사용하지 않는 코드(Dead Code)를 삭제했는가?</td><td>필수</td></tr>
               <tr><td>테스트 코드를 작성했는가?</td><td>권장</td></tr>
             </tbody>

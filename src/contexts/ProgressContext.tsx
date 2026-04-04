@@ -1,21 +1,53 @@
-import { createContext, useContext, useState, useEffect, useCallback, useRef } from 'react'
+import { createContext, useContext, useState, useEffect, useCallback, useRef, ReactNode } from 'react'
 import { supabase, isSupabaseEnabled, TABLES } from '../config/supabase'
 import { useAuth } from './AuthContext'
 
-const ProgressContext = createContext()
+interface QuizScore {
+  bestScore: number
+  attempts: { score: number; date: string }[]
+}
+
+interface ProgressData {
+  completedLessons: string[]
+  quizScores: Record<string, QuizScore>
+  codeRuns: number
+}
+
+interface ProgressContextType {
+  progress: ProgressData
+  completedLessons: string[]
+  quizScores: Record<string, QuizScore>
+  codeRuns: number
+  completeLesson: (lessonId: string) => void
+  uncompleteLesson: (lessonId: string) => void
+  isLessonCompleted: (lessonId: string) => boolean
+  isLevelCompleted: (levelId: string) => boolean
+  saveQuizScore: (quizId: string, score: number) => void
+  incrementCodeRuns: () => void
+  getTotalProgress: () => number
+  getJavaProgress: () => number
+  getServletProgress: () => number
+  getSpringProgress: () => number
+  getPracticalProgress: () => number
+  getProjectProgress: () => number
+  getQuizBestScore: (quizId: string) => number | undefined
+  getQuizAttempts: (quizId: string) => any[]
+}
+
+const ProgressContext = createContext<ProgressContextType | null>(null)
 
 const STORAGE_KEY = 'javamaster-progress'
 
-function loadProgress() {
+function loadProgress(): ProgressData {
   try {
-    const data = JSON.parse(localStorage.getItem(STORAGE_KEY))
+    const data = JSON.parse(localStorage.getItem(STORAGE_KEY) as string)
     return data || { completedLessons: [], quizScores: {}, codeRuns: 0 }
   } catch {
     return { completedLessons: [], quizScores: {}, codeRuns: 0 }
   }
 }
 
-async function loadFromSupabase(userId) {
+async function loadFromSupabase(userId: string) {
   if (!isSupabaseEnabled() || !userId) return null
   try {
     const { data: progressData } = await supabase
@@ -32,7 +64,7 @@ async function loadFromSupabase(userId) {
     const completedLessons = progressData?.completed_lessons || []
     const codeRuns = progressData?.code_runs || 0
 
-    const quizScores = {}
+    const quizScores: Record<string, QuizScore> = {}
     if (quizData) {
       for (const row of quizData) {
         if (!quizScores[row.quiz_id]) {
@@ -50,13 +82,13 @@ async function loadFromSupabase(userId) {
   }
 }
 
-function mergeProgress(local, remote) {
+function mergeProgress(local: ProgressData, remote: ProgressData) {
   if (!remote) return local
 
   const mergedLessons = [...new Set([...local.completedLessons, ...remote.completedLessons])]
   const codeRuns = Math.max(local.codeRuns || 0, remote.codeRuns || 0)
 
-  const mergedQuizScores = { ...local.quizScores }
+  const mergedQuizScores: Record<string, QuizScore> = { ...local.quizScores }
   for (const [quizId, remoteData] of Object.entries(remote.quizScores)) {
     if (!mergedQuizScores[quizId]) {
       mergedQuizScores[quizId] = remoteData
@@ -76,7 +108,7 @@ function mergeProgress(local, remote) {
   return { completedLessons: mergedLessons, quizScores: mergedQuizScores, codeRuns }
 }
 
-async function saveProgressToSupabase(userId, progress) {
+async function saveProgressToSupabase(userId: string, progress: ProgressData) {
   if (!isSupabaseEnabled() || !userId) return
   try {
     await supabase.from(TABLES.PROGRESS).upsert({
@@ -90,7 +122,7 @@ async function saveProgressToSupabase(userId, progress) {
   }
 }
 
-async function saveQuizScoreToSupabase(userId, quizId, score) {
+async function saveQuizScoreToSupabase(userId: string, quizId: string, score: number) {
   if (!isSupabaseEnabled() || !userId) return
   try {
     await supabase.from(TABLES.QUIZ_SCORES).insert({
@@ -103,10 +135,10 @@ async function saveQuizScoreToSupabase(userId, quizId, score) {
   }
 }
 
-export function ProgressProvider({ children }) {
+export function ProgressProvider({ children }: { children: ReactNode }) {
   const { user } = useAuth()
-  const [progress, setProgress] = useState(loadProgress)
-  const syncedUserRef = useRef(null)
+  const [progress, setProgress] = useState<ProgressData>(loadProgress)
+  const syncedUserRef = useRef<string | null>(null)
 
   // localStorage에 저장
   useEffect(() => {
@@ -140,7 +172,7 @@ export function ProgressProvider({ children }) {
     if (!user) syncedUserRef.current = null
   }, [user])
 
-  const completeLesson = useCallback((lessonId) => {
+  const completeLesson = useCallback((lessonId: string) => {
     setProgress(prev => {
       if (prev.completedLessons.includes(lessonId)) return prev
       const updated = { ...prev, completedLessons: [...prev.completedLessons, lessonId] }
@@ -149,7 +181,7 @@ export function ProgressProvider({ children }) {
     })
   }, [user])
 
-  const uncompleteLesson = useCallback((lessonId) => {
+  const uncompleteLesson = useCallback((lessonId: string) => {
     setProgress(prev => {
       const updated = { ...prev, completedLessons: prev.completedLessons.filter(id => id !== lessonId) }
       if (user) saveProgressToSupabase(user.id, updated)
@@ -157,7 +189,7 @@ export function ProgressProvider({ children }) {
     })
   }, [user])
 
-  const saveQuizScore = useCallback((quizId, score) => {
+  const saveQuizScore = useCallback((quizId: string, score: number) => {
     setProgress(prev => {
       const existing = prev.quizScores[quizId] || { bestScore: 0, attempts: [] }
       const updated = {
@@ -183,10 +215,10 @@ export function ProgressProvider({ children }) {
     })
   }, [user])
 
-  const isLessonCompleted = (lessonId) => progress.completedLessons.includes(lessonId)
+  const isLessonCompleted = (lessonId: string) => progress.completedLessons.includes(lessonId)
 
-  const isLevelCompleted = (levelId) => {
-    const levelLessons = {
+  const isLevelCompleted = (levelId: string) => {
+    const levelLessons: Record<string, string[]> = {
       basics: ['01', '02', '03', '04'],
       intermediate: ['05', '06', '07', '08'],
       advanced: ['09', '10', '11', '12'],
@@ -246,11 +278,11 @@ export function ProgressProvider({ children }) {
     return Math.round((done / ids.length) * 100)
   }
 
-  const getQuizBestScore = (quizId) => {
+  const getQuizBestScore = (quizId: string) => {
     return progress.quizScores[quizId]?.bestScore
   }
 
-  const getQuizAttempts = (quizId) => {
+  const getQuizAttempts = (quizId: string) => {
     return progress.quizScores[quizId]?.attempts || []
   }
 
@@ -280,4 +312,8 @@ export function ProgressProvider({ children }) {
   )
 }
 
-export const useProgress = () => useContext(ProgressContext)
+export const useProgress = () => {
+  const context = useContext(ProgressContext)
+  if (!context) throw new Error('useProgress must be used within ProgressProvider')
+  return context
+}

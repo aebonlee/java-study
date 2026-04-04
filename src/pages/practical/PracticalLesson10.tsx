@@ -294,11 +294,11 @@ echo "앱: $NAME, JDK: $VERSION, 날짜: $TODAY"
 # === 조건문 (if) ===
 MEMORY_USAGE=$(free | awk '/Mem/{printf("%.0f"), $3/$2*100}')
 if [ "$MEMORY_USAGE" -gt 90 ]; then
-    echo "경고: 메모리 사용률 ${MEMORY_USAGE}%"
+    echo "경고: 메모리 사용률 \${MEMORY_USAGE}%"
 elif [ "$MEMORY_USAGE" -gt 70 ]; then
-    echo "주의: 메모리 사용률 ${MEMORY_USAGE}%"
+    echo "주의: 메모리 사용률 \${MEMORY_USAGE}%"
 else
-    echo "정상: 메모리 사용률 ${MEMORY_USAGE}%"
+    echo "정상: 메모리 사용률 \${MEMORY_USAGE}%"
 fi
 
 # === 반복문 (for) ===

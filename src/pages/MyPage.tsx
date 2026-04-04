@@ -29,7 +29,7 @@ export default function MyPage() {
   const totalProgress = getTotalProgress()
   const earnedBadgeData = badges.filter(b => earnedBadges.includes(b.id))
 
-  const quizList = Object.entries(quizzes).map(([id, quiz]) => {
+  const quizList = Object.entries(quizzes).map(([id, quiz]: [string, any]) => {
     const bestScore = getQuizBestScore(id)
     const attempts = getQuizAttempts(id)
     const passed = bestScore !== undefined && bestScore >= (quiz.passingScore || 70)

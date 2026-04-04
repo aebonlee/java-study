@@ -1,18 +1,45 @@
-import { createContext, useContext, useState, useEffect, useCallback, useRef } from 'react'
+import { createContext, useContext, useState, useEffect, useCallback, useRef, ReactNode } from 'react'
 import { supabase, isSupabaseEnabled, TABLES } from '../config/supabase'
 
-const AuthContext = createContext()
+interface AccountBlock {
+  status: string
+  reason: string
+  suspended_until: string | null
+}
+
+interface AuthContextType {
+  user: any
+  loading: boolean
+  accountBlock: AccountBlock | null
+  clearAccountBlock: () => void
+  signInWithGoogle: () => Promise<void>
+  signInWithKakao: () => Promise<void>
+  signUpWithEmail: (email: string, password: string, name: string) => Promise<{ error: string | null }>
+  signInWithEmail: (email: string, password: string) => Promise<{ error: string | null }>
+  signOut: () => Promise<void>
+  isAuthenticated: boolean
+  isAdmin: boolean
+  isTeacher: boolean
+  sessionTimeLeft: number | null
+  showSessionWarning: boolean
+  extendSession: () => void
+  requireAuth: (callback: () => void) => void
+  showLoginModal: boolean
+  dismissLoginModal: () => void
+}
+
+const AuthContext = createContext<AuthContextType | null>(null)
 
 const SESSION_DURATION = 30 * 60 * 1000 // 30분
 const WARNING_THRESHOLD = 5 * 60 * 1000 // 5분
 const SESSION_EXPIRY_KEY = 'javamaster-session-expiry'
 const ADMIN_EMAILS = ['aebon@kakao.com']
 
-export function AuthProvider({ children }) {
+export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState(null)
   const [userRole, setUserRole] = useState(null)
   const [loading, setLoading] = useState(true)
-  const [sessionTimeLeft, setSessionTimeLeft] = useState(null)
+  const [sessionTimeLeft, setSessionTimeLeft] = useState<number | null>(null)
   const [showLoginModal, setShowLoginModal] = useState(false)
   const [modalTab, setModalTab] = useState('login')
   const [modalEmail, setModalEmail] = useState('')
@@ -20,9 +47,9 @@ export function AuthProvider({ children }) {
   const [modalName, setModalName] = useState('')
   const [modalError, setModalError] = useState('')
   const [modalLoading, setModalLoading] = useState(false)
-  const [accountBlock, setAccountBlock] = useState(null)
-  const intervalRef = useRef(null)
-  const pendingActionRef = useRef(null)
+  const [accountBlock, setAccountBlock] = useState<AccountBlock | null>(null)
+  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null)
+  const pendingActionRef = useRef<(() => void) | null>(null)
 
   const clearAccountBlock = () => setAccountBlock(null)
 
@@ -33,7 +60,7 @@ export function AuthProvider({ children }) {
     } catch { return null }
   }
 
-  const setSessionExpiry = (expiry) => {
+  const setSessionExpiry = (expiry: number | null) => {
     if (expiry) {
       localStorage.setItem(SESSION_EXPIRY_KEY, String(expiry))
     } else {
@@ -78,7 +105,7 @@ export function AuthProvider({ children }) {
     setSessionTimeLeft(SESSION_DURATION)
   }, [])
 
-  const upsertUser = useCallback(async (u) => {
+  const upsertUser = useCallback(async (u: any) => {
     if (!isSupabaseEnabled() || !u) return
     try {
       await supabase.from(TABLES.USERS).upsert({
@@ -105,9 +132,9 @@ export function AuthProvider({ children }) {
         .eq('id', u.id)
         .single()
       if (upData) {
-        const updates = {}
-        if (!upData.signup_domain) updates.signup_domain = currentDomain
-        const sites = Array.isArray(upData.visited_sites) ? upData.visited_sites : []
+        const updates: Record<string, any> = {}
+        if (!(upData as any).signup_domain) updates.signup_domain = currentDomain
+        const sites = Array.isArray((upData as any).visited_sites) ? (upData as any).visited_sites : []
         if (!sites.includes(currentDomain)) {
           updates.visited_sites = [...sites, currentDomain]
         }
@@ -220,7 +247,7 @@ export function AuthProvider({ children }) {
     if (error) console.error('Kakao 로그인 오류:', error.message)
   }
 
-  const signUpWithEmail = async (email, password, name) => {
+  const signUpWithEmail = async (email: string, password: string, name: string) => {
     if (!isSupabaseEnabled()) return { error: '서버 연결이 설정되지 않았습니다.' }
     const { error } = await supabase.auth.signUp({
       email,
@@ -233,7 +260,7 @@ export function AuthProvider({ children }) {
     return { error: null }
   }
 
-  const signInWithEmail = async (email, password) => {
+  const signInWithEmail = async (email: string, password: string) => {
     if (!isSupabaseEnabled()) return { error: '서버 연결이 설정되지 않았습니다.' }
     const { error } = await supabase.auth.signInWithPassword({ email, password })
     if (error) return { error: error.message }
@@ -242,7 +269,7 @@ export function AuthProvider({ children }) {
 
   const signOut = doSignOut
 
-  const requireAuth = useCallback((callback) => {
+  const requireAuth = useCallback((callback: () => void) => {
     if (user) {
       callback()
     } else {
@@ -266,13 +293,13 @@ export function AuthProvider({ children }) {
   const isTeacher = userRole === 'teacher'
   const showSessionWarning = sessionTimeLeft !== null && sessionTimeLeft <= WARNING_THRESHOLD && sessionTimeLeft > 0
 
-  const formatTimeLeft = (ms) => {
+  const formatTimeLeft = (ms: number) => {
     const minutes = Math.floor(ms / 60000)
     const seconds = Math.floor((ms % 60000) / 1000)
     return `${minutes}:${seconds.toString().padStart(2, '0')}`
   }
 
-  const value = {
+  const value: AuthContextType = {
     user,
     loading,
     accountBlock,
@@ -300,7 +327,7 @@ export function AuthProvider({ children }) {
         <div className="session-warning">
           <div className="session-warning-content">
             <i className="fa-solid fa-clock" />
-            <span>세션이 <strong>{formatTimeLeft(sessionTimeLeft)}</strong> 후 만료됩니다</span>
+            <span>세션이 <strong>{formatTimeLeft(sessionTimeLeft!)}</strong> 후 만료됩니다</span>
             <button className="session-extend-btn" onClick={extendSession}>
               <i className="fa-solid fa-rotate-right" /> 연장하기
             </button>

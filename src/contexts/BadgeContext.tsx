@@ -1,14 +1,20 @@
-import { createContext, useContext, useState, useEffect, useCallback, useRef } from 'react'
+import { createContext, useContext, useState, useEffect, useCallback, useRef, ReactNode } from 'react'
 import { badges } from '../data/badges'
 import { useProgress } from './ProgressContext'
 import { useAuth } from './AuthContext'
 import { supabase, isSupabaseEnabled, TABLES } from '../config/supabase'
 
-const BadgeContext = createContext()
+interface BadgeContextType {
+  earnedBadges: string[]
+  newBadge: any
+  dismissBadgeNotification: () => void
+}
+
+const BadgeContext = createContext<BadgeContextType | null>(null)
 
 const STORAGE_KEY = 'javamaster-badges'
 
-async function loadBadgesFromSupabase(userId) {
+async function loadBadgesFromSupabase(userId: string) {
   if (!isSupabaseEnabled() || !userId) return null
   try {
     const { data } = await supabase
@@ -22,7 +28,7 @@ async function loadBadgesFromSupabase(userId) {
   }
 }
 
-async function saveBadgeToSupabase(userId, badgeId) {
+async function saveBadgeToSupabase(userId: string, badgeId: string) {
   if (!isSupabaseEnabled() || !userId) return
   try {
     await supabase.from(TABLES.BADGES).upsert({
@@ -34,14 +40,14 @@ async function saveBadgeToSupabase(userId, badgeId) {
   }
 }
 
-export function BadgeProvider({ children }) {
-  const [earnedBadges, setEarnedBadges] = useState(() => {
+export function BadgeProvider({ children }: { children: ReactNode }) {
+  const [earnedBadges, setEarnedBadges] = useState<string[]>(() => {
     try {
       const saved = localStorage.getItem(STORAGE_KEY)
       return saved ? JSON.parse(saved) : []
     } catch { return [] }
   })
-  const [newBadge, setNewBadge] = useState(null)
+  const [newBadge, setNewBadge] = useState<any>(null)
 
   const {
     completedLessons, quizScores, codeRuns,
@@ -49,7 +55,7 @@ export function BadgeProvider({ children }) {
   } = useProgress()
 
   const { user } = useAuth()
-  const syncedUserRef = useRef(null)
+  const syncedUserRef = useRef<string | null>(null)
 
   useEffect(() => {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(earnedBadges))
@@ -89,17 +95,17 @@ export function BadgeProvider({ children }) {
   }, [user])
 
   useEffect(() => {
-    const newlyEarned = []
+    const newlyEarned: string[] = []
 
     for (const badge of badges) {
       if (earnedBadges.includes(badge.id)) continue
 
-      const { condition } = badge
+      const { condition } = badge as any
       let earned = false
 
       switch (condition.type) {
         case 'lessons_completed':
-          earned = completedLessons.length >= condition.count
+          earned = completedLessons.length >= (condition.count || 0)
           break
         case 'level_completed':
           earned = isLevelCompleted(condition.level)
@@ -113,7 +119,7 @@ export function BadgeProvider({ children }) {
           earned = getQuizBestScore(condition.quizId) === 100
           break
         case 'multi_level_completed':
-          earned = condition.levels.every(id => isLevelCompleted(id))
+          earned = condition.levels.every((id: string) => isLevelCompleted(id))
           break
         case 'all_quizzes_passed':
           earned = ['basics', 'intermediate', 'advanced', 'web', 'servlet', 'spring', 'practical'].every(id => {
@@ -127,13 +133,13 @@ export function BadgeProvider({ children }) {
           )
           break
         case 'code_runs':
-          earned = codeRuns >= condition.count
+          earned = codeRuns >= (condition.count || 0)
           break
         case 'all_completed':
           earned = ['basics', 'intermediate', 'advanced', 'web', 'servlet-basic', 'servlet-advanced', 'spring-framework', 'spring-boot', 'practical-tools', 'practical-data', 'practical-quality', 'practical-infra'].every(id => isLevelCompleted(id))
           break
         case 'specific_lessons':
-          earned = condition.lessons.every(id => completedLessons.includes(id))
+          earned = condition.lessons.every((id: string) => completedLessons.includes(id))
           break
         case 'java_master':
           earned = ['basics', 'intermediate', 'advanced', 'web', 'servlet-basic', 'servlet-advanced', 'spring-framework', 'spring-boot', 'practical-tools', 'practical-data', 'practical-quality', 'practical-infra'].every(id => isLevelCompleted(id)) &&
