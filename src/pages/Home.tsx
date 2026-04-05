@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { useProgress } from '../contexts/ProgressContext'
 import { useBadge } from '../contexts/BadgeContext'
+import SEOHead from '../components/SEOHead';
 
 export default function Home() {
   const { getTotalProgress, completedLessons } = useProgress()
@@ -8,7 +9,9 @@ export default function Home() {
   const progress = getTotalProgress()
 
   return (
-    <main>
+    <>
+      <SEOHead title="Java Study | 자바 학습 플랫폼" description="Java, Servlet, Spring 등 자바 풀스택 개발 학습 플랫폼" />
+      <main>
       {/* Hero */}
       <section className="hero">
         <div className="floating-code">public class Main {'{'}</div>
@@ -239,5 +242,6 @@ export default function Home() {
         </div>
       </section>
     </main>
+    </>
   )
 }
