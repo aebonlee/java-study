@@ -4,6 +4,7 @@ import { ThemeProvider } from './contexts/ThemeContext'
 import { ProgressProvider } from './contexts/ProgressContext'
 import { BadgeProvider } from './contexts/BadgeContext'
 import { AuthProvider } from './contexts/AuthContext'
+import AdminGuard from './components/AdminGuard'
 import Navbar from './components/layout/Navbar'
 import Footer from './components/layout/Footer'
 import ErrorBoundary from './components/ErrorBoundary'
@@ -81,6 +82,7 @@ const PracticalLesson07 = lazy(() => import('./pages/practical/PracticalLesson07
 const PracticalLesson08 = lazy(() => import('./pages/practical/PracticalLesson08'))
 const PracticalLesson09 = lazy(() => import('./pages/practical/PracticalLesson09'))
 const PracticalLesson10 = lazy(() => import('./pages/practical/PracticalLesson10'))
+const AdminDashboard = lazy(() => import('./pages/admin/AdminDashboard'))
 
 function PageLoader() {
   return (
@@ -184,6 +186,7 @@ export default function App() {
                   <Route path="/projects/06" element={<ProjectLesson06 />} />
                   <Route path="/projects/07" element={<ProjectLesson07 />} />
                   <Route path="/projects/08" element={<ProjectLesson08 />} />
+                  <Route path="/admin/dashboard/*" element={<AdminGuard><AdminDashboard /></AdminGuard>} />
                   <Route path="*" element={<NotFound />} />
                 </Routes>
               </Suspense>
