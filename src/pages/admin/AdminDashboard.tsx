@@ -7,12 +7,11 @@ const PER_PAGE = 10;
 
 interface MemberRow {
   id: string;
-  display_name: string | null;
+  name: string | null;
   email: string | null;
   provider: string | null;
   role: string | null;
   created_at: string | null;
-  last_login_at: string | null;
 }
 
 export default function AdminDashboard() {
@@ -26,7 +25,7 @@ export default function AdminDashboard() {
   useEffect(() => {
     if (!supabase) return;
     (async () => {
-      const { count } = await supabase.from('user_profiles').select('id', { count: 'exact', head: true });
+      const { count } = await supabase.from('javamaster_users').select('id', { count: 'exact', head: true });
       setStats({ members: count || 0 });
     })();
   }, []);
@@ -35,8 +34,8 @@ export default function AdminDashboard() {
     if (!supabase) return;
     setMemberLoading(true);
     const { data } = await supabase
-      .from('user_profiles')
-      .select('id, display_name, email, provider, role, created_at, last_login_at')
+      .from('javamaster_users')
+      .select('id, name, email, provider, role, created_at')
       .order('created_at', { ascending: false });
     setMembers((data || []) as MemberRow[]);
     setMemberLoading(false);
@@ -48,7 +47,7 @@ export default function AdminDashboard() {
     if (!memberSearch.trim()) return members;
     const q = memberSearch.trim().toLowerCase();
     return members.filter(
-      (m) => (m.display_name || '').toLowerCase().includes(q) || (m.email || '').toLowerCase().includes(q)
+      (m) => (m.name || '').toLowerCase().includes(q) || (m.email || '').toLowerCase().includes(q)
     );
   }, [members, memberSearch]);
 
@@ -95,15 +94,15 @@ export default function AdminDashboard() {
             <div className="admin-table-wrapper">
               {memberLoading ? (<div className="admin-empty"><div className="loading-spinner" /></div>) : (
                 <table className="admin-table">
-                  <thead><tr><th>이름</th><th>이메일</th><th>가입수단</th><th>역할</th><th>가입일</th><th>최근 로그인</th></tr></thead>
+                  <thead><tr><th>이름</th><th>이메일</th><th>가입수단</th><th>역할</th><th>가입일</th></tr></thead>
                   <tbody>
                     {pagedMembers.length === 0 ? (
-                      <tr><td colSpan={6} className="admin-empty">회원이 없습니다.</td></tr>
+                      <tr><td colSpan={5} className="admin-empty">회원이 없습니다.</td></tr>
                     ) : pagedMembers.map((m) => (
                       <tr key={m.id}>
-                        <td>{m.display_name || '-'}</td><td>{m.email || '-'}</td><td>{m.provider || 'email'}</td>
+                        <td>{m.name || '-'}</td><td>{m.email || '-'}</td><td>{m.provider || 'email'}</td>
                         <td><span className={`badge ${m.role === 'admin' ? 'badge-admin' : 'badge-member'}`}>{m.role || 'member'}</span></td>
-                        <td>{fmt(m.created_at)}</td><td>{fmt(m.last_login_at)}</td>
+                        <td>{fmt(m.created_at)}</td>
                       </tr>
                     ))}
                   </tbody>
