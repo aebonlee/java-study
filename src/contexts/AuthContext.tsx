@@ -1,5 +1,6 @@
 import { createContext, useContext, useState, useEffect, useCallback, useRef, ReactNode } from 'react'
 import { supabase, isSupabaseEnabled, TABLES } from '../config/supabase'
+import { ADMIN_EMAILS } from '../config/admin'
 
 interface AccountBlock {
   status: string
@@ -33,7 +34,6 @@ const AuthContext = createContext<AuthContextType | null>(null)
 const SESSION_DURATION = 30 * 60 * 1000 // 30분
 const WARNING_THRESHOLD = 5 * 60 * 1000 // 5분
 const SESSION_EXPIRY_KEY = 'javamaster-session-expiry'
-const ADMIN_EMAILS = ['aebon@kakao.com']
 
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState(null)
