@@ -2,6 +2,7 @@ import { createContext, useContext, useState, useEffect, useCallback, useRef, Re
 import { supabase, isSupabaseEnabled, TABLES } from '../config/supabase'
 import { ADMIN_EMAILS } from '../config/admin'
 import { useIdleTimeout } from '../hooks/useIdleTimeout';
+import ProfileCompleteModal from '../components/ProfileCompleteModal';
 
 interface AccountBlock {
   status: string
@@ -169,6 +170,16 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
   }, [])
 
+  const [_userProfile, _setUserProfile] = useState<any>(null);
+
+  // ─── 프로필 완성 체크용 user_profiles 로드 ───
+  const _loadUserProfile = useCallback(async (uid: string) => {
+    try {
+      const { data } = await supabase!.from('user_profiles').select('name,phone').eq('id', uid).maybeSingle();
+      _setUserProfile(data);
+    } catch { _setUserProfile(null); }
+  }, []);
+
   useEffect(() => {
     if (!isSupabaseEnabled()) {
       console.warn('Supabase가 설정되지 않았습니다. VITE_SUPABASE_URL과 VITE_SUPABASE_ANON_KEY를 확인하세요.')
@@ -329,6 +340,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   doSignOut();
   },
   });
+  const refreshProfile = useCallback(async () => { if (user) await _loadUserProfile(user.id); }, [user, _loadUserProfile]);
+  const needsProfileCompletion = !!user && !!_userProfile && (!_userProfile.name || !_userProfile.phone);
+
 
   return (
     <AuthContext.Provider value={value}>
