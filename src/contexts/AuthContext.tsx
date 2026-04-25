@@ -425,6 +425,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
           </div>
         </div>
       )}
+      {needsProfileCompletion && user && (
+        <ProfileCompleteModal user={user} onComplete={refreshProfile} />
+      )}
       {!!user && !needsProfileCompletion && (
         <PaymentNudgePopup user={user} siteSlug="java-study" />
       )}
